@@ -44,12 +44,17 @@
 
 ## 使用方法
 
+**自动更新（已配置）**：`.github/workflows/daily-hotsearch.yml` 每天北京时间 08:08 / 08:24 / 08:42 三个错峰时点运行——抓取 → 筛选 → 建站 → 自动提交推送，Pages 随之重建。三个时点配合幂等检查：当天数据一旦生成成功，后续时点自动跳过（起到失败重试保险作用）。也可在 Actions 页面手动触发（勾选 `force` 可强制刷新当天）。
+
+**本地手动更新**：
+
 ```bash
-# 更新当天热搜并重建站点
 bash 更新数据.sh
 ```
 
-数据落盘在 `data/`，`index.html` 为最终成品，双击即可本地查看；部署到 GitHub Pages 后可通过公开链接访问。
+数据落盘在 `data/`（按日期累积成历史档案，日历可回看），`index.html` 为最终成品，双击即可本地查看；在线版见 https://anywise666.github.io/ai-hotsearch-dashboard/ 。
+
+站点自包含：模板副本已随仓库提交在 `assets/`，任意机器（含 GitHub Actions 的 Linux 环境）都能独立重建，无需依赖本机技能目录。
 
 ## 文件结构
 
