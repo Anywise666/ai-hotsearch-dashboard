@@ -15,11 +15,13 @@ os.makedirs(RAW, exist_ok=True)
 
 API = "https://60s.viki.moe/v2/{}"
 PLATFORMS = ["weibo", "zhihu", "douyin", "bili", "toutiao", "baidu"]
+# 部分平台路径与名称不同（百度实际是 /v2/baidu/hot）
+ENDPOINTS = {"baidu": "baidu/hot"}
 UA = {"User-Agent": "Mozilla/5.0 (compatible; hot-aggregator/1.0)"}
 
 
 def fetch(name, retries=4):
-    url = API.format(name)
+    url = API.format(ENDPOINTS.get(name, name))
     for i in range(retries):
         try:
             req = urllib.request.Request(url, headers=UA)

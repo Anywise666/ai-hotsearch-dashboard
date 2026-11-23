@@ -1,0 +1,89 @@
+name: 热搜聚合每日更新
+
+on:
+  schedule:
+    # cron 只认 UTC，北京时间 = UTC+8。
+    # 三个错峰时点集中在北京 08 点段，避开整点拥堵；
+    # 配合幂等检查：首个成功生成后，后续时点自动跳过，起到失败重试保险作用。
+    - cron: '08 0 * * *'   # 北京 08:08
+    - cron: '24 0 * * *'   # 北京 08:24
+    - cron: '42 0 * * *'   # 北京 08:42
+  workflow_dispatch:       # 手动触发（可强制刷新当天）
+    inputs:
+      force:
+        description: '强制重新抓取并覆盖当天数据（默认否）'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: hotsearch-daily
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 计算北京时间当天
+        id: dt
+        run: echo "today=$(TZ=Asia/Shanghai date +%F)" >> "$GITHUB_OUTPUT"
+
+      - name: 幂等检查 - 当天数据是否已完成
+        id: chk
+        run: |
+          D="${{ steps.dt.outputs.today }}"
+          FORCE="${{ inputs.force }}"
+          if [ "$FORCE" = "true" ]; then
+            echo "done=false" >> "$GITHUB_OUTPUT"; echo "强制刷新模式"; exit 0
+          fi
+          if [ -f "data/$D.json" ] && python -c "
+          import json,sys
+          d=json.load(open('data/$D.json',encoding='utf-8'))
+          sys.exit(0 if d.get('sections') else 1)"; then
+            echo "done=true" >> "$GITHUB_OUTPUT"; echo "ALREADY_DONE $D"
+          else
+            echo "done=false" >> "$GITHUB_OUTPUT"; echo "NEED_UPDATE $D"
+          fi
+
+      - name: 抓取 + 筛选 + 建站
+        if: steps.chk.outputs.done == 'false'
+        env:
+          TZ: Asia/Shanghai
+        run: bash 更新数据.sh
+
+      - name: 数据质量校验
+        if: steps.chk.outputs.done == 'false'
+        run: |
+          python -c "
+          import json,glob,sys
+          f=glob.glob('data/20*.json')
+          f=[x for x in f if '_' not in x.split('/')[-1]]
+          assert f, 'no report file'
+          d=json.load(open(sorted(f)[-1],encoding='utf-8'))
+          n=sum(len(s['items']) for s in d['sections'])
+          assert d.get('lead',{}).get('title') and n>=15, 'bad report: lead=%r items=%d'%(d.get('lead',{}).get('title'),n)
+          idx=json.load(open('data/index.json',encoding='utf-8'))
+          print('QUALITY_OK items=%d sections=%d index_dates=%d'%(n,len(d['sections']),len(idx['items'])))
+          "
+
+      - name: 提交并推送
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f data/ index.html
+          if git diff --cached --quiet; then
+            echo "NO_CHANGES_SKIP"
+          else
+            git commit -m "Daily hotsearch digest: ${{ steps.dt.outputs.today }}"
+            git push origin HEAD:main
+            echo "PUSH_OK"
+          fi

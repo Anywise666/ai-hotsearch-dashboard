@@ -253,10 +253,23 @@ def main():
 
     with open(os.path.join(DATA, date + ".json"), "w", encoding="utf-8", newline="\n") as f:
         json.dump(report, f, ensure_ascii=False, indent=2)
-    idx = {"items": [{"date": date, "leadTitle": report["lead"]["title"],
-                      "leadParagraph": report["lead"]["leadParagraph"]}]}
-    with open(os.path.join(DATA, "index.json"), "w", encoding="utf-8", newline="\n") as f:
-        json.dump(idx, f, ensure_ascii=False, indent=2)
+
+    # 索引累加：保留历史日期，当天已存在则替换，按日期倒序
+    idx_path = os.path.join(DATA, "index.json")
+    items = []
+    if os.path.exists(idx_path):
+        try:
+            items = json.load(open(idx_path, encoding="utf-8")).get("items", [])
+        except Exception:
+            items = []
+    entry = {"date": date, "leadTitle": report["lead"]["title"],
+             "leadParagraph": report["lead"]["leadParagraph"]}
+    items = [x for x in items if x.get("date") != date]
+    items.append(entry)
+    items.sort(key=lambda x: x.get("date", ""), reverse=True)
+    with open(idx_path, "w", encoding="utf-8", newline="\n") as f:
+        json.dump({"items": items}, f, ensure_ascii=False, indent=2)
+    print("索引累计日期数:", len(items))
 
     # 明细存一份便于审阅筛选质量
     with open(os.path.join(DATA, "_selected_debug.json"), "w", encoding="utf-8", newline="\n") as f:
