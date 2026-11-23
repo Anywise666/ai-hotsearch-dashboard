@@ -284,6 +284,22 @@ def main():
         "windowStart": date + "T00:00:00+08:00",
         "windowEnd": date + "T23:59:59+08:00",
         "generatedAt": time.strftime("%Y-%m-%dT%H:%M:%S+08:00", time.gmtime(time.time() + 8 * 3600)),
+        # 供前端"个性化权重"重算：默认参数 + 去重后的完整候选池（含各项特征分）
+        "tuning": {
+            "weights": CFG["weights"],
+            "thresholds": {"min_score": CFG["thresholds"]["min_score"],
+                           "max_neg": CFG["thresholds"]["max_neg"]},
+            "quota": CFG["quota"],
+            "lead_weights": CFG["lead_weights"],
+        },
+        "pool": [
+            {"title": m["title"], "desc": m["desc"], "link": m["link"],
+             "platform_names": m["platform_names"], "maxhot": m["maxhot"],
+             "topic": m["topic"], "topic_label": m["topic_label"],
+             "topic_score": m["topic_score"], "neg": m["neg"], "auth": m["auth"],
+             "cross": m["cross"], "score": round(m["score"], 3)}
+            for m in sorted(merged, key=lambda x: -x["score"])
+        ],
         "lead": {
             "title": lead["title"] if lead else "今日暂无精选热搜",
             "leadParagraph": ("来源：" + " / ".join(lead["platform_names"]) +

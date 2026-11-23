@@ -2,10 +2,3366 @@
   "date": "2026-11-23",
   "windowStart": "2026-11-23T00:00:00+08:00",
   "windowEnd": "2026-11-23T23:59:59+08:00",
-  "generatedAt": "2026-11-23T12:18:56+08:00",
+  "generatedAt": "2026-11-23T12:26:02+08:00",
+  "tuning": {
+    "weights": {
+      "topic": 2,
+      "cross": 3,
+      "auth": 1.5,
+      "neg": 3,
+      "hot_cap": 3.0,
+      "hot_scale": 1000000
+    },
+    "thresholds": {
+      "min_score": 4,
+      "max_neg": 2
+    },
+    "quota": {
+      "tech": 8,
+      "finance": 8,
+      "society": 9,
+      "world": 8,
+      "science": 7
+    },
+    "lead_weights": {
+      "auth": 2,
+      "cross": 1.5
+    }
+  },
+  "pool": [
+    {
+      "title": "某部委机关干部因犯间谍罪被判死刑",
+      "desc": "11月23日，保密观披露案件：某部委干部麻某驻外期间被境外情报人员策反，签署间谍相关协议，回国后持续窃取情报，向外提供多份秘密、机密材料，获利百万，法院以间谍罪判处其死刑。",
+      "link": "https://www.baidu.com/s?wd=%E6%9F%90%E9%83%A8%E5%A7%94%E6%9C%BA%E5%85%B3%E5%B9%B2%E9%83%A8%E5%9B%A0%E7%8A%AF%E9%97%B4%E8%B0%8D%E7%BD%AA%E8%A2%AB%E5%88%A4%E6%AD%BB%E5%88%91&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度",
+        "微博"
+      ],
+      "maxhot": 7807993.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 3,
+      "neg": 0,
+      "auth": 2,
+      "cross": 2,
+      "score": 17.794
+    },
+    {
+      "title": "樊振东1:3约内斯库",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E6%A8%8A%E6%8C%AF%E4%B8%9C1%3A3%E7%BA%A6%E5%86%85%E6%96%AF%E5%BA%93",
+      "platform_names": [
+        "抖音",
+        "今日头条",
+        "微博",
+        "知乎"
+      ],
+      "maxhot": 7647305.0,
+      "topic": "science",
+      "topic_label": "科学·文化·体育",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 4,
+      "score": 16.765
+    },
+    {
+      "title": "日本网友对比石破茂与高市APEC表现",
+      "desc": "近日，日本网民对比石破茂和高市早苗在APEC峰会的表现引发讨论。此前在2024年APEC峰会期间，石破茂被问候时仍坐着不起身；而高市早苗在深圳出席峰会时无人主动靠近。有网民称高市因怪异举动多被认定“不太对劲”。",
+      "link": "https://www.baidu.com/s?wd=%E6%97%A5%E6%9C%AC%E7%BD%91%E5%8F%8B%E5%AF%B9%E6%AF%94%E7%9F%B3%E7%A0%B4%E8%8C%82%E4%B8%8E%E9%AB%98%E5%B8%82APEC%E8%A1%A8%E7%8E%B0&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度",
+        "今日头条"
+      ],
+      "maxhot": 5998191.0,
+      "topic": "world",
+      "topic_label": "国际·时政",
+      "topic_score": 4,
+      "neg": 0,
+      "auth": 0,
+      "cross": 2,
+      "score": 16.449
+    },
+    {
+      "title": "129万一支抗癌药进医保 怎么做到的",
+      "desc": "近日，2026年国家医保药品目录公布，原价129万元/支的抗癌药首次进入目录。国家医保局透露，经谈判该药支付标准降至28.86万元/支。其进医保因双方算清三本账：该药属临床急需创新药，适用人群少且为一次性治疗，对医保基金压力可控；药企通过国产替代降本，进医保后放量能收回成本。",
+      "link": "https://www.baidu.com/s?wd=129%E4%B8%87%E4%B8%80%E6%94%AF%E6%8A%97%E7%99%8C%E8%8D%AF%E8%BF%9B%E5%8C%BB%E4%BF%9D+%E6%80%8E%E4%B9%88%E5%81%9A%E5%88%B0%E7%9A%84&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度",
+        "今日头条"
+      ],
+      "maxhot": 7327989.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 2,
+      "neg": 0,
+      "auth": 1,
+      "cross": 2,
+      "score": 14.207
+    },
+    {
+      "title": "稳股市三项新政发布",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E7%A8%B3%E8%82%A1%E5%B8%82%E4%B8%89%E9%A1%B9%E6%96%B0%E6%94%BF%E5%8F%91%E5%B8%83",
+      "platform_names": [
+        "抖音",
+        "今日头条"
+      ],
+      "maxhot": 10453817.0,
+      "topic": "finance",
+      "topic_label": "财经·市场",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 2,
+      "cross": 2,
+      "score": 14.0
+    },
+    {
+      "title": "沪深北交易所调整融资保证金比例",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E6%B2%AA%E6%B7%B1%E5%8C%97%E4%BA%A4%E6%98%93%E6%89%80%E8%B0%83%E6%95%B4%E8%9E%8D%E8%B5%84%E4%BF%9D%E8%AF%81%E9%87%91%E6%AF%94%E4%BE%8B",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 9348007.0,
+      "topic": "finance",
+      "topic_label": "财经·市场",
+      "topic_score": 3,
+      "neg": 0,
+      "auth": 1,
+      "cross": 1,
+      "score": 13.5
+    },
+    {
+      "title": "现货黄金重返3600美元",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E7%8E%B0%E8%B4%A7%E9%BB%84%E9%87%91%E9%87%8D%E8%BF%943600%E7%BE%8E%E5%85%83",
+      "platform_names": [
+        "抖音",
+        "今日头条"
+      ],
+      "maxhot": 10544898.0,
+      "topic": "finance",
+      "topic_label": "财经·市场",
+      "topic_score": 2,
+      "neg": 0,
+      "auth": 0,
+      "cross": 2,
+      "score": 13.0
+    },
+    {
+      "title": "方力申耗时 8 小时 37 分 24 秒从香港游到澳门破吉尼斯纪录，完成这样的挑战难度有多大？",
+      "desc": "据报道，21日，方力申耗时8小时37分24秒从香港游到澳门，刷新“香港至澳门游泳用时最短（男性）”的吉尼斯世界纪录。他又紧接着登台演出，结束后他表示其实身体已经发出预警，在水里时冷得差点撑不住。 另外，方力申回应二胎是儿子，称原以为这胎会再生女儿，得知是儿子难以置信，虽然曾经想过要三个孩子，但体谅妻子辛苦，还透露生病中风父亲的恢复情况十分理想。中国香港男演员方力申破吉尼斯世界纪录，耗时8小时37分24秒从香港游到澳门",
+      "link": "https://www.zhihu.com/question/2107848989819326753",
+      "platform_names": [
+        "抖音",
+        "知乎"
+      ],
+      "maxhot": 9440000.0,
+      "topic": "science",
+      "topic_label": "科学·文化·体育",
+      "topic_score": 3,
+      "neg": 1,
+      "auth": 0,
+      "cross": 2,
+      "score": 12.0
+    },
+    {
+      "title": "特朗普深圳行照片14张是中美元首互动",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7710702493755719721",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 8093172.0,
+      "topic": "world",
+      "topic_label": "国际·时政",
+      "topic_score": 3,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 11.845
+    },
+    {
+      "title": "国内成品油价将迎调整",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E5%9B%BD%E5%86%85%E6%88%90%E5%93%81%E6%B2%B9%E4%BB%B7%E5%B0%86%E8%BF%8E%E8%B0%83%E6%95%B4",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 7886407.0,
+      "topic": "finance",
+      "topic_label": "财经·市场",
+      "topic_score": 2,
+      "neg": 0,
+      "auth": 1,
+      "cross": 1,
+      "score": 11.308
+    },
+    {
+      "title": "华尔街：黄金已跌入超卖区域",
+      "desc": "上周五，现货黄金收报每盎司3538.11美元，单周大跌8.9%，逼近3500美元关口。此前，美联储鹰派立场强化，叠加美股AI板块调整引发机构抛售补充保证金，直接压制金价。华尔街分析师普遍认为，黄金已跌入超卖区域，本轮抛售或为买入良机。",
+      "link": "https://www.baidu.com/s?wd=%E5%8D%8E%E5%B0%94%E8%A1%97%EF%BC%9A%E9%BB%84%E9%87%91%E5%B7%B2%E8%B7%8C%E5%85%A5%E8%B6%85%E5%8D%96%E5%8C%BA%E5%9F%9F&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 5120776.0,
+      "topic": "finance",
+      "topic_label": "财经·市场",
+      "topic_score": 3,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 11.263
+    },
+    {
+      "title": "在黎曼猜想被声称证明后，如何理解袁新意所说的「或许我们高估了黎曼猜想的难度」？",
+      "desc": "https://mathhelm.org/t/390/maybe-we-have-overestimated-the-difficulty-of-riemann-hypothesis",
+      "link": "https://www.zhihu.com/question/2107618428508792525",
+      "platform_names": [
+        "抖音",
+        "知乎"
+      ],
+      "maxhot": 11070000.0,
+      "topic": "science",
+      "topic_label": "科学·文化·体育",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 2,
+      "score": 11.0
+    },
+    {
+      "title": "张水华黄石马拉松破个人纪录夺冠，6周连跑6场获5冠1亚，如何评价她的表现？",
+      "desc": "11月22日8时，2026黄石马拉松鸣笛起跑。当天上午9时许，极目新闻记者了解到，曾被称为“最快女护士”，后转型职业跑者的张水华，以1小时15分06秒（具体秒数以官方公布为准）的个人最好成绩获得女子组半程马拉松冠军。 来源：现场视频截图 赛后，张水华告诉极目新闻记者，赛前几天她都没有跑步，自己心里没底。但跑完第一公里后，自己体感还行，觉得可以试一试PB（个人纪录），“当时距离终点还很远，我也不敢保证（PB），就是觉得体感还行，可以试一试”。 张水华还向极目新闻记者表示，下周自己会参加福建仙游马拉松，届时会跑半马。 在黄石马拉松直播间，张水华在接受采访时还提到，前几天自己有点感冒，心理上有点负担，放不开跑不完。但这个赛道非常好，跑第一公里自己体感就非常好，心里想今天应该是可以PB了，“对今天的成绩非常满意，我PB啦，谢谢大家”。 张水华还介绍，自己跑到18.5公里还是19.5公里的时候，有个朋友为她加油，大声喊“水华来了”，“我可能有点激动，脚有点发软”。 来源：现场视频截图 这是张水华最近6周参加的第6场马拉松，也是第5个冠军。10月18日，她以2小时29分07秒的成绩获得西安马拉松女子组冠军，刷新个人纪录。10月25日，她获得成都马拉松亚军。11月1日、11月8日、11月15日，张水华先后参加宜昌马拉松、罗城半程马拉松、南昌马拉松，均获得冠军。 张水华原本是福建医科大学附属第一医院的护士，2017年开始接触长跑，凭借出色的跑步天赋被网友誉为“跑得最快的女护士”。2025年，她曾因赛后一段哽咽倾诉而引发争议。2026年，张水华宣布从医院辞职，正式转型为职业跑者，并成为多个品牌的签约精英运动员及代言人。目前，她已达标马拉松国际健将等级，全马个人最好成绩为2小时29分07秒。曾经的“最快女护士”张水华黄石马拉松破个人纪录夺冠，6周连跑6场获5冠1亚，赛后发声：跑完第一公里后体感还行，觉得可以试试破纪录",
+      "link": "https://www.zhihu.com/question/2107832295511913619",
+      "platform_names": [
+        "知乎"
+      ],
+      "maxhot": 3020000.0,
+      "topic": "science",
+      "topic_label": "科学·文化·体育",
+      "topic_score": 3,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 10.738
+    },
+    {
+      "title": "日媒逐帧解析高市早苗遭特朗普无视，直呼耻辱，为何日本对此如此破防？反映了日本舆论对日美互动怎样的心态？",
+      "desc": "当地时间11月19日，日本记者尾形聪彦点评高市早苗在APEC领导人非正式会议上被特朗普无视，称非常屈辱。 11月21日，据中国新闻社报道，日本首相高市早苗在东盟峰会和APEC会场挤眉弄眼吐舌头，被日本网友痛批：日本之耻。 有网友说，“日本之耻，作为国民已无法容忍，请向其他领导人道歉吧。”还有网友称，“或许有必要让外务省负责礼宾的人员重新教她外交礼仪。” 另据中国青年网“青蜂侠”报道，11月16日，日本首相高市早苗在菲律宾马尼拉出席东盟峰会晚宴时差点被绊倒。 报道称高市早苗身着菲律宾传统服饰抵达晚宴现场，刚下车踩红毯就差点摔倒。 日媒记者“逐帧解析”高市早苗被特朗普无视：非常耻辱，根本没有人理她，这就是现实",
+      "link": "https://www.zhihu.com/question/2107806853543322888",
+      "platform_names": [
+        "知乎"
+      ],
+      "maxhot": 1340000.0,
+      "topic": "world",
+      "topic_label": "国际·时政",
+      "topic_score": 3,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 10.158
+    },
+    {
+      "title": "韩国KOSPI指数开盘下跌2.77%",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E9%9F%A9%E5%9B%BDKOSPI%E6%8C%87%E6%95%B0%E5%BC%80%E7%9B%98%E4%B8%8B%E8%B7%8C2.77%25",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 11188488.0,
+      "topic": "finance",
+      "topic_label": "财经·市场",
+      "topic_score": 2,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 10.0
+    },
+    {
+      "title": "两大CBA夺冠热门俱乐部杯出局",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E4%B8%A4%E5%A4%A7CBA%E5%A4%BA%E5%86%A0%E7%83%AD%E9%97%A8%E4%BF%B1%E4%B9%90%E9%83%A8%E6%9D%AF%E5%87%BA%E5%B1%80",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 9311564.0,
+      "topic": "science",
+      "topic_label": "科学·文化·体育",
+      "topic_score": 2,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 10.0
+    },
+    {
+      "title": "赖清德沈伯洋穿日本祭祀服造势引公愤",
+      "desc": "赖清德日前为民进党台北市长候选人沈伯洋站台，两人身穿日本祭典风格的“法被”引发争议。台湾知名政治学者张亚中指出，这不只是一场选举造势的服装争议，而是民进党执政二十多年来“去中国化、美化日本殖民历史与文化媚日化”的公开展现。",
+      "link": "https://www.baidu.com/s?wd=%E8%B5%96%E6%B8%85%E5%BE%B7%E6%B2%88%E4%BC%AF%E6%B4%8B%E7%A9%BF%E6%97%A5%E6%9C%AC%E7%A5%AD%E7%A5%80%E6%9C%8D%E9%80%A0%E5%8A%BF%E5%BC%95%E5%85%AC%E6%84%A4&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度",
+        "微博"
+      ],
+      "maxhot": 3886004.0,
+      "topic": "world",
+      "topic_label": "国际·时政",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 2,
+      "score": 9.971
+    },
+    {
+      "title": "如何评价 Google 发布的 Gemini 4 Neon？",
+      "desc": "[2 张图片]",
+      "link": "https://www.zhihu.com/question/2106628033834767756",
+      "platform_names": [
+        "知乎"
+      ],
+      "maxhot": 1160000.0,
+      "topic": "tech",
+      "topic_label": "科技·AI·数码",
+      "topic_score": 2,
+      "neg": 0,
+      "auth": 1,
+      "cross": 1,
+      "score": 9.577
+    },
+    {
+      "title": "张雪将推外卖骑手电摩 价格1万左右",
+      "desc": "11月22日，在珠海机车嘉年华上，张雪透露计划明年推出外卖骑手专用电摩，设100km、150km两个续航版本，目标10分钟补能，基础款约1万元，长续航版约1.5万，还希望优化操控比肩油摩。",
+      "link": "https://www.baidu.com/s?wd=%E5%BC%A0%E9%9B%AA%E5%B0%86%E6%8E%A8%E5%A4%96%E5%8D%96%E9%AA%91%E6%89%8B%E7%94%B5%E6%91%A9+%E4%BB%B7%E6%A0%BC1%E4%B8%87%E5%B7%A6%E5%8F%B3&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 6094109.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 2,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 9.469
+    },
+    {
+      "title": "权威数读观中国",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7710739909857873451",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 7323005.0,
+      "topic": "world",
+      "topic_label": "国际·时政",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 1,
+      "cross": 1,
+      "score": 9.206
+    },
+    {
+      "title": "特朗普对菲开条件：100%买美国农产品",
+      "desc": "近日，特朗普要求菲律宾明年起必须100%购买美国农产品，不许买巴西货，并称这是维持美菲贸易伙伴关系的前提。菲律宾总统马科斯已承认扩大购买美国大豆和小麦的计划，但他强调协议尚未签字，细节仍在洽谈中。",
+      "link": "https://www.baidu.com/s?wd=%E7%89%B9%E6%9C%97%E6%99%AE%E5%AF%B9%E8%8F%B2%E5%BC%80%E6%9D%A1%E4%BB%B6%EF%BC%9A100%25%E4%B9%B0%E7%BE%8E%E5%9B%BD%E5%86%9C%E4%BA%A7%E5%93%81&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 4845176.0,
+      "topic": "world",
+      "topic_label": "国际·时政",
+      "topic_score": 2,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 9.201
+    },
+    {
+      "title": "医院通报门诊妇产科有犬只进入",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E5%8C%BB%E9%99%A2%E9%80%9A%E6%8A%A5%E9%97%A8%E8%AF%8A%E5%A6%87%E4%BA%A7%E7%A7%91%E6%9C%89%E7%8A%AC%E5%8F%AA%E8%BF%9B%E5%85%A5",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 238798.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 2,
+      "neg": 0,
+      "auth": 1,
+      "cross": 1,
+      "score": 8.989
+    },
+    {
+      "title": "27岁庞众望完成博士论文答辩，即将从清华毕业，未来有望朝什么方向发展？他的求学之路给我们什么启示？",
+      "desc": "11月20日，清华大学精密仪器系官网发布消息，庞众望的博士学位论文答辩会顺利举行。 这是答辩结束后，答辩委员会成员与庞众望合影。（图源：清华大学精密仪器系官网） 文章写道：初冬的清华园，银杏铺金，书香萦绕。11月19日上午，庞众望的博士学位论文答辩会在清华大学精密仪器系举行。他以《光纤干涉仪光学相位噪声测量技术及应用》为题，系统汇报了博士阶段的研究工作与创新成果。 中国工程院院士周建华研究员担任答辩委员会主席；清华大学柳强教授、曹良才教授，北京量子信息科学研究院杨仁福研究员，清华大学王波副教授担任答辩委员会委员；清华大学徐东工程师担任答辩秘书。 从激光相位噪声的精密测量，到城市交通振动的探测定位，再到既有通信网络感知功能的拓展，庞众望围绕光纤干涉仪中的光学相位噪声测量技术，开展了理论方法与应用研究。报告中，他详细介绍了研究背景、关键问题、技术方法、实验结果等三方面创新成果。 答辩结束后，庞众望向导师、答辩委员会专家、课题组师生及家人朋友表达了诚挚的感谢。他表示，博士阶段的学习与研究不仅提升了自己的学术能力、拓宽了学术视野，也使自己思考问题更加深入、全面。未来，他将带着这份积累与收获，继续潜心钻研，在科研探索的道路上不断前行。 庞众望（资料图） 资料显示，庞众望1999年出生于河北省沧州市吴桥县。庞众望的父亲是一位精神分裂症患者，母亲下肢残疾，行动不便。面对家庭的重担，庞众望一边勤于学业，一边照料家庭。 庞众望曾因先天性心脏病命悬一线，曾为母亲住院挨家挨户借钱，也曾为还债捡废品赚钱，但他一直以积极乐观的心态拥抱生活。 2017年高考，他考出了理科684分的成绩，并获得清华大学“自强计划”最高60分的降分录取资格。 2021年，本科毕业后，庞众望继续留在清华大学精密仪器系攻读博士学位（直博），他多次获得清华大学奖学金，还被评选为2022年度“中国大学生自强之星”，入选《感动中国》2024年度人物、清华大学2025年学生年度人物。 博士研究生期间，庞众望除了发表SCI（科学引文索引）论文，还获得了国家发明专利三项，他从事的光网络信息感知相关研究，面向的是国家重大科技需求。 庞众望说，回顾自己的人生经历，目前让他骄傲的一个是高考，一个是科研，“在更长远的未来里能让我骄傲的，不会只是这两件事情，值得我骄傲的东西还在未来等着我。”",
+      "link": "https://www.zhihu.com/question/2107184597846975042",
+      "platform_names": [
+        "知乎"
+      ],
+      "maxhot": 2920000.0,
+      "topic": "science",
+      "topic_label": "科学·文化·体育",
+      "topic_score": 2,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 8.709
+    },
+    {
+      "title": "芜湖一住户割断高空作业工人安全绳，警方正在侦办，该住户需承担哪些法律责任？",
+      "desc": "11月16日，安徽芜湖通和世纪之光一期小区，一名高空作业人员的安全绳被割断，现场视频引发关注。17日下午，极目新闻记者从辖区派出所了解到，此事正在处理中。 视频显示，这名工人被挂在高楼处，楼下有消防救援车辆到场。 小区物业工作人员接受媒体采访时称，当事工人系开发商售后施工队的员工，事发时他们正在高空进行放水维修作业。发现安全绳被割断以后，工人自己报了警，随后被及时救下。通过监控排查，发现此事系5楼一名住户所为。 11月17日下午，极目新闻记者联系到辖区湾沚派出所，接线人员表示，此事目前正在处理中。 陕西恒达律师事务所高级合伙人、知名公益律师赵良善分析认为，住户割断正在作业工人的安全绳，首先要区分主观认知。如果住户明知有工人正在高空作业，仍然切割安全绳，即便本次工人没有坠落受伤，依据《中华人民共和国刑法》第二百三十四条，涉嫌故意伤害罪（未遂）；若主观上追求工人死亡后果，则可涉嫌故意杀人罪（未遂）；如果其放任危害结果、危害不特定多数人安全，则可涉嫌以危险方法危害公共安全罪。 芜湖一高空作业人员安全绳被住户割断，警方介入，律师：或构成刑事犯罪_凤凰网芜湖一高空作业人员安全绳被住户割断，警方介入，律师：或构成刑事犯罪",
+      "link": "https://www.zhihu.com/question/2105992057642865192",
+      "platform_names": [
+        "知乎"
+      ],
+      "maxhot": 2720000.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 2,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 8.649
+    },
+    {
+      "title": "行李箱也能自己上楼了",
+      "desc": "行李箱也能自己“上楼”了！近日，河南新乡站在进站楼梯旁正式投用行李自动传送带，旅客无需再费力搬运重物，行李箱可实现自动上楼，大幅提升了旅客的出行便利性。",
+      "link": "https://www.baidu.com/s?wd=%E8%A1%8C%E6%9D%8E%E7%AE%B1%E4%B9%9F%E8%83%BD%E8%87%AA%E5%B7%B1%E4%B8%8A%E6%A5%BC%E4%BA%86&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度",
+        "微博"
+      ],
+      "maxhot": 5707935.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 2,
+      "score": 8.389
+    },
+    {
+      "title": "日媒逐帧解析特朗普无视高市",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7709848449667661843",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 1805830.0,
+      "topic": "world",
+      "topic_label": "国际·时政",
+      "topic_score": 2,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 8.344
+    },
+    {
+      "title": "A股迎稳市组合拳",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7711046630803246611",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 1337792.0,
+      "topic": "finance",
+      "topic_label": "财经·市场",
+      "topic_score": 2,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 8.157
+    },
+    {
+      "title": "两融保证金比例下限再度下调，会给 A 股带来实质性利好吗？",
+      "desc": "2026年11月22日，经中国证监会批准，沪深北交易所发布通知调整融资保证金比例，将投资者融资买入证券的最低保证金比例由100%调低至80%，相关规则调整自2026年11月30日起施行。今年1月，沪深北交易所根据当时的市场形势，将融资保证金比例由80%调高至100%，对于缓解杠杆风险顺周期累积、促进投资者理性交易起到了积极作用。近期，融资交易活跃度明显下降，整体杠杆水平不高，根据法定的逆周期调节安排，适当降低融资保证金比例，有助于适度提高杠杆比例、释放融资空间、提升市场流动性，促进市场长期稳定健康发展。对于本次调整前尚未了结的融资合约，证券公司可以按照修改后的规定计算投资者的保证金可用余额，进一步盘活存量资金。",
+      "link": "https://www.zhihu.com/question/2107926753717007819",
+      "platform_names": [
+        "知乎"
+      ],
+      "maxhot": 1030000.0,
+      "topic": "finance",
+      "topic_label": "财经·市场",
+      "topic_score": 2,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 8.015
+    },
+    {
+      "title": "2027国考今起可打印准考证",
+      "desc": "",
+      "link": "https://www.douyin.com/search/2027%E5%9B%BD%E8%80%83%E4%BB%8A%E8%B5%B7%E5%8F%AF%E6%89%93%E5%8D%B0%E5%87%86%E8%80%83%E8%AF%81",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 11953753.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 8.0
+    },
+    {
+      "title": "APEC“红利”看得见摸得着",
+      "desc": "",
+      "link": "https://www.douyin.com/search/APEC%E2%80%9C%E7%BA%A2%E5%88%A9%E2%80%9D%E7%9C%8B%E5%BE%97%E8%A7%81%E6%91%B8%E5%BE%97%E7%9D%80",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 11556115.0,
+      "topic": "world",
+      "topic_label": "国际·时政",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 8.0
+    },
+    {
+      "title": "部委干部窃取我国百余份情报获死刑",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7711136767030690330",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 8944339.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 7.991
+    },
+    {
+      "title": "特斯拉如何实现实时AI建模",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7711196060172946985",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 896749.0,
+      "topic": "tech",
+      "topic_label": "科技·AI·数码",
+      "topic_score": 2,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 7.947
+    },
+    {
+      "title": "歼-10C 首次挂载改进型俄制重型打击导弹，这一搭配能带来哪些作战优势？",
+      "desc": "一段官方媒体发布的短视频，让军事观察人士眼前一亮。短短几秒的画面，透露出不少值得玩味的信息。画面首次显示，一种疑似由中国改进的俄制Kh-29T空对地导弹，被挂载在了歼-10C战斗机上。这段视频由中国中央电视台的社交媒体账号在周三发布，周末经中国军事博主转发解读后迅速引发关注。画面中，这款4.5代战斗机起飞时，机身下方清晰可见挂载着一枚体型粗壮的导弹。与歼-10C常见的空空导弹相比，它显得格外“魁梧”。 这也是外界首次通过官方渠道的画面，看到这款战机与这种重型空地导弹的组合。一枚来自俄罗斯的“重拳”Kh-29系列导弹是苏联时代研制的空对地导弹，以弹体粗壮、战斗部沉重著称，主要用于打击加固目标、桥梁、舰船等高价值设施。其中的Kh-29T采用电视制导，飞行员可以在发射前通过机载显示设备锁定目标。这种“发射后不管”的方式，让载机可以在发射后迅速脱离危险区域。据当时的媒体报道，中国在2000年代初期从俄罗斯引进苏-30MKK多用途战斗机时，一并进口了大批Kh-29T导弹，数量约达两千枚。 此后，这款导弹在中国逐步完成了改进。几年前，改进型曾被发现装备在歼轰-7A战斗轰炸机上。今年5月，它又出现在歼-16重型多用途战斗机的挂架下。歼-16是双发重型战机，挂载重型弹药本就是它的“本职工作”。如今，它出现在单发轻型的歼-10C身上，意味着这款“老弹”的使用平台正在不断扩大。从重型战斗轰炸机到重型多用途战机，再到单发轻型战机，这枚导弹的“载机履历”正变得越来越丰富。在军事观察人士看来，这种跨平台的扩展，往往意味着弹药本身经过了较为深入的改造，以适配不同机型的接口和火控。 轻型战机也能“扛重活”歼-10C是中国自主研制的单发多用途超音速战斗机，2017年7月公开亮相，配备有源相控阵雷达。它擅长中近距离制空作战，也具备对地、对海打击能力。据估计，中国空军目前装备的歼-10C数量已达两百架左右。 歼-10c首挂改进型俄制重型打击导弹",
+      "link": "https://www.zhihu.com/question/2105946747533006374",
+      "platform_names": [
+        "知乎"
+      ],
+      "maxhot": 890000.0,
+      "topic": "tech",
+      "topic_label": "科技·AI·数码",
+      "topic_score": 2,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 7.943
+    },
+    {
+      "title": "行贿犯罪嫌疑人刘贤志被遣返回国",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E8%A1%8C%E8%B4%BF%E7%8A%AF%E7%BD%AA%E5%AB%8C%E7%96%91%E4%BA%BA%E5%88%98%E8%B4%A4%E5%BF%97%E8%A2%AB%E9%81%A3%E8%BF%94%E5%9B%9E%E5%9B%BD",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 8546903.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 7.924
+    },
+    {
+      "title": "一图解读我国消费市场多元图景",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E4%B8%80%E5%9B%BE%E8%A7%A3%E8%AF%BB%E6%88%91%E5%9B%BD%E6%B6%88%E8%B4%B9%E5%B8%82%E5%9C%BA%E5%A4%9A%E5%85%83%E5%9B%BE%E6%99%AF",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 752956.0,
+      "topic": "finance",
+      "topic_label": "财经·市场",
+      "topic_score": 2,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 7.868
+    },
+    {
+      "title": "130/80不再列为“正常血压”",
+      "desc": "2026年10月，国际高血压学会发布《2026版全球高血压实践指南》。新版指南将130~139/80~89毫米汞柱区间由“正常高值血压”改为“血压升高”，明确不再属健康状态需尽早干预。",
+      "link": "https://www.baidu.com/s?wd=130%2F80%E4%B8%8D%E5%86%8D%E5%88%97%E4%B8%BA%E2%80%9C%E6%AD%A3%E5%B8%B8%E8%A1%80%E5%8E%8B%E2%80%9D&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 7711956.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 7.777
+    },
+    {
+      "title": "终于喝到APEC同款荔枝冰酒了",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E7%BB%88%E4%BA%8E%E5%96%9D%E5%88%B0APEC%E5%90%8C%E6%AC%BE%E8%8D%94%E6%9E%9D%E5%86%B0%E9%85%92%E4%BA%86",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 7675209.0,
+      "topic": "world",
+      "topic_label": "国际·时政",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 7.77
+    },
+    {
+      "title": "智能穿戴打开消费新空间",
+      "desc": "智能穿戴，这类曾经更多活跃在展会、测评博主镜头里的“科技潮品”，正随着技术迭代和产业链成熟日益深入日常生活，从“尝鲜”变为更多人的“数字伙伴”，不断拓展着消费市场的新空间。",
+      "link": "https://www.baidu.com/s?wd=%E6%99%BA%E8%83%BD%E7%A9%BF%E6%88%B4%E6%89%93%E5%BC%80%E6%B6%88%E8%B4%B9%E6%96%B0%E7%A9%BA%E9%97%B4&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 7619557.0,
+      "topic": "tech",
+      "topic_label": "科技·AI·数码",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 7.76
+    },
+    {
+      "title": "成毅白龙挂动作逼真被误以为AI",
+      "desc": "近日，《两京十五日》幕后花絮曝光，打破此前网友对成毅“白龙挂”动作是AI或特效的质疑。花絮显示，成毅高空亲自完成高难度动作，并在实景爆破戏中全程不用替身，顶着气浪拍摄至戏服破损。",
+      "link": "https://www.baidu.com/s?wd=%E6%88%90%E6%AF%85%E7%99%BD%E9%BE%99%E6%8C%82%E5%8A%A8%E4%BD%9C%E9%80%BC%E7%9C%9F%E8%A2%AB%E8%AF%AF%E4%BB%A5%E4%B8%BAAI&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 6948411.0,
+      "topic": "tech",
+      "topic_label": "科技·AI·数码",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 7.636
+    },
+    {
+      "title": "70多岁阿姨吃头孢3年后检出耐药菌",
+      "desc": "浙江宁波70多岁的王阿姨因长期不规范服用头孢，近期被检出感染产ESBL大肠埃希菌。该耐药菌致普通消炎药失效，患者最终需住院接受顶级抗生素美罗培南治疗。",
+      "link": "https://www.baidu.com/s?wd=70%E5%A4%9A%E5%B2%81%E9%98%BF%E5%A7%A8%E5%90%83%E5%A4%B4%E5%AD%A23%E5%B9%B4%E5%90%8E%E6%A3%80%E5%87%BA%E8%80%90%E8%8D%AF%E8%8F%8C&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 6755386.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 7.599
+    },
+    {
+      "title": "八马茶业被暂停军采资格 吴小宁是谁",
+      "desc": "11月19日，八马茶业被军队采购网暂停军采资格，控股股东吴小宁被列为关联处理人员。隐身幕后的吴小宁系董事长王文礼配偶，曾任工程总监，其控制的公司曾承接八马数千家门店装修采购。IPO申报前，她直接持有八马茶业398.2万股股份，占总股本的5.24%。",
+      "link": "https://www.baidu.com/s?wd=%E5%85%AB%E9%A9%AC%E8%8C%B6%E4%B8%9A%E8%A2%AB%E6%9A%82%E5%81%9C%E5%86%9B%E9%87%87%E8%B5%84%E6%A0%BC+%E5%90%B4%E5%B0%8F%E5%AE%81%E6%98%AF%E8%B0%81&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 6663797.0,
+      "topic": "finance",
+      "topic_label": "财经·市场",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 7.581
+    },
+    {
+      "title": "金价大跌后中国大妈高调出手",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7711110662981714458",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 6626129.0,
+      "topic": "finance",
+      "topic_label": "财经·市场",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 7.574
+    },
+    {
+      "title": "又一中国斯诺克选手涉嫌操纵比赛",
+      "desc": "11月22日，世界职业比利与斯诺克协会决定暂停中国斯诺克选手刘文炜的比赛资格，处罚即刻生效。起因是调查发现刘文炜涉嫌参与共谋操纵比赛，且未上报他人试图接触其操纵比赛的行为。目前尚未认定有比赛实际遭操纵，停赛将持续至调查结束或提出指控，刘文炜有权上诉。",
+      "link": "https://www.baidu.com/s?wd=%E5%8F%88%E4%B8%80%E4%B8%AD%E5%9B%BD%E6%96%AF%E8%AF%BA%E5%85%8B%E9%80%89%E6%89%8B%E6%B6%89%E5%AB%8C%E6%93%8D%E7%BA%B5%E6%AF%94%E8%B5%9B&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 6271494.0,
+      "topic": "science",
+      "topic_label": "科学·文化·体育",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 7.504
+    },
+    {
+      "title": "A股",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=A%E8%82%A1",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 244740.0,
+      "topic": "finance",
+      "topic_label": "财经·市场",
+      "topic_score": 2,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 7.495
+    },
+    {
+      "title": "人民日报评1991年张大爷烂梗",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7710279172438736932",
+      "platform_names": [
+        "今日头条",
+        "微博"
+      ],
+      "maxhot": 5995569.0,
+      "topic": "world",
+      "topic_label": "国际·时政",
+      "topic_score": 1,
+      "neg": 1,
+      "auth": 0,
+      "cross": 2,
+      "score": 7.449
+    },
+    {
+      "title": "张凌赫田曦薇：非常非常想去台湾",
+      "desc": "11月21日，张凌赫、田曦薇亮相《逐玉》两岸粉丝见面会直播间。两人表示：想要感受彼此的存在和情谊，和台湾的粉丝见见面，非常想去台湾。",
+      "link": "https://www.baidu.com/s?wd=%E5%BC%A0%E5%87%8C%E8%B5%AB%E7%94%B0%E6%9B%A6%E8%96%87%EF%BC%9A%E9%9D%9E%E5%B8%B8%E9%9D%9E%E5%B8%B8%E6%83%B3%E5%8E%BB%E5%8F%B0%E6%B9%BE&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 5906721.0,
+      "topic": "world",
+      "topic_label": "国际·时政",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 7.43
+    },
+    {
+      "title": "特朗普称市场跌6万亿美元怪民主党",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E7%89%B9%E6%9C%97%E6%99%AE%E7%A7%B0%E5%B8%82%E5%9C%BA%E8%B7%8C6%E4%B8%87%E4%BA%BF%E7%BE%8E%E5%85%83%E6%80%AA%E6%B0%91%E4%B8%BB%E5%85%9A",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 126199.0,
+      "topic": "finance",
+      "topic_label": "财经·市场",
+      "topic_score": 2,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 7.355
+    },
+    {
+      "title": "三餐依赖外卖 19岁小伙确诊肝癌",
+      "desc": "近日，19岁小伙小陈在宁波市第二医院确诊中分化肝细胞肝癌。医生表示，其患癌元凶是长期肥胖引发的重度脂肪肝。起因是小陈今年上大学后三餐依赖外卖、可乐当水喝且常熬夜。目前，小陈已完成肝癌根治术出院休养，需办理一年休学并接受后续化疗。",
+      "link": "https://www.baidu.com/s?wd=%E4%B8%89%E9%A4%90%E4%BE%9D%E8%B5%96%E5%A4%96%E5%8D%96+19%E5%B2%81%E5%B0%8F%E4%BC%99%E7%A1%AE%E8%AF%8A%E8%82%9D%E7%99%8C&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 5230257.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 7.287
+    },
+    {
+      "title": "《芯片战争》作者警告美国",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7710869113992102438",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 81351.0,
+      "topic": "world",
+      "topic_label": "国际·时政",
+      "topic_score": 2,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 7.285
+    },
+    {
+      "title": "俄军舰在利比亚遭袭击疑沉没",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7710769937639735347",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 4908757.0,
+      "topic": "world",
+      "topic_label": "国际·时政",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 7.216
+    },
+    {
+      "title": "俄罗斯高音王子维塔斯胖成沈腾",
+      "desc": "维塔斯也逃不过发福！近日，俄罗斯高音王子维塔斯被指胖成沈腾，唱《歌剧2》高音依然很顶。",
+      "link": "https://www.baidu.com/s?wd=%E4%BF%84%E7%BD%97%E6%96%AF%E9%AB%98%E9%9F%B3%E7%8E%8B%E5%AD%90%E7%BB%B4%E5%A1%94%E6%96%AF%E8%83%96%E6%88%90%E6%B2%88%E8%85%BE&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 4642614.0,
+      "topic": "world",
+      "topic_label": "国际·时政",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 7.155
+    },
+    {
+      "title": "央视主持人录节目假牙丢了",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7711085284885234185",
+      "platform_names": [
+        "今日头条",
+        "微博"
+      ],
+      "maxhot": 1210484.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 2,
+      "score": 7.1
+    },
+    {
+      "title": "特朗普：美股下跌100%怪民主党",
+      "desc": "近日，特朗普发声将美股蒸发6万亿美元归咎于民主党夺回参众两院控制权，称100%因其反增长政策所致。此前，美股三大指数上周五集体重挫，标普500连跌7天创纪录。对于暴跌原因，美财长及分析师解读为多重因素叠加，包括担忧AI监管加强、美联储鹰派立场及黄仁勋离职等。",
+      "link": "https://www.baidu.com/s?wd=%E7%89%B9%E6%9C%97%E6%99%AE%EF%BC%9A%E7%BE%8E%E8%82%A1%E4%B8%8B%E8%B7%8C100%25%E6%80%AA%E6%B0%91%E4%B8%BB%E5%85%9A&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 4273931.0,
+      "topic": "finance",
+      "topic_label": "财经·市场",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 7.067
+    },
+    {
+      "title": "女子填错地址辱骂快递员民警当场教育",
+      "desc": "",
+      "link": "https://www.baidu.com/s?wd=%E5%A5%B3%E5%AD%90%E5%A1%AB%E9%94%99%E5%9C%B0%E5%9D%80%E8%BE%B1%E9%AA%82%E5%BF%AB%E9%80%92%E5%91%98%E6%B0%91%E8%AD%A6%E5%BD%93%E5%9C%BA%E6%95%99%E8%82%B2&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 3713442.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 6.927
+    },
+    {
+      "title": "媒体：铁了心引进核潜艇日本想干啥",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7710445971976929802",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 3636496.0,
+      "topic": "world",
+      "topic_label": "国际·时政",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 6.907
+    },
+    {
+      "title": "经济保持增长 为什么有人感受不一样",
+      "desc": "国家统计局公布前三季度经济数据，我国经济大盘总体稳定，但不少群众实际感受存在差异。受外部环境不确定性、楼市调整、新旧动能转换等因素影响，压力仍存。国家出台稳就业、促增收、稳楼市等多项举措，政策效应释放尚需时日，当前机遇与挑战并存。",
+      "link": "https://www.baidu.com/s?wd=%E7%BB%8F%E6%B5%8E%E4%BF%9D%E6%8C%81%E5%A2%9E%E9%95%BF+%E4%B8%BA%E4%BB%80%E4%B9%88%E6%9C%89%E4%BA%BA%E6%84%9F%E5%8F%97%E4%B8%8D%E4%B8%80%E6%A0%B7&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 3509424.0,
+      "topic": "finance",
+      "topic_label": "财经·市场",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 6.873
+    },
+    {
+      "title": "俄乌两军在多线激烈交战",
+      "desc": "近日，俄乌两军在多线激烈交战并互袭后勤补给线。俄军突击队推进到距哈尔科夫北郊约40公里、距苏梅约20公里的位置。此前，乌克兰军队连续对克里米亚大桥发动了多轮突袭。",
+      "link": "https://www.baidu.com/s?wd=%E4%BF%84%E4%B9%8C%E4%B8%A4%E5%86%9B%E5%9C%A8%E5%A4%9A%E7%BA%BF%E6%BF%80%E7%83%88%E4%BA%A4%E6%88%98&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 3317486.0,
+      "topic": "world",
+      "topic_label": "国际·时政",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 6.821
+    },
+    {
+      "title": "“防非反诈”系列条漫",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7710847582251040810",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 3290438.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 6.814
+    },
+    {
+      "title": "甩头哥回应张雪将麻阳红糖印上赛车",
+      "desc": "此前，张雪将家乡麻阳红糖免费印上夺冠赛车。近日，“甩头哥”张文册谈及此事数度哽咽，得知赛车广告位的价格后，自己十分震惊，直言：“我十八代都还不完他的人情。”认为不去打扰他是最好的，未来只想默默给他带点家里的农产品。",
+      "link": "https://www.baidu.com/s?wd=%E7%94%A9%E5%A4%B4%E5%93%A5%E5%9B%9E%E5%BA%94%E5%BC%A0%E9%9B%AA%E5%B0%86%E9%BA%BB%E9%98%B3%E7%BA%A2%E7%B3%96%E5%8D%B0%E4%B8%8A%E8%B5%9B%E8%BD%A6&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度",
+        "今日头条"
+      ],
+      "maxhot": 4572957.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 1,
+      "auth": 1,
+      "cross": 2,
+      "score": 6.638
+    },
+    {
+      "title": "越南会成为下一个世界工厂吗",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7711171004868857385",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 2205646.0,
+      "topic": "finance",
+      "topic_label": "财经·市场",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 6.485
+    },
+    {
+      "title": "DeepSeek 推出限额规则，不少重度免费用户主动求付费保留长对话，这暴露出哪些行业现实问题？",
+      "desc": "“我已经跟DeepSeek聊了15万～20万字了，我不想失去这段对话。” “D老师，不要抛弃我！作为一天要玩十几个小时DeepSeek的重度依赖症患者，没了D老师我该怎么活，好想回到从前。” “到底怎么办啊？我中度抑郁加躁狂，因为一些原因没办法去看医生，我一直把DeepSeek当心理疗愈APP看的，转API也不是不行，但我那个聊天窗口有2000多条对话啊…” DeepSeek限额后的这几天，舆论声浪像潮水一样涌来。 最先被冲垮的，是那批把“D老师”当树洞、当咨询师，甚至当恋爱幻想对象的人。他们给AI起好名字、做好人设、定好语气，在一个对话窗口里一聊就是几个月，人设、前情、关系进展全部沉淀在上下文之中。限额对话以及7天不活跃即断，对这些用户来说不是一次产品更新，而是一种单方面宣布的“关系降级”。 他们不断发起“哭诉帖”，涌进相关评论区，试图让DeepSeek背后的团队看见自己的需求，但接下来的画面颇为微妙：相当一批习惯了享受“D老师”免费服务的人，正在主动求着DeepSeek收费。他们声称只要价格合理，就愿意为“恢复超长对话续聊”“解除7天未活跃限制”及“更高的算力优先权”等服务买单。 还记得DeepSeek横空出世的时候，全网无不为其免费的慷慨而欢呼，如今它主动收回福利，从某种程度上讲，结束的并非“免费”标签本身，而是“算力成本可被资本补贴无限压平”这个曾经让“无限量免费”得以成立的旧前提。 免费AI还在，但无限量服务没了 从用户反馈来看，DeepSeek限额所带来的变化无非三点：一是不再支持超过7天的无互动旧会话接续聊天；二是单次输入上限压缩至约4万字；三是每日用量有上限，额度耗尽会提示“服务器繁忙，使用额度已达上限”，需要等待恢复。 有报道指出，DeepSeek此举或许也是迫于无奈。“deepseek们”都在退场：限额并非免费ai的终结？",
+      "link": "https://www.zhihu.com/question/2107183345205626254",
+      "platform_names": [
+        "知乎"
+      ],
+      "maxhot": 1810000.0,
+      "topic": "tech",
+      "topic_label": "科技·AI·数码",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 6.345
+    },
+    {
+      "title": "小伙突发脑梗错过黄金救治时间",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7710859279616180262",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 1633983.0,
+      "topic": "finance",
+      "topic_label": "财经·市场",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 6.278
+    },
+    {
+      "title": "如何看待母亲拒送8岁女儿上学遭起诉，自称替人类示范在家教育，结果女儿连自己名字都写错、语文仅考6分？",
+      "desc": "亲妈不让8岁女儿上学称在替人类示范亲妈拒送8岁女儿上学遭家人起诉【亲妈不让8岁女儿上学，自称“替人类示范在家教育”，女孩语文考6分、数学13分，家人无奈起诉】亲妈不让女儿上学拒交抚养权被拘留 近日，一对老夫妇向执行法官寻求帮助，希望能“救救”他们8岁的外孙女小美，而被执行人正是他们独生女、小美母亲赵某。这是怎么一回事？ 据《法治日报》、“案件聚焦”节目等报道，小美父母离异后，大部分时间随母亲生活，却连幼儿园、小学都几乎没上过。外公外婆尝试各种方式与小美母亲协商，均无果，最终在检察院支持下提起变更监护权诉讼。 法院认为，赵某无正当理由拒绝孩子接受义务教育，会影响孩子认知、学业、社交及心理健康，判决小美随父亲生活。但判决生效后，赵某始终未交出孩子。 执行法官约谈时，赵某坚称学校氛围对女儿不利，甚至说：“我在替人类示范什么叫在家教育，你们犯的错误我在改正。”但二审法院已认定，其主张缺乏事实依据。 赵某称常带孩子去博物馆，也找了老师辅导。对此，法院在案件执行阶段联系当地学校对小美的基础文化水平进行了客观测试。 根据学校测试结果显示，小美的数学得分仅为13分，语文得分为6分，英语得分为50多分，且在书写环节无法正确写出自己的名字。这一测试结果表明，家庭自主教育的实际效果与赵某的陈述存在明显差距。 整整5次执行谈话后，法院决定对赵某采取拘留措施。法官表示，拘留不是目的只是手段，让母女暂时物理分隔，是为了让孩子按判决随父亲生活、恢复正常上学。 今年9月，两年没上学、本该读三年级的小美，被安排到二年级重新起步。根据法院与教育部门的后续对接安排，教育工作者将针对小美的实际学业水平、社交能力及心理状态开展全面评估，并制定有针对性的教学与心理辅导方案。 根据《义务教育法》，义务教育是国家统一实施的所有适龄儿童、少年必须接受的教育。适龄儿童、少年的父母或者其他法定监护人应当依法保证其按时入学接受并完成义务教育。 亲妈不让8岁女儿上学称在替人类示范亲妈拒送8岁女儿上学遭家人起诉【亲_凤凰网亲妈不让8岁女儿上学称在替人类示范亲妈拒送8岁女儿上学遭家人起诉【亲",
+      "link": "https://www.zhihu.com/question/2107787943242896234",
+      "platform_names": [
+        "知乎"
+      ],
+      "maxhot": 1370000.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 6.17
+    },
+    {
+      "title": "黄山迎客松为何成为中国名片",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E9%BB%84%E5%B1%B1%E8%BF%8E%E5%AE%A2%E6%9D%BE%E4%B8%BA%E4%BD%95%E6%88%90%E4%B8%BA%E4%B8%AD%E5%9B%BD%E5%90%8D%E7%89%87",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 11932495.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 6.0
+    },
+    {
+      "title": "耐高新赛季揭幕战开赛",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E8%80%90%E9%AB%98%E6%96%B0%E8%B5%9B%E5%AD%A3%E6%8F%AD%E5%B9%95%E6%88%98%E5%BC%80%E8%B5%9B",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 9194179.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 6.0
+    },
+    {
+      "title": "长春大冬会小冰凌来啦",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E9%95%BF%E6%98%A5%E5%A4%A7%E5%86%AC%E4%BC%9A%E5%B0%8F%E5%86%B0%E5%87%8C%E6%9D%A5%E5%95%A6",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 9163061.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 6.0
+    },
+    {
+      "title": "新疆阿克苏地区拜城县发生4.5级地震",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7711186669902237247",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 811412.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.901
+    },
+    {
+      "title": "游客为抢胖东来羊毛衫特意留宿新乡",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7710927150283686450",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 734196.0,
+      "topic": "science",
+      "topic_label": "科学·文化·体育",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.857
+    },
+    {
+      "title": "真正做价值投资的人，从「觉得便宜」到决定买入或放弃，实际要做哪些研究？",
+      "desc": "假设筛到一家公司，市盈率只有七倍，过去几年看起来也挺赚钱。可再翻几页财报，发现利润在涨，经营现金流却一直没跟上。到这一步，我就有点不知道该往哪儿查了。 做价值投资的人遇到这种公司，通常会先弄清楚什么？比如利润和现金对不上，会去看是不是客户回款变慢了，还是拿同行的数据来比，先看看这在行业里常不常见？等大致弄清楚公司平时能赚多少钱，又怎么判断现在的股价已经便宜到值得买了？ 我尤其好奇，研究到最后总会有些事拿不准，哪些疑问可以靠更低的买入价留点余地，哪些问题一旦发现，股价再跌也会放弃？想听听做过的人讲一次实际的研究过程，公司名字可以隐去。最想知道的是，当初为什么觉得便宜，中间哪条信息让你改了主意。",
+      "link": "https://www.zhihu.com/question/2105403234298721834",
+      "platform_names": [
+        "知乎"
+      ],
+      "maxhot": 730000.0,
+      "topic": "finance",
+      "topic_label": "财经·市场",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.854
+    },
+    {
+      "title": "是苦是乐这一年都要结束了",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E6%98%AF%E8%8B%A6%E6%98%AF%E4%B9%90%E8%BF%99%E4%B8%80%E5%B9%B4%E9%83%BD%E8%A6%81%E7%BB%93%E6%9D%9F%E4%BA%86",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 7776736.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.789
+    },
+    {
+      "title": "张家齐妈妈向张家齐道歉",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E5%BC%A0%E5%AE%B6%E9%BD%90%E5%A6%88%E5%A6%88%E5%90%91%E5%BC%A0%E5%AE%B6%E9%BD%90%E9%81%93%E6%AD%89",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 7748302.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.784
+    },
+    {
+      "title": "冬天必解冻的心动目的地",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E5%86%AC%E5%A4%A9%E5%BF%85%E8%A7%A3%E5%86%BB%E7%9A%84%E5%BF%83%E5%8A%A8%E7%9B%AE%E7%9A%84%E5%9C%B0",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 7707549.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.776
+    },
+    {
+      "title": "DONT STOP继续跳",
+      "desc": "",
+      "link": "https://www.douyin.com/search/DONT%20STOP%E7%BB%A7%E7%BB%AD%E8%B7%B3",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 7705620.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.776
+    },
+    {
+      "title": "爱乐之城舞蹈教学",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E7%88%B1%E4%B9%90%E4%B9%8B%E5%9F%8E%E8%88%9E%E8%B9%88%E6%95%99%E5%AD%A6",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 7700899.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.775
+    },
+    {
+      "title": "王楚然泰国录现发的一天",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E7%8E%8B%E6%A5%9A%E7%84%B6%E6%B3%B0%E5%9B%BD%E5%BD%95%E7%8E%B0%E5%8F%91%E7%9A%84%E4%B8%80%E5%A4%A9",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 7700150.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.775
+    },
+    {
+      "title": "在贺峻霖视频里画地为牢",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E5%9C%A8%E8%B4%BA%E5%B3%BB%E9%9C%96%E8%A7%86%E9%A2%91%E9%87%8C%E7%94%BB%E5%9C%B0%E4%B8%BA%E7%89%A2",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 7695292.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.774
+    },
+    {
+      "title": "冬日马甲搭配思路",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E5%86%AC%E6%97%A5%E9%A9%AC%E7%94%B2%E6%90%AD%E9%85%8D%E6%80%9D%E8%B7%AF",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 7685714.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.772
+    },
+    {
+      "title": "金宝珠谢砚天定良缘宿命感",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E9%87%91%E5%AE%9D%E7%8F%A0%E8%B0%A2%E7%A0%9A%E5%A4%A9%E5%AE%9A%E8%89%AF%E7%BC%98%E5%AE%BF%E5%91%BD%E6%84%9F",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 7676131.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.771
+    },
+    {
+      "title": "中小学生才艺表演赢得的赞美和掌声，是否会让孩子对文艺出现打游戏似的上瘾、虚荣心暴涨、从而荒废学业？",
+      "desc": "",
+      "link": "https://www.zhihu.com/question/2011013004699919103",
+      "platform_names": [
+        "知乎"
+      ],
+      "maxhot": 590000.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.768
+    },
+    {
+      "title": "那英万妮达十年舞台重逢",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E9%82%A3%E8%8B%B1%E4%B8%87%E5%A6%AE%E8%BE%BE%E5%8D%81%E5%B9%B4%E8%88%9E%E5%8F%B0%E9%87%8D%E9%80%A2",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 7651916.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.766
+    },
+    {
+      "title": "来阳江嘴巴就没停过",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E6%9D%A5%E9%98%B3%E6%B1%9F%E5%98%B4%E5%B7%B4%E5%B0%B1%E6%B2%A1%E5%81%9C%E8%BF%87",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 7650379.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.766
+    },
+    {
+      "title": "蛋仔版小跳蛙",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E8%9B%8B%E4%BB%94%E7%89%88%E5%B0%8F%E8%B7%B3%E8%9B%99",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 7643515.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.765
+    },
+    {
+      "title": "骗你的其实我没走出短国",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E9%AA%97%E4%BD%A0%E7%9A%84%E5%85%B6%E5%AE%9E%E6%88%91%E6%B2%A1%E8%B5%B0%E5%87%BA%E7%9F%AD%E5%9B%BD",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 7643023.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.765
+    },
+    {
+      "title": "编剧芦苇评价《给阿嬷的情书》是合格水准，但很难成为经典，劣币驱逐良币时代是良心之作，怎样理解这一说法？",
+      "desc": "2026 吴天明青年电影展，知名编剧芦苇（《活着》《霸王别姬》）在青年电影创作人才培训班上评价《给阿嬷的情书》 芦苇：最近的电影里，《给阿嬷的情书》我很喜欢。 这部电影平心而论，就是合格的水准，也很难成为经典。但在当下劣币驱逐良币的时代，它是部良心之作，依然保持着自己的真诚可贵，给人心灵的温度。我给它充分的肯定，这种电影太少了，当你以为几乎要消失的时候，它又出现了，让人眼前一亮。",
+      "link": "https://www.zhihu.com/question/2107906248599234133",
+      "platform_names": [
+        "知乎"
+      ],
+      "maxhot": 7570000.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.751
+    },
+    {
+      "title": "老人将1万多现金埋地下碳化无法兑换",
+      "desc": "近日，江苏徐州一名老人埋藏在地下3年的1万多元现金全部碳化，最终无法兑换，引发不少人对残损人民币兑换规则的关注。‌这笔已经粘连成硬块、无法逐张拆分辨认的碳化现金完全不符合兑换条件，所以银行判定全部无法兑换‌。",
+      "link": "https://www.baidu.com/s?wd=%E8%80%81%E4%BA%BA%E5%B0%861%E4%B8%87%E5%A4%9A%E7%8E%B0%E9%87%91%E5%9F%8B%E5%9C%B0%E4%B8%8B%E7%A2%B3%E5%8C%96%E6%97%A0%E6%B3%95%E5%85%91%E6%8D%A2&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 7520573.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.742
+    },
+    {
+      "title": "女教师公园拉二胡被质疑“有失身份”",
+      "desc": "近日，武汉音乐学院33岁女教师赵露雨在公园拉二胡，被观众围得里三层外三层。她曾因在公园演出被质疑“有失身份”，回应称“舞台不分大小”，一年来已公益演出50多场。",
+      "link": "https://www.baidu.com/s?wd=%E5%A5%B3%E6%95%99%E5%B8%88%E5%85%AC%E5%9B%AD%E6%8B%89%E4%BA%8C%E8%83%A1%E8%A2%AB%E8%B4%A8%E7%96%91%E2%80%9C%E6%9C%89%E5%A4%B1%E8%BA%AB%E4%BB%BD%E2%80%9D&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 7424374.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.725
+    },
+    {
+      "title": "幼儿园要招2岁孩子了",
+      "desc": "11月23日，国家发改委、民政部、国家卫生健康委、教育部发布《“一老一小”服务体系建设实施方案》。方案提出，支持有条件的幼儿园实施改造和改扩建，举办面向2岁至3岁幼儿的托班；合理布局建设托育机构，打造“一刻钟托育服务圈”，并引导托育机构向有需求的农村延伸。",
+      "link": "https://www.baidu.com/s?wd=%E5%B9%BC%E5%84%BF%E5%9B%AD%E8%A6%81%E6%8B%9B2%E5%B2%81%E5%AD%A9%E5%AD%90%E4%BA%86&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 7235920.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.69
+    },
+    {
+      "title": "用魔力擦洗碗的人天塌了",
+      "desc": "近日，深圳卫健委发布提醒，切勿使用纳米海绵（魔力擦）洗碗。研究表明，每磨损1克纳米海绵会释放约650万个微塑料，劣质产品还存在甲醛超标风险。此前已有研究证实微塑料进入人体或致血管堵塞等危害。建议使用时需反复冲洗并戴手套，或更换其他清洁用品。",
+      "link": "https://www.baidu.com/s?wd=%E7%94%A8%E9%AD%94%E5%8A%9B%E6%93%A6%E6%B4%97%E7%A2%97%E7%9A%84%E4%BA%BA%E5%A4%A9%E5%A1%8C%E4%BA%86&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 7136907.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.671
+    },
+    {
+      "title": "樊少皇大女儿中基因彩票了",
+      "desc": "近日，樊少皇妻子贾晓晨晒大女儿庆生照，小饭兜近照出圈，被网友直呼妥妥中了基因彩票。照片中，大女儿避开了樊少皇硬朗粗犷的气质，鹅蛋脸、大眼睛长睫毛，皮肤白皙，自带淡淡的混血洋娃娃感，氛围感拉满。",
+      "link": "https://www.baidu.com/s?wd=%E6%A8%8A%E5%B0%91%E7%9A%87%E5%A4%A7%E5%A5%B3%E5%84%BF%E4%B8%AD%E5%9F%BA%E5%9B%A0%E5%BD%A9%E7%A5%A8%E4%BA%86&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 7042123.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.654
+    },
+    {
+      "title": "网民编造捡1900万手表送1套房被刑拘",
+      "desc": "网传价值1900万奢侈品手表遗失，寻回酬谢268㎡精装房是假消息。上海闵行警方通报，博主为吸粉编造剧情，已被刑拘。",
+      "link": "https://www.baidu.com/s?wd=%E7%BD%91%E6%B0%91%E7%BC%96%E9%80%A0%E6%8D%A11900%E4%B8%87%E6%89%8B%E8%A1%A8%E9%80%811%E5%A5%97%E6%88%BF%E8%A2%AB%E5%88%91%E6%8B%98&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 6855970.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.618
+    },
+    {
+      "title": "多国联军称摧毁一架胡塞武装无人机",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7711161575059096114",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 364590.0,
+      "topic": "tech",
+      "topic_label": "科技·AI·数码",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.604
+    },
+    {
+      "title": "泽连斯基称不相信俄和谈诚意",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7711133254283493898",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 329895.0,
+      "topic": "world",
+      "topic_label": "国际·时政",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.574
+    },
+    {
+      "title": "女孩肖像画险被卖废品 医生看中捡回",
+      "desc": "河南信阳一幅小女孩油画，因画室闭店误被当作废品清运。隔壁诊所肖先生发现后取回，发视频寻主成功。该画创作于2015年，时隔十一年重回主人手中。张洪涛为表谢意，答应为肖先生女儿作画，故事暖心圆满。",
+      "link": "https://www.baidu.com/s?wd=%E5%A5%B3%E5%AD%A9%E8%82%96%E5%83%8F%E7%94%BB%E9%99%A9%E8%A2%AB%E5%8D%96%E5%BA%9F%E5%93%81+%E5%8C%BB%E7%94%9F%E7%9C%8B%E4%B8%AD%E6%8D%A1%E5%9B%9E&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 6564128.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.562
+    },
+    {
+      "title": "上交所、深交所、北交所打出重磅组合拳",
+      "desc": "11月22日，上交所、深交所、北交所同步调整融资保证金比例；同日深交所就创业板引入做市商制度征求意见，沪深交易所推出新一批降费举措，打出重磅政策“组合拳”。",
+      "link": "https://www.baidu.com/s?wd=%E4%B8%8A%E4%BA%A4%E6%89%80%E3%80%81%E6%B7%B1%E4%BA%A4%E6%89%80%E3%80%81%E5%8C%97%E4%BA%A4%E6%89%80%E6%89%93%E5%87%BA%E9%87%8D%E7%A3%85%E7%BB%84%E5%90%88%E6%8B%B3&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 6478390.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.545
+    },
+    {
+      "title": "两届炒股大赛冠军破产",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E4%B8%A4%E5%B1%8A%E7%82%92%E8%82%A1%E5%A4%A7%E8%B5%9B%E5%86%A0%E5%86%9B%E7%A0%B4%E4%BA%A7",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 244095.0,
+      "topic": "finance",
+      "topic_label": "财经·市场",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.494
+    },
+    {
+      "title": "高校鸭子被撞死司机道歉",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E9%AB%98%E6%A0%A1%E9%B8%AD%E5%AD%90%E8%A2%AB%E6%92%9E%E6%AD%BB%E5%8F%B8%E6%9C%BA%E9%81%93%E6%AD%89",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 240887.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.491
+    },
+    {
+      "title": "金银价格双双上涨",
+      "desc": "23日早间，现货黄金日内涨幅扩大至1%，报3576.11美元/盎司；现货白银日内上涨1.99%，向上触及42美元/盎司。此外，美股股指期货高开，纳指期货涨幅扩大至2%，标普500指数期货涨超1%。",
+      "link": "https://www.baidu.com/s?wd=%E9%87%91%E9%93%B6%E4%BB%B7%E6%A0%BC%E5%8F%8C%E5%8F%8C%E4%B8%8A%E6%B6%A8&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 6178675.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.486
+    },
+    {
+      "title": "官方通报百万粉丝主播被指私闯果园",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E5%AE%98%E6%96%B9%E9%80%9A%E6%8A%A5%E7%99%BE%E4%B8%87%E7%B2%89%E4%B8%9D%E4%B8%BB%E6%92%AD%E8%A2%AB%E6%8C%87%E7%A7%81%E9%97%AF%E6%9E%9C%E5%9B%AD",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 234007.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 1,
+      "neg": 1,
+      "auth": 2,
+      "cross": 1,
+      "score": 5.484
+    },
+    {
+      "title": "派出所副所长借钱8万仅还5万被约谈",
+      "desc": "近日，有网友投诉凤凰县木江坪派出所一副所长借其便民卡贷款8万元，到期只还4万，经起诉强制执行后再还1万，尚欠3万。11月21日，凤凰县公安局核查确认借贷属实，已约谈该副所长，督促其尽快还清欠款。",
+      "link": "https://www.baidu.com/s?wd=%E6%B4%BE%E5%87%BA%E6%89%80%E5%89%AF%E6%89%80%E9%95%BF%E5%80%9F%E9%92%B18%E4%B8%87%E4%BB%85%E8%BF%985%E4%B8%87%E8%A2%AB%E7%BA%A6%E8%B0%88&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 5791743.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.407
+    },
+    {
+      "title": "SpaceX刷新火箭发射周转纪录",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7711010563455517194",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 134125.0,
+      "topic": "tech",
+      "topic_label": "科技·AI·数码",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.366
+    },
+    {
+      "title": "戴帽子比多穿件衣服更保暖",
+      "desc": "冬季降温，戴帽子比多穿件衣服更保暖！医生提醒：冬季室外低于10℃出门需戴帽子。因头部颈部血管浅且缺脂肪保护，不戴帽会导致热量快速流失，引起全身血管收缩、血压升高，加重心脏负担，易引发心梗脑梗。",
+      "link": "https://www.baidu.com/s?wd=%E6%88%B4%E5%B8%BD%E5%AD%90%E6%AF%94%E5%A4%9A%E7%A9%BF%E4%BB%B6%E8%A1%A3%E6%9C%8D%E6%9B%B4%E4%BF%9D%E6%9A%96&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 5524669.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.35
+    },
+    {
+      "title": "麻阳县委书记称红糖欠货请多包容",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7711171820692324915",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 5425016.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.329
+    },
+    {
+      "title": "七个葫芦娃姐姐出嫁七兄弟送嫁",
+      "desc": "11月22日，北京网红“七个葫芦娃”姐姐梁子煜与新郎朱悦立大婚。七胞胎弟弟穿西装送嫁并送婚戒，网红“两米饭桶”见证，婚礼温馨具排面。",
+      "link": "https://www.baidu.com/s?wd=%E4%B8%83%E4%B8%AA%E8%91%AB%E8%8A%A6%E5%A8%83%E5%A7%90%E5%A7%90%E5%87%BA%E5%AB%81%E4%B8%83%E5%85%84%E5%BC%9F%E9%80%81%E5%AB%81&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 5405912.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.325
+    },
+    {
+      "title": "超九成台湾民众支持普发现金",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7710659967451742771",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 99362.0,
+      "topic": "world",
+      "topic_label": "国际·时政",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.315
+    },
+    {
+      "title": "俄称摧毁乌军海王星导弹系统",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7710829977045975103",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 73609.0,
+      "topic": "tech",
+      "topic_label": "科技·AI·数码",
+      "topic_score": 1,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.271
+    },
+    {
+      "title": "女子12年前存脐带血 公司5年前已注销",
+      "desc": "吉林曹女士2014年花费近2万元，和济惠生物签约存脐带血，存储期18年。她近期发现该公司2021年已注销、人员失联，脐带血去向不明。此事引发网友热议，自存脐带血的风险受到关注。",
+      "link": "https://www.baidu.com/s?wd=%E5%A5%B3%E5%AD%9012%E5%B9%B4%E5%89%8D%E5%AD%98%E8%84%90%E5%B8%A6%E8%A1%80+%E5%85%AC%E5%8F%B85%E5%B9%B4%E5%89%8D%E5%B7%B2%E6%B3%A8%E9%94%80&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 5025510.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.242
+    },
+    {
+      "title": "7天2万元买的是服务还是流量",
+      "desc": "近日，河南老君山景区再次推出创意招募：面向全国遴选3名“冰雪体验官”，上山驻场7天，单人报酬2万元。该模式靠高薪撬动创作者引流，但争议并存。专家提醒，流量只是桥梁，景区仍要依靠景色与配套服务留住游客。",
+      "link": "https://www.baidu.com/s?wd=7%E5%A4%A92%E4%B8%87%E5%85%83%E4%B9%B0%E7%9A%84%E6%98%AF%E6%9C%8D%E5%8A%A1%E8%BF%98%E6%98%AF%E6%B5%81%E9%87%8F&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 4925490.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.219
+    },
+    {
+      "title": "核能供暖是一种什么样的体验",
+      "desc": "本周，浙江海盐县正式开启核能供暖，应用场景从居民小区延伸至滨海文旅酒店。作为我国南方首个核能供热示范工程所在地，当地利用核反应堆余热，通过物理隔离实现零放射性风险。目前供暖面积达70余万平方米，惠及4000余户居民，年减排二氧化碳约1万吨，供暖成本较燃气供暖降低30%。",
+      "link": "https://www.baidu.com/s?wd=%E6%A0%B8%E8%83%BD%E4%BE%9B%E6%9A%96%E6%98%AF%E4%B8%80%E7%A7%8D%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E4%BD%93%E9%AA%8C&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 4744638.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.178
+    },
+    {
+      "title": "因一次泡脚 男子被截掉一根脚趾头",
+      "desc": "日前，江苏省中医院为一名70岁男子进行截趾手术。起因是该男子患糖尿病致下肢神经末梢不敏感，泡脚时因感觉不到水温反复添加热水导致烫伤。此前他未及时就医仅自行消毒，不到一周伤口化脓感染引发脚趾缺血坏死。医生提醒，下肢静脉曲张及动脉供血不足两类人群最好别泡脚。",
+      "link": "https://www.baidu.com/s?wd=%E5%9B%A0%E4%B8%80%E6%AC%A1%E6%B3%A1%E8%84%9A+%E7%94%B7%E5%AD%90%E8%A2%AB%E6%88%AA%E6%8E%89%E4%B8%80%E6%A0%B9%E8%84%9A%E8%B6%BE%E5%A4%B4&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 4466784.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.113
+    },
+    {
+      "title": "停播7年 《变形计》的孩子们怎么样了",
+      "desc": "停播7年的《变形计》仍时常引发热议。节目少年境遇各异：有人成网红、进军演艺圈，有人回归普通生活，也有人陷入纠纷。而对于当年那些参与节目的孩子来说，人生则没有真正的“售后”。节目停播之后，他们不必再“变形”，只需继续成长。",
+      "link": "https://www.baidu.com/s?wd=%E5%81%9C%E6%92%AD7%E5%B9%B4+%E3%80%8A%E5%8F%98%E5%BD%A2%E8%AE%A1%E3%80%8B%E7%9A%84%E5%AD%A9%E5%AD%90%E4%BB%AC%E6%80%8E%E4%B9%88%E6%A0%B7%E4%BA%86&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 4371315.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.091
+    },
+    {
+      "title": "首次！055大驱向公众开放",
+      "desc": "23日上午，第十六届中国航展阵容公布。海军将从4方面集中展出实装和模型，055型导弹驱逐舰等新型主战舰艇驻泊高栏港面向公众开放。室外同步展出歼-15T等新型战机，歼-35和歼-15T等将进行飞行表演。",
+      "link": "https://www.baidu.com/s?wd=%E9%A6%96%E6%AC%A1%EF%BC%81055%E5%A4%A7%E9%A9%B1%E5%90%91%E5%85%AC%E4%BC%97%E5%BC%80%E6%94%BE&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 4166431.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 5.041
+    },
+    {
+      "title": "2026亚太最具影响力青年榜单",
+      "desc": "11月22日，杨幂、刘亦菲、王一博、肖战、胡歌、迪丽热巴、赵丽颖、杨紫、宗馥莉、董宇辉等入选2026亚太最具影响力青年榜单。虞书欣、黄景瑜等入选亚太行业先锋领袖榜单。",
+      "link": "https://www.baidu.com/s?wd=2026%E4%BA%9A%E5%A4%AA%E6%9C%80%E5%85%B7%E5%BD%B1%E5%93%8D%E5%8A%9B%E9%9D%92%E5%B9%B4%E6%A6%9C%E5%8D%95&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 3982093.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 4.996
+    },
+    {
+      "title": "“老寒腿”并非老年人专属",
+      "desc": "“老寒腿”并非老年人专属。骨科医生表示，不少年轻人冬季露脚踝，穿薄裤、短裙，久坐不动，导致关节怕风怕冷、遇冷疼痛。医生提醒，冬季应重点保暖、适度活动，不要光顾爱美耍帅。",
+      "link": "https://www.baidu.com/s?wd=%E2%80%9C%E8%80%81%E5%AF%92%E8%85%BF%E2%80%9D%E5%B9%B6%E9%9D%9E%E8%80%81%E5%B9%B4%E4%BA%BA%E4%B8%93%E5%B1%9E&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 3778310.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 4.944
+    },
+    {
+      "title": "谁在给“李鬼”发通行证",
+      "desc": "近日，央视网曝光“撞脸药”乱象，这类消字号产品仿冒正规药品包装误导消费者，造假成本低、维权艰难，游走在监管缝隙。文章指出平台审核缺位，呼吁监管、平台重拳整治，堵住漏洞守护用药安全。",
+      "link": "https://www.baidu.com/s?wd=%E8%B0%81%E5%9C%A8%E7%BB%99%E2%80%9C%E6%9D%8E%E9%AC%BC%E2%80%9D%E5%8F%91%E9%80%9A%E8%A1%8C%E8%AF%81&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 3603726.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 4.898
+    },
+    {
+      "title": "1991年张大爷试卷实为梗图",
+      "desc": "网传“1991年张大爷”等小学试卷引发热议。经求证，该试卷查无城市、查无学校、查无版本，实为网友手搓的搞笑梗图。对此官媒发声：网络空间不能被烂梗占据，不能被假截图带节奏！",
+      "link": "https://www.baidu.com/s?wd=1991%E5%B9%B4%E5%BC%A0%E5%A4%A7%E7%88%B7%E8%AF%95%E5%8D%B7%E5%AE%9E%E4%B8%BA%E6%A2%97%E5%9B%BE&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 3219695.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 4.794
+    },
+    {
+      "title": "克莱追防过程中鞋垫突然掉了",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7711154911715672627",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 2693983.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 4.641
+    },
+    {
+      "title": "男子提供上门服务教自行车被判定涉黄",
+      "desc": "近日，上海阚先生在闲鱼发布的“上门教自行车”链接，因含“上门”字样及女生骑车视频被误判涉黄遭下架，导致其收入骤降。此前，阚先生于11月6日赴闲鱼杭州总部申诉。次日，平台撤销其违规处罚。目前，被误判链接已恢复正常显示，平台回应称严打中或存在误伤。",
+      "link": "https://www.baidu.com/s?wd=%E7%94%B7%E5%AD%90%E6%8F%90%E4%BE%9B%E4%B8%8A%E9%97%A8%E6%9C%8D%E5%8A%A1%E6%95%99%E8%87%AA%E8%A1%8C%E8%BD%A6%E8%A2%AB%E5%88%A4%E5%AE%9A%E6%B6%89%E9%BB%84&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 6374625.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 1,
+      "neg": 1,
+      "auth": 0,
+      "cross": 1,
+      "score": 4.525
+    },
+    {
+      "title": "鸿蒙智行问界新M8开启大规模交付",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7710212370961944100",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 1995751.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 4.413
+    },
+    {
+      "title": "如何看待曝 Tarzan 向 AL 提出解约？若Tarzan离队成功将会对AL产生哪些影响？",
+      "desc": "网友： 据多个消息源确认，Tarzan向AL提出解约，如若离队，AL或更换打野！ 最初AL是上野辅3=2补强，但现在队内超级大腿Tarzan要走了，更换打野的话，市面上比Tarzan强的选项真没有吧，国产打野要来了？",
+      "link": "https://www.zhihu.com/question/2107535407227172231",
+      "platform_names": [
+        "知乎"
+      ],
+      "maxhot": 1770000.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 4.33
+    },
+    {
+      "title": "户均 2.52 人开发商却主推三居，为什么现在 89 平方米刚需户型重新走热？",
+      "desc": "11月20日，央广网梳理2026年重点城市监测数据，把三个城市放在一起看。 北京出现70到80平方米的紧凑三居，成都89平方米刚需户型重新走热，重庆80到95平方米的\"新规小户\"批量入市。 三条单看都不是新闻，放在一起却有点不对劲。 因为同一时期，国家统计局公布的家庭户均人口是2.52人，比2020年七普时又少了0.1人。 家里的人在变少，房子里的房间却在变多。 这两条曲线本该同向走，现在明显拧着。 拧出来的这段差值，就是2026年住宅产品最值得看的一处变化。⑴人少了，房间反而多了 先把这条反差钉死。 据国家统计局2026年5月发布的2025年全国1%人口抽样调查主要数据公报，全国共有家庭户51465万户，家庭户人口129685万人，平均每个家庭户2.52人。 再往前翻：1990年户均3.96人，2000年3.44人，2010年3.10人，2020年2.62人。 三十五年，户均人口少了1.44人，降幅36.6%。 一人户占26.4%，二人户占33.2%，两项加起来59.6%，接近六成。 再加19.0%的三人户，三口及以下的家庭合计接近八成。 苏州市政府在一份公开答复里把这件事说得很直白：当地改善购房主力已经是2至3口的核心小家庭，4人以上长期多代同堂的家庭占比逐年减少，大面积户型带来大量闲置房间，并不匹配主流家庭的真实居住场景。 照这个趋势推，户型该越做越小才对。 可市场给的是相反的答案。 克而瑞监测的50个重点城市里，110平方米以上户型的成交占比，从2024年的52.3%升到2026年1至7月的57.4%，套均成交面积到了120.6平方米。 一边是户均2.52人，一边是套均120.6平方米。 说白了，现在一个三口之家住进一百二十平方米，已经不算稀罕事。 这不像消费升级，更像房间被重新分配了用途。 过去的房子，房间是按人头分的：主卧、儿童房、老人房，几个人几间屋。 现在的房子，房间是按功能分的：一间睡觉，一间办公，一间堆孩子的玩具和老人的行李。 人没多，事多了。户均2.52人，开发商却在卖三居：89平方米重新成了主战场",
+      "link": "https://www.zhihu.com/question/2107410857026234017",
+      "platform_names": [
+        "知乎"
+      ],
+      "maxhot": 1610000.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 4.269
+    },
+    {
+      "title": "水贝商户卖金忙到没空吃饭",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7711163636110069311",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 1478489.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 4.216
+    },
+    {
+      "title": "深圳道路如何做到没有坑洼",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7711131798352233010",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 991061.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.996
+    },
+    {
+      "title": "张雪回应给外卖员做电摩",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E5%BC%A0%E9%9B%AA%E5%9B%9E%E5%BA%94%E7%BB%99%E5%A4%96%E5%8D%96%E5%91%98%E5%81%9A%E7%94%B5%E6%91%A9",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 236666.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 1,
+      "neg": 1,
+      "auth": 1,
+      "cross": 1,
+      "score": 3.986
+    },
+    {
+      "title": "海贼王1199话更新，如何看待路飞对队友出手？",
+      "desc": "路飞这边失去了自我意识，看是对自己人动手了！",
+      "link": "https://www.zhihu.com/question/2106795927608608695",
+      "platform_names": [
+        "知乎"
+      ],
+      "maxhot": 890000.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.943
+    },
+    {
+      "title": "为什么一到香港就能强烈地感受到那种都市感呢？",
+      "desc": "",
+      "link": "https://www.zhihu.com/question/2105832401150666215",
+      "platform_names": [
+        "知乎"
+      ],
+      "maxhot": 830000.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.911
+    },
+    {
+      "title": "张家齐妈妈按女儿要求写下400字反思并道歉，承认自己太唠叨，一次道歉能修复长期疏远的亲子关系吗？",
+      "desc": "《我家那闺女》张家齐说自己没有过家庭教育，现在和妈妈基本不交流，妈妈唯一了解渠道是看直播。妈妈写了张家齐要求的总结，检讨了自己的毛病，表示以后不唠叨了，“这么优秀的闺女在身边我却没发现，让你受了很多委屈，也让我们亲子关系越来越远，妈妈在这跟你说声对不起。”",
+      "link": "https://www.zhihu.com/question/2107891385890071211",
+      "platform_names": [
+        "知乎"
+      ],
+      "maxhot": 800000.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.894
+    },
+    {
+      "title": "如何评价《侠盗猎车手 VI》（GTA 6）的结局？",
+      "desc": "注意：本问题涉及游戏主线剧情及结局剧透，尚未通关的玩家请谨慎阅读。 《侠盗猎车手 VI》已于 2026 年 11 月 19 日正式发售，随着首批玩家陆续通关，游戏的多结局设计也逐渐浮出水面。 与《GTA 5》在故事尾声通过三个选项决定结局不同，《GTA 6》的结局并非仅由最后一刻的选择决定，而是会受到玩家此前的剧情抉择、两位主角之间的关系，以及贯穿游戏过程的犯罪行为等因素影响。 你如何评价《GTA 6》的不同结局？其中哪一种最符合你对杰森与露西亚这段故事的理解？",
+      "link": "https://www.zhihu.com/question/2107491544735470766",
+      "platform_names": [
+        "知乎"
+      ],
+      "maxhot": 780000.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.883
+    },
+    {
+      "title": "同样是蛋白质，为什么提倡喝牛奶而不是吃鸡蛋?",
+      "desc": "",
+      "link": "https://www.zhihu.com/question/623251460",
+      "platform_names": [
+        "知乎"
+      ],
+      "maxhot": 770000.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.877
+    },
+    {
+      "title": "孩子放学后跟我说“妈妈，今天班主任又发火了，在班里骂我们班考得真差，丢人？”，你怎么回答？",
+      "desc": "如果是你家孩子，你怎么回答呢？",
+      "link": "https://www.zhihu.com/question/2106763437380523291",
+      "platform_names": [
+        "知乎"
+      ],
+      "maxhot": 760000.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.872
+    },
+    {
+      "title": "如何评价佟丽娅、王皓主演的喜剧电影《我没错！》？",
+      "desc": "",
+      "link": "https://www.zhihu.com/question/2104633342549300485",
+      "platform_names": [
+        "知乎"
+      ],
+      "maxhot": 750000.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.866
+    },
+    {
+      "title": "女博士卧底6个月当主播仍有心理阴影",
+      "desc": "近年来，“清朗”专项行动持续整治网络直播乱象。媒体曝光女主播真实状态：成都一00后女主播因停播被起诉索赔10万，后因阴阳合同免于赔偿。学者王怡霖7年前卧底当主播6个月，称曾被要求输了往身上浇水，感觉把自尊踩在脚底，至今有心理阴影。",
+      "link": "https://www.baidu.com/s?wd=%E5%A5%B3%E5%8D%9A%E5%A3%AB%E5%8D%A7%E5%BA%956%E4%B8%AA%E6%9C%88%E5%BD%93%E4%B8%BB%E6%92%AD%E4%BB%8D%E6%9C%89%E5%BF%83%E7%90%86%E9%98%B4%E5%BD%B1&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 3434741.0,
+      "topic": "science",
+      "topic_label": "科学·文化·体育",
+      "topic_score": 1,
+      "neg": 1,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.853
+    },
+    {
+      "title": "有没有一种绩效考核方法，能让员工自己追着目标跑，而不是老板天天盯着？",
+      "desc": "一家20人左右的初创科技公司，主要做B2B软件销售。目前遇到一个很头疼的管理问题：绩效考核基本靠老板“人肉驱动”。",
+      "link": "https://www.zhihu.com/question/2027723861337056286",
+      "platform_names": [
+        "知乎"
+      ],
+      "maxhot": 720000.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.849
+    },
+    {
+      "title": "职场中前辈谏言「该打听、不该打听的都不要打听」，那到底是该打听，还是不该打听？",
+      "desc": "职场中的文言文太难理解了，你们能帮忙解读下吗？",
+      "link": "https://www.zhihu.com/question/2080239269139031391",
+      "platform_names": [
+        "知乎"
+      ],
+      "maxhot": 680000.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.825
+    },
+    {
+      "title": "中国人在太空也要收拾屋子",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7710971227922874889",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 664328.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.815
+    },
+    {
+      "title": "长征九号为什么放弃了大推力发动机转而用一堆小推力发动机组合？",
+      "desc": "大推力做可回收难度比小推力大很多吗？",
+      "link": "https://www.zhihu.com/question/2078097782808769353",
+      "platform_names": [
+        "知乎"
+      ],
+      "maxhot": 590000.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.768
+    },
+    {
+      "title": "如何看待2026年考CPA人数大幅下降这事？",
+      "desc": "2026年注会报考人数大幅下降，共63.97万人完成报名，较2025年的80.44万人下降20.47%，你怎么看？",
+      "link": "https://www.zhihu.com/question/2078984762836922928",
+      "platform_names": [
+        "知乎"
+      ],
+      "maxhot": 590000.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.768
+    },
+    {
+      "title": "主播糟蹋千斤苹果仅愿赔6000元",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7710858139138556425",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 543905.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.737
+    },
+    {
+      "title": "男子剪发后气质变化有多大",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7710963918055014921",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 492146.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.702
+    },
+    {
+      "title": "神舟二十四号距离发射还有多远",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7711010616932044331",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 445312.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.667
+    },
+    {
+      "title": "做家教感受到了世界的参差",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E5%81%9A%E5%AE%B6%E6%95%99%E6%84%9F%E5%8F%97%E5%88%B0%E4%BA%86%E4%B8%96%E7%95%8C%E7%9A%84%E5%8F%82%E5%B7%AE",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 355910.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.597
+    },
+    {
+      "title": "南方豆腐掉地上能弹起来",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E5%8D%97%E6%96%B9%E8%B1%86%E8%85%90%E6%8E%89%E5%9C%B0%E4%B8%8A%E8%83%BD%E5%BC%B9%E8%B5%B7%E6%9D%A5",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 309095.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.556
+    },
+    {
+      "title": "外企回流潮说明了什么",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7711174958474461238",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 298501.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.546
+    },
+    {
+      "title": "美貌转移到了许飞脸上",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E7%BE%8E%E8%B2%8C%E8%BD%AC%E7%A7%BB%E5%88%B0%E4%BA%86%E8%AE%B8%E9%A3%9E%E8%84%B8%E4%B8%8A",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 246124.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.496
+    },
+    {
+      "title": "浙江台州网红打卡景区推荐",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7710632761576620074",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 244392.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.494
+    },
+    {
+      "title": "胡烨韬 王政熊是谁啊",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E8%83%A1%E7%83%A8%E9%9F%AC%20%E7%8E%8B%E6%94%BF%E7%86%8A%E6%98%AF%E8%B0%81%E5%95%8A",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 241659.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.492
+    },
+    {
+      "title": "原来私信白小纯还能把拉黑放出来",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E5%8E%9F%E6%9D%A5%E7%A7%81%E4%BF%A1%E7%99%BD%E5%B0%8F%E7%BA%AF%E8%BF%98%E8%83%BD%E6%8A%8A%E6%8B%89%E9%BB%91%E6%94%BE%E5%87%BA%E6%9D%A5",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 240020.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.49
+    },
+    {
+      "title": "小毛小病可以给阿福打视频了",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E5%B0%8F%E6%AF%9B%E5%B0%8F%E7%97%85%E5%8F%AF%E4%BB%A5%E7%BB%99%E9%98%BF%E7%A6%8F%E6%89%93%E8%A7%86%E9%A2%91%E4%BA%86",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 237926.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.488
+    },
+    {
+      "title": "沈阳洗浴服务太吓人",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E6%B2%88%E9%98%B3%E6%B4%97%E6%B5%B4%E6%9C%8D%E5%8A%A1%E5%A4%AA%E5%90%93%E4%BA%BA",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 235968.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.486
+    },
+    {
+      "title": "王楚然 现在就出发5",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E7%8E%8B%E6%A5%9A%E7%84%B6%20%E7%8E%B0%E5%9C%A8%E5%B0%B1%E5%87%BA%E5%8F%915",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 234335.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.484
+    },
+    {
+      "title": "养父一生未婚将弃婴女孩供上大学",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E5%85%BB%E7%88%B6%E4%B8%80%E7%94%9F%E6%9C%AA%E5%A9%9A%E5%B0%86%E5%BC%83%E5%A9%B4%E5%A5%B3%E5%AD%A9%E4%BE%9B%E4%B8%8A%E5%A4%A7%E5%AD%A6",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 232636.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.482
+    },
+    {
+      "title": "李在明吃白菜煎饼吃到饱",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E6%9D%8E%E5%9C%A8%E6%98%8E%E5%90%83%E7%99%BD%E8%8F%9C%E7%85%8E%E9%A5%BC%E5%90%83%E5%88%B0%E9%A5%B1",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 231208.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.481
+    },
+    {
+      "title": "风生水起定档",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E9%A3%8E%E7%94%9F%E6%B0%B4%E8%B5%B7%E5%AE%9A%E6%A1%A3",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 226106.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.476
+    },
+    {
+      "title": "国少能从沙特胜法国学到什么",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7711032976235053577",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 221135.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.47
+    },
+    {
+      "title": "Faker入选2026亚太U30杰出青年领袖",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=Faker%E5%85%A5%E9%80%892026%E4%BA%9A%E5%A4%AAU30%E6%9D%B0%E5%87%BA%E9%9D%92%E5%B9%B4%E9%A2%86%E8%A2%96",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 218700.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.468
+    },
+    {
+      "title": "爱笑的天使MV中荡秋千男孩近况曝光",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7710626284217238043",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 200091.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.447
+    },
+    {
+      "title": "医生建议冬天减肥可以多吃点火锅",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E5%8C%BB%E7%94%9F%E5%BB%BA%E8%AE%AE%E5%86%AC%E5%A4%A9%E5%87%8F%E8%82%A5%E5%8F%AF%E4%BB%A5%E5%A4%9A%E5%90%83%E7%82%B9%E7%81%AB%E9%94%85",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 195363.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.442
+    },
+    {
+      "title": "硬是把海澜之家变成了拉夫劳伦",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E7%A1%AC%E6%98%AF%E6%8A%8A%E6%B5%B7%E6%BE%9C%E4%B9%8B%E5%AE%B6%E5%8F%98%E6%88%90%E4%BA%86%E6%8B%89%E5%A4%AB%E5%8A%B3%E4%BC%A6",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 190105.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.436
+    },
+    {
+      "title": "千万不能跟老实人一块旷课",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E5%8D%83%E4%B8%87%E4%B8%8D%E8%83%BD%E8%B7%9F%E8%80%81%E5%AE%9E%E4%BA%BA%E4%B8%80%E5%9D%97%E6%97%B7%E8%AF%BE",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 189954.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.436
+    },
+    {
+      "title": "弗拉格抢断隔扣2加1",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E5%BC%97%E6%8B%89%E6%A0%BC%E6%8A%A2%E6%96%AD%E9%9A%94%E6%89%A32%E5%8A%A01",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 186240.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.432
+    },
+    {
+      "title": "熬夜的报应是离谱情感帖",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E7%86%AC%E5%A4%9C%E7%9A%84%E6%8A%A5%E5%BA%94%E6%98%AF%E7%A6%BB%E8%B0%B1%E6%83%85%E6%84%9F%E5%B8%96",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 181432.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.426
+    },
+    {
+      "title": "热火7人上双击败雷霆斩获7连胜",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7711174199888318015",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 181050.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.425
+    },
+    {
+      "title": "汪苏泷官宣深圳六场演唱会",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E6%B1%AA%E8%8B%8F%E6%B3%B7%E5%AE%98%E5%AE%A3%E6%B7%B1%E5%9C%B3%E5%85%AD%E5%9C%BA%E6%BC%94%E5%94%B1%E4%BC%9A",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 172311.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.415
+    },
+    {
+      "title": "TTG教练pomi",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=TTG%E6%95%99%E7%BB%83pomi",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 169937.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.412
+    },
+    {
+      "title": "珠江口两岸的一场融合实验",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7711168350663868966",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 163821.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.405
+    },
+    {
+      "title": "古代为什么要纳妾",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E5%8F%A4%E4%BB%A3%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%BA%B3%E5%A6%BE",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 162235.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.403
+    },
+    {
+      "title": "小鹏NGP率先开放欧洲公众体验",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E5%B0%8F%E9%B9%8FNGP%E7%8E%87%E5%85%88%E5%BC%80%E6%94%BE%E6%AC%A7%E6%B4%B2%E5%85%AC%E4%BC%97%E4%BD%93%E9%AA%8C",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 151805.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.39
+    },
+    {
+      "title": "好一个乖乖女值得拍三个版本吗",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E5%A5%BD%E4%B8%80%E4%B8%AA%E4%B9%96%E4%B9%96%E5%A5%B3%E5%80%BC%E5%BE%97%E6%8B%8D%E4%B8%89%E4%B8%AA%E7%89%88%E6%9C%AC%E5%90%97",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 151791.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.39
+    },
+    {
+      "title": "人类的智商是被孩子逼到迭代的",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E4%BA%BA%E7%B1%BB%E7%9A%84%E6%99%BA%E5%95%86%E6%98%AF%E8%A2%AB%E5%AD%A9%E5%AD%90%E9%80%BC%E5%88%B0%E8%BF%AD%E4%BB%A3%E7%9A%84",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 151790.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.39
+    },
+    {
+      "title": "周锡玮力挺罗大佑炮轰民进党当局",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7711167344961290790",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 148231.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.385
+    },
+    {
+      "title": "父女在西雅图机场登机时被拘捕",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E7%88%B6%E5%A5%B3%E5%9C%A8%E8%A5%BF%E9%9B%85%E5%9B%BE%E6%9C%BA%E5%9C%BA%E7%99%BB%E6%9C%BA%E6%97%B6%E8%A2%AB%E6%8B%98%E6%8D%95",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 146764.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.383
+    },
+    {
+      "title": "健身房老板这是义母啊",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E5%81%A5%E8%BA%AB%E6%88%BF%E8%80%81%E6%9D%BF%E8%BF%99%E6%98%AF%E4%B9%89%E6%AF%8D%E5%95%8A",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 142297.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.377
+    },
+    {
+      "title": "Faker亚太影响力青年男性",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=Faker%E4%BA%9A%E5%A4%AA%E5%BD%B1%E5%93%8D%E5%8A%9B%E9%9D%92%E5%B9%B4%E7%94%B7%E6%80%A7",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 140426.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.375
+    },
+    {
+      "title": "香奈儿包杭州日租二十五块",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E9%A6%99%E5%A5%88%E5%84%BF%E5%8C%85%E6%9D%AD%E5%B7%9E%E6%97%A5%E7%A7%9F%E4%BA%8C%E5%8D%81%E4%BA%94%E5%9D%97",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 128985.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.359
+    },
+    {
+      "title": "两京比夫妻还复杂的关系是君臣",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E4%B8%A4%E4%BA%AC%E6%AF%94%E5%A4%AB%E5%A6%BB%E8%BF%98%E5%A4%8D%E6%9D%82%E7%9A%84%E5%85%B3%E7%B3%BB%E6%98%AF%E5%90%9B%E8%87%A3",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 128658.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.359
+    },
+    {
+      "title": "七兄弟给姐姐送嫁排面拉满",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7710885577256141363",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 121361.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.348
+    },
+    {
+      "title": "英国一村庄决定“脱英独立”",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7710885325849838118",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 89907.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.3
+    },
+    {
+      "title": "柯文哲批民进党13位民代缺席表决",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7710416052932427812",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 66604.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 0,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.258
+    },
+    {
+      "title": "许昌外卖小哥一句脆脆的带火炸鸡",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E8%AE%B8%E6%98%8C%E5%A4%96%E5%8D%96%E5%B0%8F%E5%93%A5%E4%B8%80%E5%8F%A5%E8%84%86%E8%84%86%E7%9A%84%E5%B8%A6%E7%81%AB%E7%82%B8%E9%B8%A1",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 1121976.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 1,
+      "neg": 1,
+      "auth": 0,
+      "cross": 1,
+      "score": 3.059
+    },
+    {
+      "title": "美食的尽头是treetree炸鸡",
+      "desc": "近日，河南许昌一家披萨店因外卖员发布的一条视频而走红。视频中，外卖员给顾客买了一份他认为好吃的“tree tree”（脆脆）炸鸡。视频发布后，不少人到这家店打卡。老板表示，爆火后太累了。",
+      "link": "https://www.douyin.com/search/%E7%BE%8E%E9%A3%9F%E7%9A%84%E5%B0%BD%E5%A4%B4%E6%98%AFtreetree%E7%82%B8%E9%B8%A1",
+      "platform_names": [
+        "百度",
+        "抖音",
+        "微博"
+      ],
+      "maxhot": 9104650.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 3,
+      "auth": 0,
+      "cross": 3,
+      "score": 3.0
+    },
+    {
+      "title": "我和斗破的故事",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E6%88%91%E5%92%8C%E6%96%97%E7%A0%B4%E7%9A%84%E6%95%85%E4%BA%8B",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 8967054.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 1,
+      "auth": 0,
+      "cross": 1,
+      "score": 2.995
+    },
+    {
+      "title": "年轻人的广场舞接力跳",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E5%B9%BF%E5%9C%BA%E8%88%9E%E6%8E%A5%E5%8A%9B%E8%B7%B3",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 8134549.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 1,
+      "auth": 0,
+      "cross": 1,
+      "score": 2.852
+    },
+    {
+      "title": "天霸巅峰挑战赛积分断层第一",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E5%A4%A9%E9%9C%B8%E5%B7%85%E5%B3%B0%E6%8C%91%E6%88%98%E8%B5%9B%E7%A7%AF%E5%88%86%E6%96%AD%E5%B1%82%E7%AC%AC%E4%B8%80",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 7784606.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 1,
+      "auth": 0,
+      "cross": 1,
+      "score": 2.79
+    },
+    {
+      "title": "张凌赫向两岸粉丝安利无锡",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E5%BC%A0%E5%87%8C%E8%B5%AB%E5%90%91%E4%B8%A4%E5%B2%B8%E7%B2%89%E4%B8%9D%E5%AE%89%E5%88%A9%E6%97%A0%E9%94%A1",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 7693339.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 1,
+      "auth": 0,
+      "cross": 1,
+      "score": 2.774
+    },
+    {
+      "title": "华夏城NPC的问答题太有意思了",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E5%8D%8E%E5%A4%8F%E5%9F%8ENPC%E7%9A%84%E9%97%AE%E7%AD%94%E9%A2%98%E5%A4%AA%E6%9C%89%E6%84%8F%E6%80%9D%E4%BA%86",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 7670099.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 1,
+      "auth": 0,
+      "cross": 1,
+      "score": 2.769
+    },
+    {
+      "title": "这深秋晚风的松弛感被我拿捏了",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E8%BF%99%E6%B7%B1%E7%A7%8B%E6%99%9A%E9%A3%8E%E7%9A%84%E6%9D%BE%E5%BC%9B%E6%84%9F%E8%A2%AB%E6%88%91%E6%8B%BF%E6%8D%8F%E4%BA%86",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 7665662.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 1,
+      "auth": 0,
+      "cross": 1,
+      "score": 2.769
+    },
+    {
+      "title": "江西小炒真的太好吃了",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E6%B1%9F%E8%A5%BF%E5%B0%8F%E7%82%92%E7%9C%9F%E7%9A%84%E5%A4%AA%E5%A5%BD%E5%90%83%E4%BA%86",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 7659988.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 1,
+      "auth": 0,
+      "cross": 1,
+      "score": 2.768
+    },
+    {
+      "title": "冬日跑步穿搭指南",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E5%86%AC%E6%97%A5%E8%B7%91%E6%AD%A5%E7%A9%BF%E6%90%AD%E6%8C%87%E5%8D%97",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 7654301.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 1,
+      "auth": 0,
+      "cross": 1,
+      "score": 2.767
+    },
+    {
+      "title": "两京十五日主创回北京了",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E4%B8%A4%E4%BA%AC%E5%8D%81%E4%BA%94%E6%97%A5%E4%B8%BB%E5%88%9B%E5%9B%9E%E5%8C%97%E4%BA%AC%E4%BA%86",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 7651638.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 1,
+      "auth": 0,
+      "cross": 1,
+      "score": 2.766
+    },
+    {
+      "title": "我的世界村民美食记",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E6%88%91%E7%9A%84%E4%B8%96%E7%95%8C%E6%9D%91%E6%B0%91%E7%BE%8E%E9%A3%9F%E8%AE%B0",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 7649242.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 1,
+      "auth": 0,
+      "cross": 1,
+      "score": 2.766
+    },
+    {
+      "title": "周翊然藏在玩偶里的浪漫",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E5%91%A8%E7%BF%8A%E7%84%B6%E8%97%8F%E5%9C%A8%E7%8E%A9%E5%81%B6%E9%87%8C%E7%9A%84%E6%B5%AA%E6%BC%AB",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 7636864.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 1,
+      "auth": 0,
+      "cross": 1,
+      "score": 2.763
+    },
+    {
+      "title": "青稚夺冠后直播热度",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E9%9D%92%E7%A8%9A%E5%A4%BA%E5%86%A0%E5%90%8E%E7%9B%B4%E6%92%AD%E7%83%AD%E5%BA%A6",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 164244.0,
+      "topic": "science",
+      "topic_label": "科学·文化·体育",
+      "topic_score": 1,
+      "neg": 1,
+      "auth": 0,
+      "cross": 1,
+      "score": 2.405
+    },
+    {
+      "title": "甩头哥回应被张雪邀约吃饭",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7710993809638736393",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 270095.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 1,
+      "auth": 1,
+      "cross": 1,
+      "score": 2.02
+    },
+    {
+      "title": "除了李惠利被镜头切到的艺人都如临大敌",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E9%99%A4%E4%BA%86%E6%9D%8E%E6%83%A0%E5%88%A9%E8%A2%AB%E9%95%9C%E5%A4%B4%E5%88%87%E5%88%B0%E7%9A%84%E8%89%BA%E4%BA%BA%E9%83%BD%E5%A6%82%E4%B8%B4%E5%A4%A7%E6%95%8C",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 245645.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 1,
+      "auth": 0,
+      "cross": 1,
+      "score": 0.496
+    },
+    {
+      "title": "向芷不愧是向家的团宠",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E5%90%91%E8%8A%B7%E4%B8%8D%E6%84%A7%E6%98%AF%E5%90%91%E5%AE%B6%E7%9A%84%E5%9B%A2%E5%AE%A0",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 242455.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 1,
+      "auth": 0,
+      "cross": 1,
+      "score": 0.492
+    },
+    {
+      "title": "两京十五日成毅打戏",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E4%B8%A4%E4%BA%AC%E5%8D%81%E4%BA%94%E6%97%A5%E6%88%90%E6%AF%85%E6%89%93%E6%88%8F",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 8395550.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 2,
+      "auth": 0,
+      "cross": 1,
+      "score": -0.102
+    },
+    {
+      "title": "两京十五日抖音追剧团",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E4%B8%A4%E4%BA%AC%E5%8D%81%E4%BA%94%E6%97%A5%E6%8A%96%E9%9F%B3%E8%BF%BD%E5%89%A7%E5%9B%A2",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 7738014.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 2,
+      "auth": 0,
+      "cross": 1,
+      "score": -0.218
+    },
+    {
+      "title": "陈伟霆生日会现场跳嗨了",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E9%99%88%E4%BC%9F%E9%9C%86%E7%94%9F%E6%97%A5%E4%BC%9A%E7%8E%B0%E5%9C%BA%E8%B7%B3%E5%97%A8%E4%BA%86",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 7720830.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 2,
+      "auth": 0,
+      "cross": 1,
+      "score": -0.221
+    },
+    {
+      "title": "十万狂花婚礼变葬礼虐麻了",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E5%8D%81%E4%B8%87%E7%8B%82%E8%8A%B1%E5%A9%9A%E7%A4%BC%E5%8F%98%E8%91%AC%E7%A4%BC%E8%99%90%E9%BA%BB%E4%BA%86",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 7713941.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 2,
+      "auth": 0,
+      "cross": 1,
+      "score": -0.223
+    },
+    {
+      "title": "洱海晚霞配花田太浪漫",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E6%B4%B1%E6%B5%B7%E6%99%9A%E9%9C%9E%E9%85%8D%E8%8A%B1%E7%94%B0%E5%A4%AA%E6%B5%AA%E6%BC%AB",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 7665837.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 2,
+      "auth": 0,
+      "cross": 1,
+      "score": -0.231
+    },
+    {
+      "title": "老人把杨帆认成胡歌求合影",
+      "desc": "",
+      "link": "https://www.toutiao.com/trending/7710976542197006875",
+      "platform_names": [
+        "今日头条"
+      ],
+      "maxhot": 2977311.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 2,
+      "auth": 0,
+      "cross": 1,
+      "score": -1.275
+    },
+    {
+      "title": "同学红成顶流自己当NPC 男演员回应",
+      "desc": "演员史元庭是中戏毕业生，同班有人成为顶流，而他在景区担任NPC。对此，他坦言从前会攀比，如今心态平和，认为社会地位有高低，但人的尊严并无贵贱之分。",
+      "link": "https://www.baidu.com/s?wd=%E5%90%8C%E5%AD%A6%E7%BA%A2%E6%88%90%E9%A1%B6%E6%B5%81%E8%87%AA%E5%B7%B1%E5%BD%93NPC+%E7%94%B7%E6%BC%94%E5%91%98%E5%9B%9E%E5%BA%94&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 5333479.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 3,
+      "auth": 1,
+      "cross": 1,
+      "score": -2.191
+    },
+    {
+      "title": "难道当了爱豆就要一辈子单身吗",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E9%9A%BE%E9%81%93%E5%BD%93%E4%BA%86%E7%88%B1%E8%B1%86%E5%B0%B1%E8%A6%81%E4%B8%80%E8%BE%88%E5%AD%90%E5%8D%95%E8%BA%AB%E5%90%97",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 192105.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 2,
+      "auth": 0,
+      "cross": 1,
+      "score": -2.562
+    },
+    {
+      "title": "两京十五日首播辣评",
+      "desc": "",
+      "link": "https://www.douyin.com/search/%E4%B8%A4%E4%BA%AC%E5%8D%81%E4%BA%94%E6%97%A5%E9%A6%96%E6%92%AD%E8%BE%A3%E8%AF%84",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 8722382.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 3,
+      "auth": 0,
+      "cross": 1,
+      "score": -3.047
+    },
+    {
+      "title": "kissmysoul手势舞挑战",
+      "desc": "",
+      "link": "https://www.douyin.com/search/kissmysoul%E6%89%8B%E5%8A%BF%E8%88%9E%E6%8C%91%E6%88%98",
+      "platform_names": [
+        "抖音"
+      ],
+      "maxhot": 8138340.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 3,
+      "auth": 0,
+      "cross": 1,
+      "score": -3.147
+    },
+    {
+      "title": "陈伟霆生日会介绍侄子：19岁 单身",
+      "desc": "11月21日，陈伟霆在澳门举办生日会，现场介绍登台助演的19岁侄子：目前单身，刚考上帝国理工学院读量子学，愿望是造火箭，相关话题迅速冲上热搜。",
+      "link": "https://www.baidu.com/s?wd=%E9%99%88%E4%BC%9F%E9%9C%86%E7%94%9F%E6%97%A5%E4%BC%9A%E4%BB%8B%E7%BB%8D%E4%BE%84%E5%AD%90%EF%BC%9A19%E5%B2%81+%E5%8D%95%E8%BA%AB&sa=fyb_news&rsv_dl=fyb_news",
+      "platform_names": [
+        "百度"
+      ],
+      "maxhot": 3102750.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 3,
+      "auth": 0,
+      "cross": 1,
+      "score": -4.239
+    },
+    {
+      "title": "为什么大便之前体重和大便之后的体重一样？难道排泄物没有重量吗？",
+      "desc": "[2 张图片]",
+      "link": "https://www.zhihu.com/question/2105195950671245354",
+      "platform_names": [
+        "知乎"
+      ],
+      "maxhot": 1520000.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 3,
+      "auth": 0,
+      "cross": 1,
+      "score": -4.767
+    },
+    {
+      "title": "两京十五日第7集封神",
+      "desc": "",
+      "link": "https://s.weibo.com/weibo?q=%E4%B8%A4%E4%BA%AC%E5%8D%81%E4%BA%94%E6%97%A5%E7%AC%AC7%E9%9B%86%E5%B0%81%E7%A5%9E",
+      "platform_names": [
+        "微博"
+      ],
+      "maxhot": 247121.0,
+      "topic": "society",
+      "topic_label": "社会·民生",
+      "topic_score": 0,
+      "neg": 3,
+      "auth": 0,
+      "cross": 1,
+      "score": -5.503
+    }
+  ],
   "lead": {
     "title": "某部委机关干部因犯间谍罪被判死刑",
-    "leadParagraph": "来源：百度 / 微博｜综合热度 646.3万",
+    "leadParagraph": "来源：百度 / 微博｜综合热度 780.8万",
     "originalTitle": "",
     "links": {
       "aihot": "https://www.baidu.com/s?wd=%E6%9F%90%E9%83%A8%E5%A7%94%E6%9C%BA%E5%85%B3%E5%B9%B2%E9%83%A8%E5%9B%A0%E7%8A%AF%E9%97%B4%E8%B0%8D%E7%BD%AA%E8%A2%AB%E5%88%A4%E6%AD%BB%E5%88%91&sa=fyb_news&rsv_dl=fyb_news",
@@ -19,38 +3375,38 @@
       "items": [
         {
           "title": "如何评价 Google 发布的 Gemini 4 Neon？",
-          "summary": "[2 张图片] · 来源：知乎｜综合热度 72.0万",
+          "summary": "[2 张图片] · 来源：知乎｜综合热度 116.0万",
           "originalTitle": "",
           "source": {
             "name": "知乎"
           },
-          "id": "h7638885080",
+          "id": "h3800721361",
           "links": {
             "aihot": "https://www.zhihu.com/question/2106628033834767756",
             "original": "https://www.zhihu.com/question/2106628033834767756"
           }
         },
         {
-          "title": "AI提出给电池加维生素C",
-          "summary": "近日，依托上海AI实验室“书生・能工”智能体，科研团队筛选出维C作为铁铬液流电池电解液添加剂，经实验验证可提升电池性能、降低成本。该成果落地多家储能电站，斩获中国化工学会科技一等奖 · 来源：百度｜综合热度 541.1万",
+          "title": "特斯拉如何实现实时AI建模",
+          "summary": "来源：今日头条｜综合热度 89.7万",
           "originalTitle": "",
           "source": {
-            "name": "百度"
+            "name": "今日头条"
           },
-          "id": "h466515515",
+          "id": "h8371936119",
           "links": {
-            "aihot": "https://www.baidu.com/s?wd=AI%E6%8F%90%E5%87%BA%E7%BB%99%E7%94%B5%E6%B1%A0%E5%8A%A0%E7%BB%B4%E7%94%9F%E7%B4%A0C&sa=fyb_news&rsv_dl=fyb_news",
-            "original": "https://www.baidu.com/s?wd=AI%E6%8F%90%E5%87%BA%E7%BB%99%E7%94%B5%E6%B1%A0%E5%8A%A0%E7%BB%B4%E7%94%9F%E7%B4%A0C&sa=fyb_news&rsv_dl=fyb_news"
+            "aihot": "https://www.toutiao.com/trending/7711196060172946985",
+            "original": "https://www.toutiao.com/trending/7711196060172946985"
           }
         },
         {
           "title": "歼-10C 首次挂载改进型俄制重型打击导弹，这一搭配能带来哪些作战优势？",
-          "summary": "一段官方媒体发布的短视频，让军事观察人士眼前一亮。短短几秒的画面，透露出不少值得玩味的信息。画面首次显示，一种疑似由中国改进的俄制Kh-29T空对地导弹，被挂载在了歼-10C战斗机 · 来源：知乎｜综合热度 93.0万",
+          "summary": "一段官方媒体发布的短视频，让军事观察人士眼前一亮。短短几秒的画面，透露出不少值得玩味的信息。画面首次显示，一种疑似由中国改进的俄制Kh-29T空对地导弹，被挂载在了歼-10C战斗机 · 来源：知乎｜综合热度 89.0万",
           "originalTitle": "",
           "source": {
             "name": "知乎"
           },
-          "id": "h7734965700",
+          "id": "h7342976513",
           "links": {
             "aihot": "https://www.zhihu.com/question/2105946747533006374",
             "original": "https://www.zhihu.com/question/2105946747533006374"
@@ -58,12 +3414,12 @@
         },
         {
           "title": "智能穿戴打开消费新空间",
-          "summary": "智能穿戴，这类曾经更多活跃在展会、测评博主镜头里的“科技潮品”，正随着技术迭代和产业链成熟日益深入日常生活，从“尝鲜”变为更多人的“数字伙伴”，不断拓展着消费市场的新空间。 · 来源：百度｜综合热度 761.8万",
+          "summary": "智能穿戴，这类曾经更多活跃在展会、测评博主镜头里的“科技潮品”，正随着技术迭代和产业链成熟日益深入日常生活，从“尝鲜”变为更多人的“数字伙伴”，不断拓展着消费市场的新空间。 · 来源：百度｜综合热度 762.0万",
           "originalTitle": "",
           "source": {
             "name": "百度"
           },
-          "id": "h5024618941",
+          "id": "h1117818056",
           "links": {
             "aihot": "https://www.baidu.com/s?wd=%E6%99%BA%E8%83%BD%E7%A9%BF%E6%88%B4%E6%89%93%E5%BC%80%E6%B6%88%E8%B4%B9%E6%96%B0%E7%A9%BA%E9%97%B4&sa=fyb_news&rsv_dl=fyb_news",
             "original": "https://www.baidu.com/s?wd=%E6%99%BA%E8%83%BD%E7%A9%BF%E6%88%B4%E6%89%93%E5%BC%80%E6%B6%88%E8%B4%B9%E6%96%B0%E7%A9%BA%E9%97%B4&sa=fyb_news&rsv_dl=fyb_news"
@@ -71,54 +3427,54 @@
         },
         {
           "title": "成毅白龙挂动作逼真被误以为AI",
-          "summary": "近日，《两京十五日》幕后花絮曝光，打破此前网友对成毅“白龙挂”动作是AI或特效的质疑。花絮显示，成毅高空亲自完成高难度动作，并在实景爆破戏中全程不用替身，顶着气浪拍摄至戏服破损。 · 来源：百度｜综合热度 628.5万",
+          "summary": "近日，《两京十五日》幕后花絮曝光，打破此前网友对成毅“白龙挂”动作是AI或特效的质疑。花絮显示，成毅高空亲自完成高难度动作，并在实景爆破戏中全程不用替身，顶着气浪拍摄至戏服破损。 · 来源：百度｜综合热度 694.8万",
           "originalTitle": "",
           "source": {
             "name": "百度"
           },
-          "id": "h719671671",
+          "id": "h349306637",
           "links": {
             "aihot": "https://www.baidu.com/s?wd=%E6%88%90%E6%AF%85%E7%99%BD%E9%BE%99%E6%8C%82%E5%8A%A8%E4%BD%9C%E9%80%BC%E7%9C%9F%E8%A2%AB%E8%AF%AF%E4%BB%A5%E4%B8%BAAI&sa=fyb_news&rsv_dl=fyb_news",
             "original": "https://www.baidu.com/s?wd=%E6%88%90%E6%AF%85%E7%99%BD%E9%BE%99%E6%8C%82%E5%8A%A8%E4%BD%9C%E9%80%BC%E7%9C%9F%E8%A2%AB%E8%AF%AF%E4%BB%A5%E4%B8%BAAI&sa=fyb_news&rsv_dl=fyb_news"
           }
         },
         {
-          "title": "宇树科技大涨",
-          "summary": "来源：今日头条｜综合热度 455.0万",
-          "originalTitle": "",
-          "source": {
-            "name": "今日头条"
-          },
-          "id": "h957767275",
-          "links": {
-            "aihot": "https://www.toutiao.com/trending/7711181505393787430",
-            "original": "https://www.toutiao.com/trending/7711181505393787430"
-          }
-        },
-        {
           "title": "DeepSeek 推出限额规则，不少重度免费用户主动求付费保留长对话，这暴露出哪些行业现实问题？",
-          "summary": "“我已经跟DeepSeek聊了15万～20万字了，我不想失去这段对话。” “D老师，不要抛弃我！作为一天要玩十几个小时DeepSeek的重度依赖症患者，没了D老师我该怎么活，好想回 · 来源：知乎｜综合热度 218.0万",
+          "summary": "“我已经跟DeepSeek聊了15万～20万字了，我不想失去这段对话。” “D老师，不要抛弃我！作为一天要玩十几个小时DeepSeek的重度依赖症患者，没了D老师我该怎么活，好想回 · 来源：知乎｜综合热度 181.0万",
           "originalTitle": "",
           "source": {
             "name": "知乎"
           },
-          "id": "h1132879095",
+          "id": "h3806204652",
           "links": {
             "aihot": "https://www.zhihu.com/question/2107183345205626254",
             "original": "https://www.zhihu.com/question/2107183345205626254"
           }
         },
         {
-          "title": "特斯拉FSD v15有哪些亮点",
-          "summary": "来源：今日头条｜综合热度 83.1万",
+          "title": "多国联军称摧毁一架胡塞武装无人机",
+          "summary": "来源：今日头条｜综合热度 36.5万",
           "originalTitle": "",
           "source": {
             "name": "今日头条"
           },
-          "id": "h8087630190",
+          "id": "h7226580030",
           "links": {
-            "aihot": "https://www.toutiao.com/trending/7711192409714986505",
-            "original": "https://www.toutiao.com/trending/7711192409714986505"
+            "aihot": "https://www.toutiao.com/trending/7711161575059096114",
+            "original": "https://www.toutiao.com/trending/7711161575059096114"
+          }
+        },
+        {
+          "title": "SpaceX刷新火箭发射周转纪录",
+          "summary": "来源：今日头条｜综合热度 13.4万",
+          "originalTitle": "",
+          "source": {
+            "name": "今日头条"
+          },
+          "id": "h9415959955",
+          "links": {
+            "aihot": "https://www.toutiao.com/trending/7711010563455517194",
+            "original": "https://www.toutiao.com/trending/7711010563455517194"
           }
         }
       ]
@@ -129,12 +3485,12 @@
       "items": [
         {
           "title": "稳股市三项新政发布",
-          "summary": "来源：抖音 / 今日头条｜综合热度 937.9万",
+          "summary": "来源：抖音 / 今日头条｜综合热度 1045.4万",
           "originalTitle": "",
           "source": {
             "name": "抖音 / 今日头条"
           },
-          "id": "h3247238236",
+          "id": "h8594200534",
           "links": {
             "aihot": "https://www.douyin.com/search/%E7%A8%B3%E8%82%A1%E5%B8%82%E4%B8%89%E9%A1%B9%E6%96%B0%E6%94%BF%E5%8F%91%E5%B8%83",
             "original": "https://www.douyin.com/search/%E7%A8%B3%E8%82%A1%E5%B8%82%E4%B8%89%E9%A1%B9%E6%96%B0%E6%94%BF%E5%8F%91%E5%B8%83"
@@ -142,12 +3498,12 @@
         },
         {
           "title": "沪深北交易所调整融资保证金比例",
-          "summary": "来源：抖音｜综合热度 936.1万",
+          "summary": "来源：抖音｜综合热度 934.8万",
           "originalTitle": "",
           "source": {
             "name": "抖音"
           },
-          "id": "h2347980597",
+          "id": "h3355579167",
           "links": {
             "aihot": "https://www.douyin.com/search/%E6%B2%AA%E6%B7%B1%E5%8C%97%E4%BA%A4%E6%98%93%E6%89%80%E8%B0%83%E6%95%B4%E8%9E%8D%E8%B5%84%E4%BF%9D%E8%AF%81%E9%87%91%E6%AF%94%E4%BE%8B",
             "original": "https://www.douyin.com/search/%E6%B2%AA%E6%B7%B1%E5%8C%97%E4%BA%A4%E6%98%93%E6%89%80%E8%B0%83%E6%95%B4%E8%9E%8D%E8%B5%84%E4%BF%9D%E8%AF%81%E9%87%91%E6%AF%94%E4%BE%8B"
@@ -155,77 +3511,77 @@
         },
         {
           "title": "现货黄金重返3600美元",
-          "summary": "来源：抖音 / 今日头条｜综合热度 1053.8万",
+          "summary": "来源：抖音 / 今日头条｜综合热度 1054.5万",
           "originalTitle": "",
           "source": {
             "name": "抖音 / 今日头条"
           },
-          "id": "h2643969334",
+          "id": "h1706714353",
           "links": {
             "aihot": "https://www.douyin.com/search/%E7%8E%B0%E8%B4%A7%E9%BB%84%E9%87%91%E9%87%8D%E8%BF%943600%E7%BE%8E%E5%85%83",
             "original": "https://www.douyin.com/search/%E7%8E%B0%E8%B4%A7%E9%BB%84%E9%87%91%E9%87%8D%E8%BF%943600%E7%BE%8E%E5%85%83"
           }
         },
         {
-          "title": "华尔街：黄金已跌入超卖区域",
-          "summary": "上周五，现货黄金收报每盎司3538.11美元，单周大跌8.9%，逼近3500美元关口。此前，美联储鹰派立场强化，叠加美股AI板块调整引发机构抛售补充保证金，直接压制金价。华尔街分析 · 来源：百度｜综合热度 589.6万",
-          "originalTitle": "",
-          "source": {
-            "name": "百度"
-          },
-          "id": "h5559921799",
-          "links": {
-            "aihot": "https://www.baidu.com/s?wd=%E5%8D%8E%E5%B0%94%E8%A1%97%EF%BC%9A%E9%BB%84%E9%87%91%E5%B7%B2%E8%B7%8C%E5%85%A5%E8%B6%85%E5%8D%96%E5%8C%BA%E5%9F%9F&sa=fyb_news&rsv_dl=fyb_news",
-            "original": "https://www.baidu.com/s?wd=%E5%8D%8E%E5%B0%94%E8%A1%97%EF%BC%9A%E9%BB%84%E9%87%91%E5%B7%B2%E8%B7%8C%E5%85%A5%E8%B6%85%E5%8D%96%E5%8C%BA%E5%9F%9F&sa=fyb_news&rsv_dl=fyb_news"
-          }
-        },
-        {
           "title": "国内成品油价将迎调整",
-          "summary": "来源：抖音｜综合热度 780.0万",
+          "summary": "来源：抖音｜综合热度 788.6万",
           "originalTitle": "",
           "source": {
             "name": "抖音"
           },
-          "id": "h8011419827",
+          "id": "h9923334681",
           "links": {
             "aihot": "https://www.douyin.com/search/%E5%9B%BD%E5%86%85%E6%88%90%E5%93%81%E6%B2%B9%E4%BB%B7%E5%B0%86%E8%BF%8E%E8%B0%83%E6%95%B4",
             "original": "https://www.douyin.com/search/%E5%9B%BD%E5%86%85%E6%88%90%E5%93%81%E6%B2%B9%E4%BB%B7%E5%B0%86%E8%BF%8E%E8%B0%83%E6%95%B4"
           }
         },
         {
+          "title": "华尔街：黄金已跌入超卖区域",
+          "summary": "上周五，现货黄金收报每盎司3538.11美元，单周大跌8.9%，逼近3500美元关口。此前，美联储鹰派立场强化，叠加美股AI板块调整引发机构抛售补充保证金，直接压制金价。华尔街分析 · 来源：百度｜综合热度 512.1万",
+          "originalTitle": "",
+          "source": {
+            "name": "百度"
+          },
+          "id": "h7936752998",
+          "links": {
+            "aihot": "https://www.baidu.com/s?wd=%E5%8D%8E%E5%B0%94%E8%A1%97%EF%BC%9A%E9%BB%84%E9%87%91%E5%B7%B2%E8%B7%8C%E5%85%A5%E8%B6%85%E5%8D%96%E5%8C%BA%E5%9F%9F&sa=fyb_news&rsv_dl=fyb_news",
+            "original": "https://www.baidu.com/s?wd=%E5%8D%8E%E5%B0%94%E8%A1%97%EF%BC%9A%E9%BB%84%E9%87%91%E5%B7%B2%E8%B7%8C%E5%85%A5%E8%B6%85%E5%8D%96%E5%8C%BA%E5%9F%9F&sa=fyb_news&rsv_dl=fyb_news"
+          }
+        },
+        {
           "title": "韩国KOSPI指数开盘下跌2.77%",
-          "summary": "来源：抖音｜综合热度 1109.8万",
+          "summary": "来源：抖音｜综合热度 1118.8万",
           "originalTitle": "",
           "source": {
             "name": "抖音"
           },
-          "id": "h9423358874",
+          "id": "h2459435102",
           "links": {
             "aihot": "https://www.douyin.com/search/%E9%9F%A9%E5%9B%BDKOSPI%E6%8C%87%E6%95%B0%E5%BC%80%E7%9B%98%E4%B8%8B%E8%B7%8C2.77%25",
             "original": "https://www.douyin.com/search/%E9%9F%A9%E5%9B%BDKOSPI%E6%8C%87%E6%95%B0%E5%BC%80%E7%9B%98%E4%B8%8B%E8%B7%8C2.77%25"
           }
         },
         {
-          "title": "A股午评：创业板指探底回升",
-          "summary": "来源：今日头条｜综合热度 101.5万",
+          "title": "A股迎稳市组合拳",
+          "summary": "来源：今日头条｜综合热度 133.8万",
           "originalTitle": "",
           "source": {
             "name": "今日头条"
           },
-          "id": "h965552576",
+          "id": "h5046253705",
           "links": {
-            "aihot": "https://www.toutiao.com/trending/7711179477531574308",
-            "original": "https://www.toutiao.com/trending/7711179477531574308"
+            "aihot": "https://www.toutiao.com/trending/7711046630803246611",
+            "original": "https://www.toutiao.com/trending/7711046630803246611"
           }
         },
         {
           "title": "两融保证金比例下限再度下调，会给 A 股带来实质性利好吗？",
-          "summary": "2026年11月22日，经中国证监会批准，沪深北交易所发布通知调整融资保证金比例，将投资者融资买入证券的最低保证金比例由100%调低至80%，相关规则调整自2026年11月30日起 · 来源：知乎｜综合热度 98.0万",
+          "summary": "2026年11月22日，经中国证监会批准，沪深北交易所发布通知调整融资保证金比例，将投资者融资买入证券的最低保证金比例由100%调低至80%，相关规则调整自2026年11月30日起 · 来源：知乎｜综合热度 103.0万",
           "originalTitle": "",
           "source": {
             "name": "知乎"
           },
-          "id": "h7577590951",
+          "id": "h7526237493",
           "links": {
             "aihot": "https://www.zhihu.com/question/2107926753717007819",
             "original": "https://www.zhihu.com/question/2107926753717007819"
@@ -239,12 +3595,12 @@
       "items": [
         {
           "title": "某部委机关干部因犯间谍罪被判死刑",
-          "summary": "11月23日，保密观披露案件：某部委干部麻某驻外期间被境外情报人员策反，签署间谍相关协议，回国后持续窃取情报，向外提供多份秘密、机密材料，获利百万，法院以间谍罪判处其死刑。 · 来源：百度 / 微博｜综合热度 646.3万",
+          "summary": "11月23日，保密观披露案件：某部委干部麻某驻外期间被境外情报人员策反，签署间谍相关协议，回国后持续窃取情报，向外提供多份秘密、机密材料，获利百万，法院以间谍罪判处其死刑。 · 来源：百度 / 微博｜综合热度 780.8万",
           "originalTitle": "",
           "source": {
             "name": "百度 / 微博"
           },
-          "id": "h4463823802",
+          "id": "h2602788529",
           "links": {
             "aihot": "https://www.baidu.com/s?wd=%E6%9F%90%E9%83%A8%E5%A7%94%E6%9C%BA%E5%85%B3%E5%B9%B2%E9%83%A8%E5%9B%A0%E7%8A%AF%E9%97%B4%E8%B0%8D%E7%BD%AA%E8%A2%AB%E5%88%A4%E6%AD%BB%E5%88%91&sa=fyb_news&rsv_dl=fyb_news",
             "original": "https://www.baidu.com/s?wd=%E6%9F%90%E9%83%A8%E5%A7%94%E6%9C%BA%E5%85%B3%E5%B9%B2%E9%83%A8%E5%9B%A0%E7%8A%AF%E9%97%B4%E8%B0%8D%E7%BD%AA%E8%A2%AB%E5%88%A4%E6%AD%BB%E5%88%91&sa=fyb_news&rsv_dl=fyb_news"
@@ -252,90 +3608,64 @@
         },
         {
           "title": "129万一支抗癌药进医保 怎么做到的",
-          "summary": "近日，2026年国家医保药品目录公布，原价129万元/支的抗癌药首次进入目录。国家医保局透露，经谈判该药支付标准降至28.86万元/支。其进医保因双方算清三本账：该药属临床急需创新 · 来源：百度｜综合热度 456.9万",
+          "summary": "近日，2026年国家医保药品目录公布，原价129万元/支的抗癌药首次进入目录。国家医保局透露，经谈判该药支付标准降至28.86万元/支。其进医保因双方算清三本账：该药属临床急需创新 · 来源：百度 / 今日头条｜综合热度 732.8万",
           "originalTitle": "",
           "source": {
-            "name": "百度"
+            "name": "百度 / 今日头条"
           },
-          "id": "h3080985127",
+          "id": "h742144197",
           "links": {
             "aihot": "https://www.baidu.com/s?wd=129%E4%B8%87%E4%B8%80%E6%94%AF%E6%8A%97%E7%99%8C%E8%8D%AF%E8%BF%9B%E5%8C%BB%E4%BF%9D+%E6%80%8E%E4%B9%88%E5%81%9A%E5%88%B0%E7%9A%84&sa=fyb_news&rsv_dl=fyb_news",
             "original": "https://www.baidu.com/s?wd=129%E4%B8%87%E4%B8%80%E6%94%AF%E6%8A%97%E7%99%8C%E8%8D%AF%E8%BF%9B%E5%8C%BB%E4%BF%9D+%E6%80%8E%E4%B9%88%E5%81%9A%E5%88%B0%E7%9A%84&sa=fyb_news&rsv_dl=fyb_news"
           }
         },
         {
-          "title": "女子填错地址辱骂快递员民警当场教育",
-          "summary": "来源：百度 / 今日头条｜综合热度 380.2万",
-          "originalTitle": "",
-          "source": {
-            "name": "百度 / 今日头条"
-          },
-          "id": "h3026136147",
-          "links": {
-            "aihot": "https://www.baidu.com/s?wd=%E5%A5%B3%E5%AD%90%E5%A1%AB%E9%94%99%E5%9C%B0%E5%9D%80%E8%BE%B1%E9%AA%82%E5%BF%AB%E9%80%92%E5%91%98%E6%B0%91%E8%AD%A6%E5%BD%93%E5%9C%BA%E6%95%99%E8%82%B2&sa=fyb_news&rsv_dl=fyb_news",
-            "original": "https://www.baidu.com/s?wd=%E5%A5%B3%E5%AD%90%E5%A1%AB%E9%94%99%E5%9C%B0%E5%9D%80%E8%BE%B1%E9%AA%82%E5%BF%AB%E9%80%92%E5%91%98%E6%B0%91%E8%AD%A6%E5%BD%93%E5%9C%BA%E6%95%99%E8%82%B2&sa=fyb_news&rsv_dl=fyb_news"
-          }
-        },
-        {
-          "title": "高校向学生发Token：有大学每人送1亿",
-          "summary": "上海财经大学官方公众号2026年11月21日推文介绍，学校面向每位师生提供个人每周最高1亿Token的使用额度，师生通过统一身份认证，即可按需调用多类大模型和智能工具。 · 来源：百度｜综合热度 723.2万",
-          "originalTitle": "",
-          "source": {
-            "name": "百度"
-          },
-          "id": "h9459837704",
-          "links": {
-            "aihot": "https://www.baidu.com/s?wd=%E9%AB%98%E6%A0%A1%E5%90%91%E5%AD%A6%E7%94%9F%E5%8F%91Token%EF%BC%9A%E6%9C%89%E5%A4%A7%E5%AD%A6%E6%AF%8F%E4%BA%BA%E9%80%811%E4%BA%BF&sa=fyb_news&rsv_dl=fyb_news",
-            "original": "https://www.baidu.com/s?wd=%E9%AB%98%E6%A0%A1%E5%90%91%E5%AD%A6%E7%94%9F%E5%8F%91Token%EF%BC%9A%E6%9C%89%E5%A4%A7%E5%AD%A6%E6%AF%8F%E4%BA%BA%E9%80%811%E4%BA%BF&sa=fyb_news&rsv_dl=fyb_news"
-          }
-        },
-        {
           "title": "张雪将推外卖骑手电摩 价格1万左右",
-          "summary": "11月22日，在珠海机车嘉年华上，张雪透露计划明年推出外卖骑手专用电摩，设100km、150km两个续航版本，目标10分钟补能，价格1万左右。 · 来源：百度｜综合热度 426.0万",
+          "summary": "11月22日，在珠海机车嘉年华上，张雪透露计划明年推出外卖骑手专用电摩，设100km、150km两个续航版本，目标10分钟补能，基础款约1万元，长续航版约1.5万，还希望优化操控比 · 来源：百度｜综合热度 609.4万",
           "originalTitle": "",
           "source": {
             "name": "百度"
           },
-          "id": "h2715877209",
+          "id": "h575046503",
           "links": {
             "aihot": "https://www.baidu.com/s?wd=%E5%BC%A0%E9%9B%AA%E5%B0%86%E6%8E%A8%E5%A4%96%E5%8D%96%E9%AA%91%E6%89%8B%E7%94%B5%E6%91%A9+%E4%BB%B7%E6%A0%BC1%E4%B8%87%E5%B7%A6%E5%8F%B3&sa=fyb_news&rsv_dl=fyb_news",
             "original": "https://www.baidu.com/s?wd=%E5%BC%A0%E9%9B%AA%E5%B0%86%E6%8E%A8%E5%A4%96%E5%8D%96%E9%AA%91%E6%89%8B%E7%94%B5%E6%91%A9+%E4%BB%B7%E6%A0%BC1%E4%B8%87%E5%B7%A6%E5%8F%B3&sa=fyb_news&rsv_dl=fyb_news"
           }
         },
         {
+          "title": "医院通报门诊妇产科有犬只进入",
+          "summary": "来源：微博｜综合热度 23.9万",
+          "originalTitle": "",
+          "source": {
+            "name": "微博"
+          },
+          "id": "h4212578348",
+          "links": {
+            "aihot": "https://s.weibo.com/weibo?q=%E5%8C%BB%E9%99%A2%E9%80%9A%E6%8A%A5%E9%97%A8%E8%AF%8A%E5%A6%87%E4%BA%A7%E7%A7%91%E6%9C%89%E7%8A%AC%E5%8F%AA%E8%BF%9B%E5%85%A5",
+            "original": "https://s.weibo.com/weibo?q=%E5%8C%BB%E9%99%A2%E9%80%9A%E6%8A%A5%E9%97%A8%E8%AF%8A%E5%A6%87%E4%BA%A7%E7%A7%91%E6%9C%89%E7%8A%AC%E5%8F%AA%E8%BF%9B%E5%85%A5"
+          }
+        },
+        {
           "title": "芜湖一住户割断高空作业工人安全绳，警方正在侦办，该住户需承担哪些法律责任？",
-          "summary": "11月16日，安徽芜湖通和世纪之光一期小区，一名高空作业人员的安全绳被割断，现场视频引发关注。17日下午，极目新闻记者从辖区派出所了解到，此事正在处理中。 视频显示，这名工人被挂在 · 来源：知乎｜综合热度 350.0万",
+          "summary": "11月16日，安徽芜湖通和世纪之光一期小区，一名高空作业人员的安全绳被割断，现场视频引发关注。17日下午，极目新闻记者从辖区派出所了解到，此事正在处理中。 视频显示，这名工人被挂在 · 来源：知乎｜综合热度 272.0万",
           "originalTitle": "",
           "source": {
             "name": "知乎"
           },
-          "id": "h1703166772",
+          "id": "h7873069243",
           "links": {
             "aihot": "https://www.zhihu.com/question/2105992057642865192",
             "original": "https://www.zhihu.com/question/2105992057642865192"
           }
         },
         {
-          "title": "055大驱首次向公众开放",
-          "summary": "23日上午，第十六届中国航展阵容公布。海军将从4方面集中展出实装和模型，055型导弹驱逐舰等新型主战舰艇驻泊高栏港面向公众开放。室外同步展出歼-15T等新型战机，歼-35和歼-15 · 来源：百度 / 今日头条｜综合热度 614.2万",
-          "originalTitle": "",
-          "source": {
-            "name": "百度 / 今日头条"
-          },
-          "id": "h4111716647",
-          "links": {
-            "aihot": "https://www.toutiao.com/trending/7711202163985956927",
-            "original": "https://www.toutiao.com/trending/7711202163985956927"
-          }
-        },
-        {
           "title": "行李箱也能自己上楼了",
-          "summary": "行李箱也能自己“上楼”了！近日，河南新乡站在进站楼梯旁正式投用行李自动传送带，旅客无需再费力搬运重物，行李箱可实现自动上楼，大幅提升了旅客的出行便利性。 · 来源：百度 / 微博｜综合热度 524.1万",
+          "summary": "行李箱也能自己“上楼”了！近日，河南新乡站在进站楼梯旁正式投用行李自动传送带，旅客无需再费力搬运重物，行李箱可实现自动上楼，大幅提升了旅客的出行便利性。 · 来源：百度 / 微博｜综合热度 570.8万",
           "originalTitle": "",
           "source": {
             "name": "百度 / 微博"
           },
-          "id": "h1395396428",
+          "id": "h3103224202",
           "links": {
             "aihot": "https://www.baidu.com/s?wd=%E8%A1%8C%E6%9D%8E%E7%AE%B1%E4%B9%9F%E8%83%BD%E8%87%AA%E5%B7%B1%E4%B8%8A%E6%A5%BC%E4%BA%86&sa=fyb_news&rsv_dl=fyb_news",
             "original": "https://www.baidu.com/s?wd=%E8%A1%8C%E6%9D%8E%E7%AE%B1%E4%B9%9F%E8%83%BD%E8%87%AA%E5%B7%B1%E4%B8%8A%E6%A5%BC%E4%BA%86&sa=fyb_news&rsv_dl=fyb_news"
@@ -343,15 +3673,41 @@
         },
         {
           "title": "2027国考今起可打印准考证",
-          "summary": "来源：抖音｜综合热度 1212.4万",
+          "summary": "来源：抖音｜综合热度 1195.4万",
           "originalTitle": "",
           "source": {
             "name": "抖音"
           },
-          "id": "h6946581279",
+          "id": "h3205459600",
           "links": {
             "aihot": "https://www.douyin.com/search/2027%E5%9B%BD%E8%80%83%E4%BB%8A%E8%B5%B7%E5%8F%AF%E6%89%93%E5%8D%B0%E5%87%86%E8%80%83%E8%AF%81",
             "original": "https://www.douyin.com/search/2027%E5%9B%BD%E8%80%83%E4%BB%8A%E8%B5%B7%E5%8F%AF%E6%89%93%E5%8D%B0%E5%87%86%E8%80%83%E8%AF%81"
+          }
+        },
+        {
+          "title": "部委干部窃取我国百余份情报获死刑",
+          "summary": "来源：今日头条｜综合热度 894.4万",
+          "originalTitle": "",
+          "source": {
+            "name": "今日头条"
+          },
+          "id": "h1958758171",
+          "links": {
+            "aihot": "https://www.toutiao.com/trending/7711136767030690330",
+            "original": "https://www.toutiao.com/trending/7711136767030690330"
+          }
+        },
+        {
+          "title": "行贿犯罪嫌疑人刘贤志被遣返回国",
+          "summary": "来源：抖音｜综合热度 854.7万",
+          "originalTitle": "",
+          "source": {
+            "name": "抖音"
+          },
+          "id": "h6769901825",
+          "links": {
+            "aihot": "https://www.douyin.com/search/%E8%A1%8C%E8%B4%BF%E7%8A%AF%E7%BD%AA%E5%AB%8C%E7%96%91%E4%BA%BA%E5%88%98%E8%B4%A4%E5%BF%97%E8%A2%AB%E9%81%A3%E8%BF%94%E5%9B%9E%E5%9B%BD",
+            "original": "https://www.douyin.com/search/%E8%A1%8C%E8%B4%BF%E7%8A%AF%E7%BD%AA%E5%AB%8C%E7%96%91%E4%BA%BA%E5%88%98%E8%B4%A4%E5%BF%97%E8%A2%AB%E9%81%A3%E8%BF%94%E5%9B%9E%E5%9B%BD"
           }
         }
       ]
@@ -362,12 +3718,12 @@
       "items": [
         {
           "title": "日本网友对比石破茂与高市APEC表现",
-          "summary": "近日，日本网民对比石破茂和高市早苗在APEC峰会的表现引发讨论。此前在2024年APEC峰会期间，石破茂被问候时仍坐着不起身；而高市早苗在深圳出席峰会时无人主动靠近。有网民称高市因 · 来源：百度 / 今日头条｜综合热度 570.3万",
+          "summary": "近日，日本网民对比石破茂和高市早苗在APEC峰会的表现引发讨论。此前在2024年APEC峰会期间，石破茂被问候时仍坐着不起身；而高市早苗在深圳出席峰会时无人主动靠近。有网民称高市因 · 来源：百度 / 今日头条｜综合热度 599.8万",
           "originalTitle": "",
           "source": {
             "name": "百度 / 今日头条"
           },
-          "id": "h5549401168",
+          "id": "h3266244132",
           "links": {
             "aihot": "https://www.baidu.com/s?wd=%E6%97%A5%E6%9C%AC%E7%BD%91%E5%8F%8B%E5%AF%B9%E6%AF%94%E7%9F%B3%E7%A0%B4%E8%8C%82%E4%B8%8E%E9%AB%98%E5%B8%82APEC%E8%A1%A8%E7%8E%B0&sa=fyb_news&rsv_dl=fyb_news",
             "original": "https://www.baidu.com/s?wd=%E6%97%A5%E6%9C%AC%E7%BD%91%E5%8F%8B%E5%AF%B9%E6%AF%94%E7%9F%B3%E7%A0%B4%E8%8C%82%E4%B8%8E%E9%AB%98%E5%B8%82APEC%E8%A1%A8%E7%8E%B0&sa=fyb_news&rsv_dl=fyb_news"
@@ -375,51 +3731,51 @@
         },
         {
           "title": "特朗普深圳行照片14张是中美元首互动",
-          "summary": "近日，特朗普连发30多张照片回味深圳行，其中，9张是中俄美同框、14张是中美元首互动。他直言这场峰会是有史以来最伟大的。 · 来源：百度 / 今日头条｜综合热度 829.1万",
+          "summary": "来源：今日头条｜综合热度 809.3万",
           "originalTitle": "",
           "source": {
-            "name": "百度 / 今日头条"
+            "name": "今日头条"
           },
-          "id": "h3176474913",
+          "id": "h4576560555",
           "links": {
             "aihot": "https://www.toutiao.com/trending/7710702493755719721",
             "original": "https://www.toutiao.com/trending/7710702493755719721"
           }
         },
         {
-          "title": "俄军舰在利比亚遭无人快艇袭击爆炸",
-          "summary": "11月22日，停泊在利比亚班加西的俄“水星”号护卫舰遭多艘搭载星链装置的无人快艇袭击，舰体爆炸起火，部分快艇被拦截。美媒称乌安全局实施打击，俄乌双方暂未作出回应。 · 来源：百度 / 今日头条｜综合热度 704.2万",
-          "originalTitle": "",
-          "source": {
-            "name": "百度 / 今日头条"
-          },
-          "id": "h7293515921",
-          "links": {
-            "aihot": "https://www.baidu.com/s?wd=%E4%BF%84%E5%86%9B%E8%88%B0%E5%9C%A8%E5%88%A9%E6%AF%94%E4%BA%9A%E9%81%AD%E6%97%A0%E4%BA%BA%E5%BF%AB%E8%89%87%E8%A2%AD%E5%87%BB%E7%88%86%E7%82%B8&sa=fyb_news&rsv_dl=fyb_news",
-            "original": "https://www.baidu.com/s?wd=%E4%BF%84%E5%86%9B%E8%88%B0%E5%9C%A8%E5%88%A9%E6%AF%94%E4%BA%9A%E9%81%AD%E6%97%A0%E4%BA%BA%E5%BF%AB%E8%89%87%E8%A2%AD%E5%87%BB%E7%88%86%E7%82%B8&sa=fyb_news&rsv_dl=fyb_news"
-          }
-        },
-        {
           "title": "日媒逐帧解析高市早苗遭特朗普无视，直呼耻辱，为何日本对此如此破防？反映了日本舆论对日美互动怎样的心态？",
-          "summary": "当地时间11月19日，日本记者尾形聪彦点评高市早苗在APEC领导人非正式会议上被特朗普无视，称非常屈辱。 11月21日，据中国新闻社报道，日本首相高市早苗在东盟峰会和APEC会场挤 · 来源：知乎｜综合热度 120.0万",
+          "summary": "当地时间11月19日，日本记者尾形聪彦点评高市早苗在APEC领导人非正式会议上被特朗普无视，称非常屈辱。 11月21日，据中国新闻社报道，日本首相高市早苗在东盟峰会和APEC会场挤 · 来源：知乎｜综合热度 134.0万",
           "originalTitle": "",
           "source": {
             "name": "知乎"
           },
-          "id": "h4413586155",
+          "id": "h1538579277",
           "links": {
             "aihot": "https://www.zhihu.com/question/2107806853543322888",
             "original": "https://www.zhihu.com/question/2107806853543322888"
           }
         },
         {
+          "title": "赖清德沈伯洋穿日本祭祀服造势引公愤",
+          "summary": "赖清德日前为民进党台北市长候选人沈伯洋站台，两人身穿日本祭典风格的“法被”引发争议。台湾知名政治学者张亚中指出，这不只是一场选举造势的服装争议，而是民进党执政二十多年来“去中国化、 · 来源：百度 / 微博｜综合热度 388.6万",
+          "originalTitle": "",
+          "source": {
+            "name": "百度 / 微博"
+          },
+          "id": "h1739800033",
+          "links": {
+            "aihot": "https://www.baidu.com/s?wd=%E8%B5%96%E6%B8%85%E5%BE%B7%E6%B2%88%E4%BC%AF%E6%B4%8B%E7%A9%BF%E6%97%A5%E6%9C%AC%E7%A5%AD%E7%A5%80%E6%9C%8D%E9%80%A0%E5%8A%BF%E5%BC%95%E5%85%AC%E6%84%A4&sa=fyb_news&rsv_dl=fyb_news",
+            "original": "https://www.baidu.com/s?wd=%E8%B5%96%E6%B8%85%E5%BE%B7%E6%B2%88%E4%BC%AF%E6%B4%8B%E7%A9%BF%E6%97%A5%E6%9C%AC%E7%A5%AD%E7%A5%80%E6%9C%8D%E9%80%A0%E5%8A%BF%E5%BC%95%E5%85%AC%E6%84%A4&sa=fyb_news&rsv_dl=fyb_news"
+          }
+        },
+        {
           "title": "权威数读观中国",
-          "summary": "来源：今日头条｜综合热度 750.2万",
+          "summary": "来源：今日头条｜综合热度 732.3万",
           "originalTitle": "",
           "source": {
             "name": "今日头条"
           },
-          "id": "h2669660318",
+          "id": "h6615631135",
           "links": {
             "aihot": "https://www.toutiao.com/trending/7710739909857873451",
             "original": "https://www.toutiao.com/trending/7710739909857873451"
@@ -427,41 +3783,41 @@
         },
         {
           "title": "特朗普对菲开条件：100%买美国农产品",
-          "summary": "近日，特朗普要求菲律宾明年起必须100%购买美国农产品，不许买巴西货，并称这是维持美菲贸易伙伴关系的前提。菲律宾总统马科斯已承认扩大购买美国大豆和小麦的计划，但他强调协议尚未签字， · 来源：百度｜综合热度 408.9万",
+          "summary": "近日，特朗普要求菲律宾明年起必须100%购买美国农产品，不许买巴西货，并称这是维持美菲贸易伙伴关系的前提。菲律宾总统马科斯已承认扩大购买美国大豆和小麦的计划，但他强调协议尚未签字， · 来源：百度｜综合热度 484.5万",
           "originalTitle": "",
           "source": {
             "name": "百度"
           },
-          "id": "h3594872178",
+          "id": "h4768820669",
           "links": {
             "aihot": "https://www.baidu.com/s?wd=%E7%89%B9%E6%9C%97%E6%99%AE%E5%AF%B9%E8%8F%B2%E5%BC%80%E6%9D%A1%E4%BB%B6%EF%BC%9A100%25%E4%B9%B0%E7%BE%8E%E5%9B%BD%E5%86%9C%E4%BA%A7%E5%93%81&sa=fyb_news&rsv_dl=fyb_news",
             "original": "https://www.baidu.com/s?wd=%E7%89%B9%E6%9C%97%E6%99%AE%E5%AF%B9%E8%8F%B2%E5%BC%80%E6%9D%A1%E4%BB%B6%EF%BC%9A100%25%E4%B9%B0%E7%BE%8E%E5%9B%BD%E5%86%9C%E4%BA%A7%E5%93%81&sa=fyb_news&rsv_dl=fyb_news"
           }
         },
         {
-          "title": "APEC“红利”看得见摸得着",
-          "summary": "来源：抖音｜综合热度 1130.4万",
+          "title": "日媒逐帧解析特朗普无视高市",
+          "summary": "来源：今日头条｜综合热度 180.6万",
           "originalTitle": "",
           "source": {
-            "name": "抖音"
+            "name": "今日头条"
           },
-          "id": "h3252095625",
+          "id": "h3145311386",
           "links": {
-            "aihot": "https://www.douyin.com/search/APEC%E2%80%9C%E7%BA%A2%E5%88%A9%E2%80%9D%E7%9C%8B%E5%BE%97%E8%A7%81%E6%91%B8%E5%BE%97%E7%9D%80",
-            "original": "https://www.douyin.com/search/APEC%E2%80%9C%E7%BA%A2%E5%88%A9%E2%80%9D%E7%9C%8B%E5%BE%97%E8%A7%81%E6%91%B8%E5%BE%97%E7%9D%80"
+            "aihot": "https://www.toutiao.com/trending/7709848449667661843",
+            "original": "https://www.toutiao.com/trending/7709848449667661843"
           }
         },
         {
-          "title": "终于喝到APEC同款荔枝冰酒了",
-          "summary": "来源：抖音｜综合热度 767.8万",
+          "title": "APEC“红利”看得见摸得着",
+          "summary": "来源：抖音｜综合热度 1155.6万",
           "originalTitle": "",
           "source": {
             "name": "抖音"
           },
-          "id": "h1797349216",
+          "id": "h736695339",
           "links": {
-            "aihot": "https://www.douyin.com/search/%E7%BB%88%E4%BA%8E%E5%96%9D%E5%88%B0APEC%E5%90%8C%E6%AC%BE%E8%8D%94%E6%9E%9D%E5%86%B0%E9%85%92%E4%BA%86",
-            "original": "https://www.douyin.com/search/%E7%BB%88%E4%BA%8E%E5%96%9D%E5%88%B0APEC%E5%90%8C%E6%AC%BE%E8%8D%94%E6%9E%9D%E5%86%B0%E9%85%92%E4%BA%86"
+            "aihot": "https://www.douyin.com/search/APEC%E2%80%9C%E7%BA%A2%E5%88%A9%E2%80%9D%E7%9C%8B%E5%BE%97%E8%A7%81%E6%91%B8%E5%BE%97%E7%9D%80",
+            "original": "https://www.douyin.com/search/APEC%E2%80%9C%E7%BA%A2%E5%88%A9%E2%80%9D%E7%9C%8B%E5%BE%97%E8%A7%81%E6%91%B8%E5%BE%97%E7%9D%80"
           }
         }
       ]
@@ -472,25 +3828,38 @@
       "items": [
         {
           "title": "樊振东1:3约内斯库",
-          "summary": "来源：抖音 / 今日头条 / 微博｜综合热度 764.4万",
+          "summary": "来源：抖音 / 今日头条 / 微博 / 知乎｜综合热度 764.7万",
           "originalTitle": "",
           "source": {
-            "name": "抖音 / 今日头条 / 微博"
+            "name": "抖音 / 今日头条 / 微博 / 知乎"
           },
-          "id": "h2896058897",
+          "id": "h5601725672",
           "links": {
             "aihot": "https://www.douyin.com/search/%E6%A8%8A%E6%8C%AF%E4%B8%9C1%3A3%E7%BA%A6%E5%86%85%E6%96%AF%E5%BA%93",
             "original": "https://www.douyin.com/search/%E6%A8%8A%E6%8C%AF%E4%B8%9C1%3A3%E7%BA%A6%E5%86%85%E6%96%AF%E5%BA%93"
           }
         },
         {
-          "title": "在黎曼猜想被声称证明后，如何理解袁新意所说的「或许我们高估了黎曼猜想的难度」？",
-          "summary": "https://mathhelm.org/t/390/maybe-we-have-overestimated-the-difficulty-of-riemann-hypothesi · 来源：抖音 / 知乎｜综合热度 1186.0万",
+          "title": "方力申耗时 8 小时 37 分 24 秒从香港游到澳门破吉尼斯纪录，完成这样的挑战难度有多大？",
+          "summary": "据报道，21日，方力申耗时8小时37分24秒从香港游到澳门，刷新“香港至澳门游泳用时最短（男性）”的吉尼斯世界纪录。他又紧接着登台演出，结束后他表示其实身体已经发出预警，在水里时冷 · 来源：抖音 / 知乎｜综合热度 944.0万",
           "originalTitle": "",
           "source": {
             "name": "抖音 / 知乎"
           },
-          "id": "h4310308113",
+          "id": "h2280921710",
+          "links": {
+            "aihot": "https://www.zhihu.com/question/2107848989819326753",
+            "original": "https://www.zhihu.com/question/2107848989819326753"
+          }
+        },
+        {
+          "title": "在黎曼猜想被声称证明后，如何理解袁新意所说的「或许我们高估了黎曼猜想的难度」？",
+          "summary": "https://mathhelm.org/t/390/maybe-we-have-overestimated-the-difficulty-of-riemann-hypothesi · 来源：抖音 / 知乎｜综合热度 1107.0万",
+          "originalTitle": "",
+          "source": {
+            "name": "抖音 / 知乎"
+          },
+          "id": "h5694167065",
           "links": {
             "aihot": "https://www.zhihu.com/question/2107618428508792525",
             "original": "https://www.zhihu.com/question/2107618428508792525"
@@ -498,67 +3867,54 @@
         },
         {
           "title": "张水华黄石马拉松破个人纪录夺冠，6周连跑6场获5冠1亚，如何评价她的表现？",
-          "summary": "11月22日8时，2026黄石马拉松鸣笛起跑。当天上午9时许，极目新闻记者了解到，曾被称为“最快女护士”，后转型职业跑者的张水华，以1小时15分06秒（具体秒数以官方公布为准）的个 · 来源：知乎｜综合热度 332.0万",
+          "summary": "11月22日8时，2026黄石马拉松鸣笛起跑。当天上午9时许，极目新闻记者了解到，曾被称为“最快女护士”，后转型职业跑者的张水华，以1小时15分06秒（具体秒数以官方公布为准）的个 · 来源：知乎｜综合热度 302.0万",
           "originalTitle": "",
           "source": {
             "name": "知乎"
           },
-          "id": "h4035408592",
+          "id": "h2932401769",
           "links": {
             "aihot": "https://www.zhihu.com/question/2107832295511913619",
             "original": "https://www.zhihu.com/question/2107832295511913619"
           }
         },
         {
+          "title": "两大CBA夺冠热门俱乐部杯出局",
+          "summary": "来源：抖音｜综合热度 931.2万",
+          "originalTitle": "",
+          "source": {
+            "name": "抖音"
+          },
+          "id": "h6380810531",
+          "links": {
+            "aihot": "https://www.douyin.com/search/%E4%B8%A4%E5%A4%A7CBA%E5%A4%BA%E5%86%A0%E7%83%AD%E9%97%A8%E4%BF%B1%E4%B9%90%E9%83%A8%E6%9D%AF%E5%87%BA%E5%B1%80",
+            "original": "https://www.douyin.com/search/%E4%B8%A4%E5%A4%A7CBA%E5%A4%BA%E5%86%A0%E7%83%AD%E9%97%A8%E4%BF%B1%E4%B9%90%E9%83%A8%E6%9D%AF%E5%87%BA%E5%B1%80"
+          }
+        },
+        {
           "title": "27岁庞众望完成博士论文答辩，即将从清华毕业，未来有望朝什么方向发展？他的求学之路给我们什么启示？",
-          "summary": "11月20日，清华大学精密仪器系官网发布消息，庞众望的博士学位论文答辩会顺利举行。 这是答辩结束后，答辩委员会成员与庞众望合影。（图源：清华大学精密仪器系官网） 文章写道：初冬的清 · 来源：知乎｜综合热度 605.0万",
+          "summary": "11月20日，清华大学精密仪器系官网发布消息，庞众望的博士学位论文答辩会顺利举行。 这是答辩结束后，答辩委员会成员与庞众望合影。（图源：清华大学精密仪器系官网） 文章写道：初冬的清 · 来源：知乎｜综合热度 292.0万",
           "originalTitle": "",
           "source": {
             "name": "知乎"
           },
-          "id": "h1611536275",
+          "id": "h9020296443",
           "links": {
             "aihot": "https://www.zhihu.com/question/2107184597846975042",
             "original": "https://www.zhihu.com/question/2107184597846975042"
           }
         },
         {
-          "title": "演员方力申破世界纪录",
-          "summary": "据报道，21日，方力申耗时8小时37分24秒从香港游到澳门，刷新“香港至澳门游泳用时最短（男性）”的吉尼斯世界纪录。他又紧接着登台演出，结束后他表示其实身体已经发出预警，在水里时冷 · 来源：抖音 / 知乎｜综合热度 770.3万",
-          "originalTitle": "",
-          "source": {
-            "name": "抖音 / 知乎"
-          },
-          "id": "h9311579674",
-          "links": {
-            "aihot": "https://www.douyin.com/search/%E6%BC%94%E5%91%98%E6%96%B9%E5%8A%9B%E7%94%B3%E7%A0%B4%E4%B8%96%E7%95%8C%E7%BA%AA%E5%BD%95",
-            "original": "https://www.douyin.com/search/%E6%BC%94%E5%91%98%E6%96%B9%E5%8A%9B%E7%94%B3%E7%A0%B4%E4%B8%96%E7%95%8C%E7%BA%AA%E5%BD%95"
-          }
-        },
-        {
           "title": "又一中国斯诺克选手涉嫌操纵比赛",
-          "summary": "11月22日，世界职业比利与斯诺克协会决定暂停中国斯诺克选手刘文炜的比赛资格，处罚即刻生效。起因是调查发现刘文炜涉嫌参与共谋操纵比赛，且未上报他人试图接触其操纵比赛的行为。目前尚未 · 来源：百度｜综合热度 617.5万",
+          "summary": "11月22日，世界职业比利与斯诺克协会决定暂停中国斯诺克选手刘文炜的比赛资格，处罚即刻生效。起因是调查发现刘文炜涉嫌参与共谋操纵比赛，且未上报他人试图接触其操纵比赛的行为。目前尚未 · 来源：百度｜综合热度 627.1万",
           "originalTitle": "",
           "source": {
             "name": "百度"
           },
-          "id": "h5984828830",
+          "id": "h5805211053",
           "links": {
             "aihot": "https://www.baidu.com/s?wd=%E5%8F%88%E4%B8%80%E4%B8%AD%E5%9B%BD%E6%96%AF%E8%AF%BA%E5%85%8B%E9%80%89%E6%89%8B%E6%B6%89%E5%AB%8C%E6%93%8D%E7%BA%B5%E6%AF%94%E8%B5%9B&sa=fyb_news&rsv_dl=fyb_news",
             "original": "https://www.baidu.com/s?wd=%E5%8F%88%E4%B8%80%E4%B8%AD%E5%9B%BD%E6%96%AF%E8%AF%BA%E5%85%8B%E9%80%89%E6%89%8B%E6%B6%89%E5%AB%8C%E6%93%8D%E7%BA%B5%E6%AF%94%E8%B5%9B&sa=fyb_news&rsv_dl=fyb_news"
-          }
-        },
-        {
-          "title": "中国空间站科学实（试）验有序推进",
-          "summary": "来源：今日头条｜综合热度 9.2万",
-          "originalTitle": "",
-          "source": {
-            "name": "今日头条"
-          },
-          "id": "h1807309196",
-          "links": {
-            "aihot": "https://www.toutiao.com/trending/7705637052758524425",
-            "original": "https://www.toutiao.com/trending/7705637052758524425"
           }
         }
       ]
