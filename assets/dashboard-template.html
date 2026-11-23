@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>简报日历档案</title>
+<meta name="wb-version" content="2026-11-21-8-podcast-rss">
+<style>
+  :root{
+    --bg:#0b0f1a; --card:rgba(255,255,255,.045);
+    --line:rgba(255,255,255,.09); --txt:#e8edf7; --mut:#9aa6bf;
+    --accent:#6ea8fe; --hot:#fbbf24;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"PingFang SC","Microsoft YaHei","Segoe UI",system-ui,-apple-system,sans-serif;
+    background:radial-gradient(1200px 600px at 80% -10%,rgba(110,168,254,.12),transparent 60%),
+               radial-gradient(900px 500px at 0% 0%,rgba(167,139,250,.10),transparent 55%),
+               var(--bg);
+    color:var(--txt); line-height:1.6; padding-bottom:48px;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+  .hero{position:relative;overflow:hidden;
+    background:linear-gradient(135deg,rgba(110,168,254,.16),rgba(167,139,250,.10));
+    border:1px solid var(--line);border-radius:22px;
+    padding:34px 34px;margin:28px 0 18px;}
+  .hero .kicker{font-size:13px;letter-spacing:.18em;color:var(--mut);text-transform:uppercase}
+  .hero h1{font-size:clamp(26px,4.5vw,42px);font-weight:800;margin:6px 0 4px;
+    background:linear-gradient(90deg,#fff,#bcd0ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero .sub{color:var(--mut);font-size:14px}
+  .badge{display:inline-block;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;
+    background:rgba(52,211,153,.18);color:#34d399;border:1px solid rgba(52,211,153,.35);margin-left:8px;vertical-align:middle}
+  .badge.old{background:rgba(251,191,36,.16);color:#fbbf24;border-color:rgba(251,191,36,.35)}
+  .hero .total{display:inline-flex;align-items:baseline;gap:8px;margin-top:16px;
+    background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:14px;padding:10px 16px}
+  .hero .total b{font-size:30px;font-weight:800;color:#fff}
+  .hero .total span{color:var(--mut);font-size:13px}
+  .stats{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}
+  .stat{display:flex;align-items:center;gap:9px;background:rgba(0,0,0,.22);
+    border:1px solid var(--line);border-radius:12px;padding:8px 13px;font-size:13px}
+  .stat .dot{width:10px;height:10px;border-radius:50%}
+  .stat b{font-size:16px;font-weight:700}
+  .stat .lbl{color:var(--mut)}
+
+  .cal{background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:20px 22px;margin:18px 0 26px}
+  .cal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+  .cal-title{font-size:17px;font-weight:800}
+  .cal-title small{font-size:12px;color:var(--mut);font-weight:400;margin-left:8px}
+  .cal-ctrls{display:flex;align-items:center;gap:8px}
+  .cal-ctrls button{background:rgba(255,255,255,.05);color:var(--txt);border:1px solid var(--line);
+    border-radius:9px;padding:6px 12px;font-size:13px;cursor:pointer;transition:.15s}
+  .cal-ctrls button:hover{background:rgba(255,255,255,.12)}
+  .cal-ctrls .ym{min-width:104px;text-align:center;font-weight:700;font-size:15px}
+  .cal-ctrls .today-btn{color:var(--accent);border-color:rgba(110,168,254,.4)}
+  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+  .cal-dow{text-align:center;font-size:12px;color:var(--mut);padding:4px 0 8px}
+  .cal-cell{position:relative;aspect-ratio:1/1;min-height:38px;border-radius:10px;
+    border:1px solid transparent;background:rgba(255,255,255,.035);cursor:pointer;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    transition:.15s;color:var(--txt);padding:0}
+  .cal-cell:hover:not(.empty){background:rgba(255,255,255,.12);border-color:var(--line)}
+  .cal-cell.empty{background:transparent;cursor:default}
+  .cal-cell .d{font-size:14px;font-weight:600;line-height:1}
+  .cal-cell.no-data{opacity:.32;cursor:default}
+  .cal-cell.has-data{color:#dce6ff}
+  .cal-cell.hot{background:rgba(251,191,36,.16);border-color:rgba(251,191,36,.45)}
+  .cal-cell.hot .d{color:#fbbf24}
+  .cal-cell.selected{background:var(--accent);border-color:var(--accent);color:#0b0f1a;
+    box-shadow:0 0 0 2px rgba(110,168,254,.3)}
+  .cal-cell.selected .d,.cal-cell.selected .hl-dot{color:#0b0f1a}
+  .cal-cell .hl-dot{position:absolute;bottom:5px;width:5px;height:5px;border-radius:50%;background:var(--hot)}
+  .cal-cell.selected .hl-dot{background:#0b0f1a}
+  .cal-cell .lead-tip{display:none}
+  .cal-legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:14px;font-size:12px;color:var(--mut);align-items:center}
+  .cal-legend .li{display:inline-flex;gap:6px;align-items:center}
+  .cal-legend .sw{width:12px;height:12px;border-radius:4px;display:inline-block}
+  .cal-legend .sw.hot{background:rgba(251,191,36,.55);border:1px solid rgba(251,191,36,.7)}
+  .cal-legend .sw.have{background:rgba(255,255,255,.14)}
+
+  .nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(10px);
+    background:rgba(11,15,26,.82);border:1px solid var(--line);border-radius:14px;
+    padding:10px 12px;margin:0 0 26px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .nav a{color:var(--mut);text-decoration:none;font-size:14px;padding:7px 13px;border-radius:10px;
+    border:1px solid transparent;transition:.18s;display:inline-flex;gap:7px;align-items:center}
+  .nav a:hover{color:#fff;background:rgba(255,255,255,.06);border-color:var(--line)}
+  .nav a .cnt{font-size:12px;color:var(--mut);background:rgba(255,255,255,.06);border-radius:8px;padding:1px 7px}
+  .nav .refresh{margin-left:auto;color:var(--mut);cursor:pointer;font-size:14px;padding:7px 13px;border-radius:10px;border:1px solid var(--line)}
+  .nav .refresh:hover{color:#fff;background:rgba(255,255,255,.06)}
+  .section{margin:34px 0 10px;scroll-margin-top:78px}
+  .section-head{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+  .section-head .bar{width:5px;height:26px;border-radius:3px}
+  .section-head h2{font-size:22px;font-weight:800}
+  .section-head .sc{color:var(--mut);font-size:14px;border:1px solid var(--line);border-radius:9px;padding:2px 10px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;
+    display:flex;flex-direction:column;gap:11px;position:relative;transition:transform .18s,border-color .18s,box-shadow .18s}
+  .card:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.2);box-shadow:0 12px 30px rgba(0,0,0,.35)}
+  .card .top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .num{font-size:13px;font-weight:800;color:#0b0f1a;background:var(--accent);
+    min-width:30px;height:30px;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;padding:0 8px}
+  .chip{font-size:12px;color:var(--mut);background:rgba(255,255,255,.06);border:1px solid var(--line);
+    border-radius:999px;padding:4px 11px;max-width:210px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .card h3{font-size:17px;font-weight:700;line-height:1.45}
+  .card h3 a{color:#dce6ff;text-decoration:none}
+  .card h3 a:hover{text-decoration:underline}
+  .sum{font-size:14px;color:var(--mut);flex:1}
+  .more{font-size:13px;font-weight:600;color:var(--accent);text-decoration:none;display:inline-flex;align-items:center;gap:5px;width:fit-content}
+  .more:hover{text-decoration:underline}
+  .card-actions{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:2px}
+  .listen{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;cursor:pointer;
+    color:#0b0f1a;background:linear-gradient(135deg,#38bdf8,#818cf8);border:none;border-radius:999px;
+    padding:7px 13px;transition:transform .15s,box-shadow .15s,opacity .15s;white-space:nowrap}
+  .listen:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(56,189,248,.35)}
+  .listen:disabled{opacity:.55;cursor:not-allowed;transform:none;box-shadow:none}
+  .listen .ico{font-size:12px}
+  .listen.playing{background:linear-gradient(135deg,#fb7185,#f59e0b);animation:pulse 1.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(251,113,133,.5)}50%{box-shadow:0 0 0 8px rgba(251,113,133,0)}}
+  .lead-card .listen{margin-top:12px}
+  .podcast-tip{font-size:12px;color:var(--mut);opacity:.85}
+  .audio-bar{position:sticky;bottom:14px;z-index:50;max-width:760px;margin:18px auto 0;
+    background:rgba(20,26,44,.97);border:1px solid rgba(56,189,248,.35);border-radius:14px;
+    padding:12px 16px;display:none;align-items:center;gap:12px;box-shadow:0 10px 34px rgba(0,0,0,.5)}
+  .audio-bar.show{display:flex}
+  .audio-bar .ab-ico{font-size:20px}
+  /* 微信/不支持TTS 时的跳出引导遮罩 */
+  .guide-mask{position:fixed;inset:0;z-index:200;background:rgba(8,11,20,.9);display:none;
+    align-items:center;justify-content:center;padding:24px}
+  .guide-mask.show{display:flex}
+  .guide-box{background:var(--card);border:1px solid rgba(56,189,248,.35);border-radius:18px;
+    padding:26px 24px;max-width:360px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+  .guide-box .g-ico{font-size:42px;margin-bottom:8px}
+  .guide-box h3{font-size:18px;margin:0 0 10px;color:#dce6ff}
+  .guide-box p{font-size:14px;color:var(--mut);line-height:1.7;margin:0 0 16px}
+  .guide-box .g-step{display:inline-block;background:rgba(56,189,248,.12);border:1px solid rgba(56,189,248,.3);
+    border-radius:10px;padding:9px 14px;color:#7dd3fc;font-size:14px;font-weight:700;margin:4px 0}
+  .guide-box .g-close{display:block;width:100%;margin-top:18px;background:var(--accent);color:#0b0f1a;
+    border:none;border-radius:10px;padding:11px;font-size:15px;font-weight:700;cursor:pointer}
+  .audio-bar .ab-info{flex:1;min-width:0}
+  .audio-bar .ab-title{font-size:13px;font-weight:700;color:#dce6ff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .audio-bar .ab-phase{font-size:12px;color:var(--mut);margin-top:2px}
+  .audio-bar button{background:var(--accent);color:#0b0f1a;border:none;border-radius:9px;padding:7px 14px;font-weight:700;cursor:pointer;white-space:nowrap}
+  .audio-bar .ab-ctrl{background:rgba(255,255,255,.09);color:var(--txt);border:1px solid var(--line);
+    font-size:12px;padding:6px 10px;min-width:46px}
+  .audio-bar .ab-ctrl:hover{border-color:rgba(110,168,254,.6);color:#fff}
+  .audio-bar .ab-ctrl.on{background:rgba(110,168,254,.22);border-color:rgba(110,168,254,.6);color:#9cc4ff}
+  body.theme-light .audio-bar .ab-ctrl{background:rgba(15,23,42,.06);color:#334155}
+  body.theme-light .audio-bar .ab-ctrl:hover,body.theme-light .audio-bar .ab-ctrl.on{color:#1d4ed8;border-color:#93c5fd}
+  body.theme-light .audio-bar .ab-title{color:#1e293b}
+  .tb-btn.brief{border-color:rgba(251,191,36,.5);color:#fbbf24;background:rgba(251,191,36,.1)}
+  .tb-btn.brief:hover{background:rgba(251,191,36,.18);border-color:#fbbf24}
+  body.theme-light .tb-btn.brief{color:#b45309;border-color:#fcd34d;background:rgba(251,191,36,.16)}
+  .lead-card{background:linear-gradient(135deg,rgba(251,191,36,.12),rgba(255,255,255,.03));
+    border:1px solid rgba(251,191,36,.3);border-radius:16px;padding:20px 22px;margin:0 0 8px}
+  .lead-card .lk{font-size:12px;color:var(--hot);font-weight:700;letter-spacing:.1em}
+  .lead-card h3{font-size:19px;font-weight:800;line-height:1.45;margin:6px 0 8px}
+  .lead-card h3 a{color:#fff;text-decoration:none}
+  .lead-card h3 a:hover{text-decoration:underline}
+  .lead-card p{font-size:14px;color:var(--mut)}
+  .foot{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);color:var(--mut);
+    font-size:13px;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
+  .foot a{color:var(--accent);text-decoration:none}
+  .foot a:hover{text-decoration:underline}
+  .state{padding:50px 20px;text-align:center;color:var(--mut)}
+  .spinner{width:32px;height:32px;border:3px solid rgba(255,255,255,.12);border-top-color:var(--accent);
+    border-radius:50%;margin:0 auto 14px;animation:spin 1s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .err{background:rgba(251,113,133,.1);border:1px solid rgba(251,113,133,.3);
+    border-radius:14px;padding:22px;color:#fda4af;max-width:520px;margin:0 auto}
+  .err button{margin-top:14px;background:var(--accent);color:#0b0f1a;border:none;padding:9px 18px;border-radius:10px;font-weight:700;cursor:pointer}
+  @media (max-width:560px){
+    .hero{padding:26px 20px}.wrap{padding:0 14px}.cal{padding:16px 12px}
+    .nav a{padding:6px 10px;font-size:13px}
+    .cal-cell{min-height:34px}.cal-cell .d{font-size:12px}
+    .audio-bar{flex-wrap:wrap;gap:8px;padding:10px 12px}
+    .audio-bar .ab-info{min-width:120px}
+    .audio-bar .ab-ctrl{padding:5px 7px;min-width:40px;font-size:11px}
+  }
+
+  /* ===== v6 增强：工具栏 / 搜索 / 收藏 / 已读 / 分享 / 主题字号 ===== */
+  /* 浅色主题：覆盖根变量 + 少量硬编码色 */
+  body.theme-light{
+    --bg:#f3f6fc; --card:rgba(15,23,42,.035);
+    --line:rgba(15,23,42,.12); --txt:#172033; --mut:#64708a;
+    --accent:#2563eb; --hot:#c2870b;
+  }
+  body.theme-light .hero h1{background:linear-gradient(90deg,#12213f,#2f4a86);-webkit-background-clip:text;background-clip:text}
+  body.theme-light .hero .total{background:rgba(15,23,42,.05)}
+  body.theme-light .hero .total b{color:#12213f}
+  body.theme-light .badge{background:rgba(16,185,129,.16);color:#0f9d68;border-color:rgba(16,185,129,.35)}
+  body.theme-light .cal-cell{background:rgba(15,23,42,.04)}
+  body.theme-light .cal-cell.has-data{color:#1c2b4d}
+  body.theme-light .cal-cell.selected{background:var(--accent);color:#fff}
+  body.theme-light .cal-cell.selected .d,body.theme-light .cal-cell.selected .hl-dot{color:#fff}
+  body.theme-light .nav{background:rgba(243,246,252,.9)}
+  body.theme-light .nav a:hover{color:#12213f;background:rgba(15,23,42,.06)}
+  body.theme-light .nav .refresh:hover{color:#12213f;background:rgba(15,23,42,.06)}
+  body.theme-light .card h3 a,body.theme-light .lead-card h3 a{color:#1c2b4d}
+  body.theme-light .stat{background:rgba(15,23,42,.045)}
+  body.theme-light .chip{background:rgba(15,23,42,.05)}
+  body.theme-light .audio-bar{background:rgba(255,255,255,.97);border-color:rgba(37,99,235,.4)}
+  body.theme-light .ab-title{color:#1c2b4d}
+  body.theme-light .guide-box h3{color:#12213f}
+  body.theme-light .spinner{border-color:rgba(15,23,42,.15);border-top-color:var(--accent)}
+  body.theme-light .err{color:#b32445}
+  /* 字号三档：作用于主内容，不影响 fixed 遮罩 */
+  body.fs-small .wrap{zoom:.92} body.fs-normal .wrap{zoom:1} body.fs-large .wrap{zoom:1.08}
+
+  .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:12px 14px;margin:0 0 18px}
+  .tb-search{position:relative;display:flex;align-items:center;gap:8px;flex:1;min-width:200px;
+    background:rgba(0,0,0,.18);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+  body.theme-light .tb-search{background:rgba(15,23,42,.045)}
+  .tb-search .si{font-size:15px;opacity:.7}
+  .tb-search input{flex:1;min-width:0;background:transparent;border:none;outline:none;color:var(--txt);font-size:14px}
+  .tb-search input::placeholder{color:var(--mut)}
+  .tb-search .clr{cursor:pointer;color:var(--mut);font-size:16px;padding:0 2px;display:none}
+  .tb-search .clr.show{display:block}
+  .tb-btn{background:rgba(255,255,255,.06);color:var(--txt);border:1px solid var(--line);
+    border-radius:10px;padding:8px 12px;font-size:13px;cursor:pointer;transition:.15s;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+  body.theme-light .tb-btn{background:rgba(15,23,42,.045)}
+  .tb-btn:hover{background:rgba(110,168,254,.18);border-color:rgba(110,168,254,.4)}
+  .tb-btn.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .tb-sep{width:1px;height:24px;background:var(--line);margin:0 2px}
+  .fs-group{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .fs-group button{background:transparent;color:var(--mut);border:none;padding:7px 10px;font-size:13px;cursor:pointer}
+  .fs-group button.on{background:var(--accent);color:#fff;font-weight:700}
+  .tb-stat{font-size:12px;color:var(--mut);white-space:nowrap}
+
+  .sr-box{position:absolute;top:calc(100% + 6px);left:0;right:0;z-index:60;display:none;
+    background:#111a2e;border:1px solid rgba(110,168,254,.4);border-radius:12px;
+    box-shadow:0 16px 40px rgba(0,0,0,.5);max-height:60vh;overflow:auto;padding:6px}
+  body.theme-light .sr-box{background:#fff;box-shadow:0 16px 40px rgba(15,23,42,.18)}
+  .sr-box.show{display:block}
+  .sr-item{display:flex;gap:12px;padding:10px;border-radius:9px;cursor:pointer;transition:.12s}
+  .sr-item:hover{background:rgba(110,168,254,.14)}
+  .sr-date{font-size:12px;color:var(--accent);font-weight:700;white-space:nowrap;min-width:82px;padding-top:1px}
+  .sr-body{min-width:0}
+  .sr-title{font-size:14px;font-weight:700;color:var(--txt);line-height:1.4}
+  .sr-snippet{font-size:12px;color:var(--mut);margin-top:3px;line-height:1.4}
+  .sr-item mark{background:rgba(251,191,36,.4);color:inherit;border-radius:3px;padding:0 2px}
+  .sr-empty{padding:16px;text-align:center;color:var(--mut);font-size:13px}
+
+  .mini-btn{background:rgba(255,255,255,.06);color:var(--mut);border:1px solid var(--line);
+    border-radius:8px;padding:5px 9px;font-size:12px;cursor:pointer;transition:.15s;white-space:nowrap}
+  body.theme-light .mini-btn{background:rgba(15,23,42,.045)}
+  .mini-btn:hover{color:var(--txt);border-color:rgba(110,168,254,.5)}
+  .mini-btn.fav.on{color:#fbbf24;border-color:rgba(251,191,36,.5);background:rgba(251,191,36,.1)}
+  .card-actions{flex-wrap:wrap}
+  .card.is-read{opacity:.62}
+  .card.is-read .sum{text-decoration:none}
+  .read-mark{position:absolute;top:12px;right:12px;font-size:11px;color:#34d399;background:rgba(52,211,153,.12);
+    border:1px solid rgba(52,211,153,.3);border-radius:999px;padding:2px 8px}
+  .lead-card{position:relative}
+  .lead-actions{margin-top:12px}
+
+  .fav-view{max-width:820px;margin:0 auto}
+  .fav-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 18px;flex-wrap:wrap}
+  .fav-head h2{font-size:22px;font-weight:800}
+  .fav-row{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:12px}
+  .fav-meta{font-size:12px;color:var(--accent);font-weight:700}
+  .fav-link{display:block;font-size:15px;font-weight:700;color:var(--txt);text-decoration:none;margin:5px 0;line-height:1.45}
+  .fav-link:hover{text-decoration:underline}
+  .fav-sum{font-size:13px;color:var(--mut)}
+  .fav-acts{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+
+  .modal-mask{position:fixed;inset:0;z-index:300;background:rgba(8,11,20,.86);display:none;
+    align-items:center;justify-content:center;padding:20px}
+  .modal-mask.show{display:flex}
+  .modal{background:#111a2e;border:1px solid rgba(110,168,254,.4);border-radius:18px;padding:22px;
+    max-width:560px;width:100%;box-shadow:0 24px 70px rgba(0,0,0,.6)}
+  body.theme-light .modal{background:#fff}
+  .modal h3{font-size:17px;font-weight:800;margin-bottom:12px;color:var(--txt)}
+  .modal textarea{width:100%;height:130px;resize:vertical;background:rgba(0,0,0,.22);color:var(--txt);
+    border:1px solid var(--line);border-radius:10px;padding:11px;font-size:13px;line-height:1.6;font-family:inherit;outline:none}
+  body.theme-light .modal textarea{background:rgba(15,23,42,.04)}
+  .modal-acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .modal-acts button{background:var(--accent);color:#fff;border:none;border-radius:10px;padding:9px 14px;font-size:13px;font-weight:700;cursor:pointer}
+  .modal-acts button.ghost{background:transparent;border:1px solid var(--line);color:var(--txt)}
+  .share-preview{margin-top:14px;text-align:center;display:none}
+  .share-preview.show{display:block}
+  .share-preview img{max-width:100%;border-radius:10px;border:1px solid var(--line)}
+  .toast{position:fixed;left:50%;bottom:80px;transform:translateX(-50%);z-index:400;
+    background:rgba(17,26,46,.96);color:#e8edf7;border:1px solid rgba(110,168,254,.4);
+    border-radius:10px;padding:10px 18px;font-size:13px;box-shadow:0 10px 30px rgba(0,0,0,.4);
+    opacity:0;pointer-events:none;transition:opacity .25s}
+  .toast.show{opacity:1}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">AI HOT · 每日晨报档案 <span class="badge" id="dayBadge">实时</span></div>
+    <h1 id="heroDate">AI 晨报</h1>
+    <div class="sub" id="heroSub"></div>
+    <div class="total"><b id="heroTotal">–</b><span>条精选 · 北京时间</span></div>
+    <div class="stats" id="heroStats"></div>
+  </header>
+
+  <section class="toolbar" id="toolbar">
+    <div class="tb-search">
+      <span class="si">🔍</span>
+      <input id="searchInput" type="search" placeholder="搜索头条 / 摘要 / 关键词（覆盖全部档案）" autocomplete="off">
+      <span class="clr" id="searchClear" title="清除">×</span>
+      <div class="sr-box" id="searchResults"></div>
+    </div>
+    <button class="tb-btn brief" id="briefBtn" title="播放90秒速览播客">⚡ 90秒速览</button>
+    <button class="tb-btn" id="subBtn" title="订阅播客 RSS">📻 订阅</button>
+    <button class="tb-btn" id="favBtn" title="我的收藏">☆ 收藏 <span class="tb-stat" id="favCount">0</span></button>
+    <button class="tb-btn" id="shareDayBtn" title="分享当天日报">↗ 分享本日</button>
+    <div class="tb-sep"></div>
+    <button class="tb-btn" id="themeBtn" title="切换深色/浅色">🌙 深色</button>
+    <div class="fs-group" id="fsGroup" title="字号">
+      <button data-fs="small">小</button>
+      <button data-fs="normal" class="on">中</button>
+      <button data-fs="large">大</button>
+    </div>
+  </section>
+
+  <section class="cal">
+    <div class="cal-head">
+      <div class="cal-title">日历档案 <small id="calRange"></small></div>
+      <div class="cal-ctrls">
+        <button id="prevM" aria-label="上个月">&#8249;</button>
+        <span class="ym" id="ymLabel"></span>
+        <button id="nextM" aria-label="下个月">&#8250;</button>
+        <button class="today-btn" id="todayBtn">回到今日</button>
+      </div>
+    </div>
+    <div class="cal-grid" id="calGrid"></div>
+    <div class="cal-legend">
+      <span class="li"><i class="sw hot"></i>重大事件</span>
+      <span class="li"><i class="sw have"></i>有日报</span>
+      <span class="li">金色圆点 = 当天头条命中重大关键词</span>
+      <span class="li" id="calStatus"></span>
+    </div>
+  </section>
+
+  <nav class="nav" id="nav"></nav>
+  <main id="main">
+    <div class="state"><div class="spinner"></div>正在加载今日简报…</div>
+  </main>
+  <footer class="foot" id="foot"></footer>
+</div>
+
+<div class="audio-bar" id="audioBar">
+  <span class="ab-ico" id="abIco">🎧</span>
+  <div class="ab-info">
+    <div class="ab-title" id="abTitle"></div>
+    <div class="ab-phase" id="abPhase"></div>
+  </div>
+  <button class="ab-ctrl" id="abRate" title="播放倍速">1.0x</button>
+  <button class="ab-ctrl" id="abSleep" title="定时关闭">☾ 关</button>
+  <button class="ab-ctrl" id="abReplay" title="从头重听">↻ 重听</button>
+  <button id="abStop">停止</button>
+</div>
+
+<div class="guide-mask" id="guideMask">
+  <div class="guide-box">
+    <div class="g-ico">🎧</div>
+    <h3>请在新浏览器打开收听</h3>
+    <p>微信内置浏览器暂不支持语音播放。请点击右上角</p>
+    <div class="g-step">··· → 在浏览器中打开</div>
+    <p style="margin-top:14px">打开后即可点击「听播客」收听中英文双语。</p>
+    <button class="g-close" id="guideClose">我知道了</button>
+  </div>
+</div>
+<audio id="podAudio" preload="none" style="display:none"></audio>
+
+<div class="modal-mask" id="shareMask">
+  <div class="modal">
+    <h3 id="shareTitle">分享</h3>
+    <textarea id="shareText" readonly></textarea>
+    <div class="modal-acts">
+      <button id="shareCopy">复制文案</button>
+      <button id="shareImage">生成卡片图</button>
+      <button id="shareDownload" class="ghost" style="display:none">下载图片</button>
+      <button id="shareClose" class="ghost">关闭</button>
+    </div>
+    <div class="share-preview" id="sharePreview"></div>
+  </div>
+</div>
+
+<div class="modal-mask" id="subMask">
+  <div class="modal">
+    <h3>📻 订阅播客</h3>
+    <p style="font-size:13px;color:var(--mut);line-height:1.7;margin:0 0 12px">
+      把本简报的速览播客加到你的播客客户端，每天自动更新一期。复制下面的订阅地址，在播客 App 里「添加订阅 / 输入 RSS 链接」即可。</p>
+    <textarea id="subUrl" readonly rows="2"></textarea>
+    <p style="font-size:12px;color:var(--mut);line-height:1.6;margin:10px 0 0">
+      推荐客户端：小宇宙、Apple 播客、Spotify、Overcast、Pocket Casts。支持泛用型播客客户端直接添加 RSS。</p>
+    <div class="modal-acts">
+      <button id="subCopy">复制订阅地址</button>
+      <button id="subOpen" class="ghost">打开 RSS</button>
+      <button id="subClose" class="ghost">关闭</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ===== 站点配置：aihot 数据源下只需替换本对象。local 数据源还需按 references/data-contract.md 改 fetchJson() 并生成 data/index.json ===== */
+var SITE_CFG = {
+  apiBase: "https://aihot.news/api/v1",
+  brand: "AI 晨报",
+  brandEn: "AI HOT",
+  dataCredit: "aihot.news",
+  docTitle: "AI 晨报 · 日历档案",
+  sections: [
+    {key:"ai-models",   label:"模型发布/更新", color:"#38bdf8"},
+    {key:"ai-products", label:"产品发布/更新", color:"#a78bfa"},
+    {key:"industry",    label:"行业动态",     color:"#fbbf24"},
+    {key:"paper",       label:"论文研究",     color:"#34d399"},
+    {key:"tip",         label:"技巧与观点",   color:"#fb7185"}
+  ]
+};
+(function(){
+  "use strict";
+  var BASE = SITE_CFG.apiBase;
+  var BRAND = SITE_CFG.brand, BRAND_EN = SITE_CFG.brandEn, CREDIT = SITE_CFG.dataCredit;
+  var SECTIONS_META = SITE_CFG.sections;
+  // 用配置覆盖静态 HTML 中的品牌文字（生成站点时只需改顶部 SITE_CFG）
+  document.title = SITE_CFG.docTitle || (BRAND + ' · 日历档案');
+  var _kicker = document.querySelector('.hero .kicker');
+  if (_kicker) _kicker.childNodes[0].nodeValue = BRAND_EN + ' · 每日简报档案 ';
+  var _hero = document.getElementById('heroDate');
+  if (_hero && _hero.textContent.trim() === 'AI 晨报') _hero.textContent = BRAND;
+  // 重大事件关键词评分表：命中即累加权重，达到阈值判定为重大
+  var HOT_WORDS = [
+    {w:"IPO", s:3},{w:"上市", s:3},{w:"登陆纳斯达克", s:3},{w:"募资", s:2},{w:"融资", s:2},
+    {w:"收购", s:2},{w:"发布", s:2},{w:"推出", s:2},{w:"开源", s:2},{w:"突破", s:2},
+    {w:"首次", s:2},{w:"创纪录", s:3},{w:"纪录", s:2},{w:"GPT", s:2},{w:"Gemini", s:2},
+    {w:"Claude", s:2},{w:"OpenAI", s:2},{w:"Anthropic", s:2},{w:"NVIDIA", s:2},{w:"英伟达", s:2},
+    {w:"Google", s:1},{w:"Meta", s:1},{w:"微软", s:1},{w:"Microsoft", s:1},{w:" resignation".trim(), s:2},
+    {w:"辞任", s:2},{w:"辞职", s:2},{w:"变动", s:1},{w:"2万亿", s:2},{w:"万亿", s:2}
+  ];
+  var HOT_THRESHOLD = 5;
+  var HISTORY_LIMIT = 180;
+
+  // ===== 本地偏好存储（localStorage，容错）=====
+  var LS_KEY = 'aih_news_dashboard_prefs_v1';
+  var PREFS = { theme:'dark', fs:'normal', rate:1, favs:{}, reads:{} };
+  try{
+    var raw = localStorage.getItem(LS_KEY);
+    if(raw){ var p = JSON.parse(raw); if(p && typeof p==='object'){
+      if(p.theme==='light'||p.theme==='dark') PREFS.theme=p.theme;
+      if(p.fs==='small'||p.fs==='normal'||p.fs==='large') PREFS.fs=p.fs;
+      if([0.75,1,1.25,1.5,2].indexOf(Number(p.rate))>=0) PREFS.rate=Number(p.rate);
+      if(p.favs && typeof p.favs==='object') PREFS.favs=p.favs;
+      if(p.reads && typeof p.reads==='object') PREFS.reads=p.reads;
+    }}
+  }catch(e){}
+  function savePrefs(){ try{ localStorage.setItem(LS_KEY, JSON.stringify(PREFS)); }catch(e){} }
+  function toast(msg){
+    var t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show');
+    clearTimeout(t._tm); t._tm=setTimeout(function(){ t.classList.remove('show'); },1800);
+  }
+  function applyTheme(){
+    document.body.classList.toggle('theme-light', PREFS.theme==='light');
+    var b=document.getElementById('themeBtn');
+    if(b) b.textContent = PREFS.theme==='light' ? '☀️ 浅色' : '🌙 深色';
+  }
+  function applyFs(){
+    document.body.classList.remove('fs-small','fs-normal','fs-large');
+    document.body.classList.add('fs-'+PREFS.fs);
+    document.querySelectorAll('#fsGroup button').forEach(function(x){
+      x.classList.toggle('on', x.getAttribute('data-fs')===PREFS.fs);
+    });
+  }
+
+  var zhDate=new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',year:'numeric',month:'long',day:'numeric',weekday:'long'});
+  var zhWin =new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',month:'long',day:'numeric'});
+  var zhGen =new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false});
+  var zhYmd =new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit'});
+
+  function fmt(s){try{return zhDate.format(new Date(s+'T00:00:00+08:00'));}catch(e){return s;}}
+  function fW(s){try{return zhWin.format(new Date(s));}catch(e){return s;}}
+  function fG(s){try{return zhGen.format(new Date(s));}catch(e){return s;}}
+  function todayYmd(){
+    try{
+      var parts=zhYmd.formatToParts(new Date()),o={};
+      for(var i=0;i<parts.length;i++) o[parts[i].type]=parts[i].value;
+      if(o.year&&o.month&&o.day) return o.year+"-"+o.month+"-"+o.day;
+    }catch(e){}
+    var d=new Date(),m=String(d.getMonth()+1).padStart(2,'0'),dd=String(d.getDate()).padStart(2,'0');
+    return d.getFullYear()+"-"+m+"-"+dd;
+  }
+  function ymdOf(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+  function parseYmd(s){return new Date(s+'T00:00:00+08:00');}
+  function cut(t,n){if(!t)return'';var a=[...t];return a.length<=n?t:a.slice(0,n-1).join('')+'\u2026';}
+  function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;}
+
+  function hotScore(title, para){
+    var text=((title||'')+' '+(para||'')).toLowerCase(), score=0;
+    HOT_WORDS.forEach(function(x){ if(text.indexOf(x.w.toLowerCase())>=0) score+=x.s; });
+    if(/今日安静|无大事|无明显/.test(text)) score=0;
+    return score;
+  }
+
+  function matchKey(label){
+    for(var i=0;i<SECTIONS_META.length;i++) if(SECTIONS_META[i].label===label) return SECTIONS_META[i].key;
+    if(label.indexOf("模型")>=0)return"ai-models";
+    if(label.indexOf("产品")>=0)return"ai-products";
+    if(label.indexOf("行业")>=0)return"industry";
+    if(label.indexOf("论文")>=0)return"paper";
+    if(label.indexOf("技巧")>=0)return"tip";
+    return null;
+  }
+
+  function fetchJson(path){
+    return fetch(BASE + path, {cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;});
+  }
+
+  // ===== 英文原标题映射（近7天 items，链接 -> originalTitle）=====
+  var EN_MAP = {};          // aihot item id -> 英文原题
+  function itemIdFromUrl(url){
+    if(!url) return '';
+    var m=String(url).match(/\/items\/([a-z0-9]+)/i);
+    return m?m[1]:'';
+  }
+  async function loadEnTitles(){
+    // items 接口仅覆盖近7天，limit 上限 100
+    var j=await fetchJson('/items?limit=100');
+    if(!j || !j.items) return;
+    j.items.forEach(function(it){
+      var id=itemIdFromUrl((it.links&&it.links.aihot)||'') || it.id;
+      if(id && it.originalTitle) EN_MAP[id]=it.originalTitle;
+    });
+  }
+  function enTitleOf(url){ return EN_MAP[itemIdFromUrl(url)] || ''; }
+
+  // ===== 播客引擎（优先预生成音频，回退 Web Speech TTS）=====
+  var POD = { speaking:false, key:null, btn:null, mode:null, replayFn:null };
+  var AUDIO_MANIFEST = null;   // 当前日期 audio/<date>/manifest.json
+  var AUDIO_BASE = 'audio/';   // 相对发行目录
+  var AUDIO_DATE = null;
+  var SLEEP_MIN = 0;           // 定时关闭分钟数：0=关闭
+  var SLEEP_TIMER = null;      // 定时关闭句柄
+  var RATES = [0.75, 1, 1.25, 1.5, 2];
+  function showGuide(){ document.getElementById('guideMask').classList.add('show'); }
+  function hideGuide(){ document.getElementById('guideMask').classList.remove('show'); }
+  function pickVoice(langPrefix){
+    if(!('speechSynthesis' in window)) return null;
+    var vs=window.speechSynthesis.getVoices()||[];
+    var byLang=vs.filter(function(v){return (v.lang||'').toLowerCase().indexOf(langPrefix)===0;});
+    return byLang[0]||null;
+  }
+  async function loadAudioManifest(date){
+    AUDIO_MANIFEST=null; AUDIO_DATE=date;
+    try{
+      var r=await fetch(AUDIO_BASE+date+'/manifest.json',{cache:'no-store'});
+      if(r.ok){ AUDIO_MANIFEST=await r.json(); }
+    }catch(e){}
+  }
+  function audioTracksOf(itemKey){
+    if(!AUDIO_MANIFEST || !AUDIO_MANIFEST.items) return null;
+    var e=AUDIO_MANIFEST.items[itemKey];
+    if(!e) return null;
+    var tracks=[];
+    if(e.zh) tracks.push({url:AUDIO_BASE+AUDIO_DATE+'/'+e.zh, flag:'🇨🇳', label:'中文 · 标题与摘要'});
+    if(e.en) tracks.push({url:AUDIO_BASE+AUDIO_DATE+'/'+e.en, flag:'🇬🇧', label:'English · Original headline'});
+    return tracks.length?tracks:null;
+  }
+  function markPlaying(btn, on){ if(btn){ btn.classList.toggle('playing',on); btn.innerHTML=on?'<span class="ico">⏸</span> 播放中':'<span class="ico">▶</span> 听播客'; } }
+  function applyRateUI(){
+    var b=document.getElementById('abRate'); if(b) b.textContent=PREFS.rate+'x';
+  }
+  function clearSleep(){ if(SLEEP_TIMER){ clearTimeout(SLEEP_TIMER); SLEEP_TIMER=null; } }
+  function armSleep(){
+    clearSleep();
+    if(!SLEEP_MIN || !POD.speaking) return;
+    SLEEP_TIMER=setTimeout(function(){ stopPod(); toast('定时关闭：已停止播放'); }, SLEEP_MIN*60*1000);
+  }
+  function stopPod(){
+    if('speechSynthesis' in window) window.speechSynthesis.cancel();
+    var a=document.getElementById('podAudio'); try{a.pause();a.currentTime=0;}catch(e){}
+    a.onended=null; a.onerror=null;
+    clearSleep();
+    POD.speaking=false; POD.key=null; POD.btn=null; POD.mode=null; POD.replayFn=null;
+    document.getElementById('audioBar').classList.remove('show');
+    document.querySelectorAll('.listen.playing').forEach(function(b){ markPlaying(b,false); });
+  }
+  function replayPod(){
+    if(!POD.speaking || !POD.replayFn){ toast('当前没有正在播放的内容'); return; }
+    POD.replayFn(); armSleep(); toast('已从头重听');
+  }
+  function cycleRate(){
+    var i=RATES.indexOf(Number(PREFS.rate)); if(i<0) i=1;
+    PREFS.rate=RATES[(i+1)%RATES.length]; savePrefs(); applyRateUI();
+    var a=document.getElementById('podAudio'); try{ a.playbackRate=PREFS.rate; }catch(e){}
+    if(POD.mode==='tts' && POD.replayFn){ POD.replayFn(); }
+    toast('播放倍速 '+PREFS.rate+'x');
+  }
+  function cycleSleep(){
+    var opts=[0,15,30,60]; var i=opts.indexOf(SLEEP_MIN); if(i<0) i=0;
+    SLEEP_MIN=opts[(i+1)%opts.length];
+    var b=document.getElementById('abSleep');
+    b.textContent = SLEEP_MIN ? ('☾ '+SLEEP_MIN+'分') : '☾ 关';
+    b.classList.toggle('on', SLEEP_MIN>0);
+    if(SLEEP_MIN){ armSleep(); toast(SLEEP_MIN+' 分钟后自动停止'); }
+    else { clearSleep(); toast('已关闭定时'); }
+  }
+  // 播放预生成音频队列（微信内可用）
+  function playAudioQueue(key, btn, title, tracks){
+    stopPod();
+    POD.speaking=true; POD.key=key; POD.btn=btn; POD.mode='audio';
+    markPlaying(btn,true);
+    var bar=document.getElementById('audioBar');
+    document.getElementById('abTitle').textContent=title;
+    bar.classList.add('show');
+    var a=document.getElementById('podAudio');
+    var i=0;
+    POD.replayFn=function(){ i=0; next(); };
+    function next(){
+      if(i>=tracks.length){ stopPod(); return; }
+      var t=tracks[i];
+      document.getElementById('abIco').textContent=t.flag;
+      document.getElementById('abPhase').textContent='('+(i+1)+'/'+tracks.length+') '+t.label;
+      a.src=t.url;
+      try{ a.playbackRate=PREFS.rate; }catch(e){}
+      a.onended=function(){ i++; next(); };
+      a.onerror=function(){ i++; next(); };
+      var p=a.play();
+      if(p && p.catch) p.catch(function(){ /* 自动播放被拦截，用户已点击按钮一般允许 */ });
+    }
+    next(); armSleep();
+  }
+  // 回退浏览器 TTS
+  function speakQueue(key, btn, title, parts){
+    if(!('speechSynthesis' in window)){ showGuide(); return; }
+    stopPod();
+    POD.speaking=true; POD.key=key; POD.btn=btn; POD.mode='tts';
+    markPlaying(btn,true);
+    var bar=document.getElementById('audioBar');
+    document.getElementById('abTitle').textContent=title;
+    bar.classList.add('show');
+    var idx=0;
+    POD.replayFn=function(){ idx=0; next(); };
+    function next(){
+      if(idx>=parts.length){ stopPod(); return; }
+      var item=parts[idx];
+      document.getElementById('abIco').textContent=item.lang.indexOf('zh')===0?'🇨🇳':'🇬🇧';
+      document.getElementById('abPhase').textContent='('+(idx+1)+'/'+parts.length+') '+(item.lang.indexOf('zh')===0?'中文':'English')+' · '+item.label;
+      var u=new SpeechSynthesisUtterance(item.text);
+      u.lang=item.lang; var voice=pickVoice(item.lang.indexOf('zh')===0?'zh':'en'); if(voice) u.voice=voice;
+      var base=item.lang.indexOf('zh')===0?1.0:0.92;
+      u.rate=Math.max(0.1,Math.min(10, base*PREFS.rate)); u.pitch=1.0; u.volume=1.0;
+      u.onend=function(){ idx++; next(); }; u.onerror=function(){ idx++; next(); };
+      window.speechSynthesis.speak(u);
+    }
+    next(); armSleep();
+  }
+  // 90 秒速览：优先播放预生成 brief_zh.mp3，回退 TTS 串读
+  function playBrief(){
+    var date=AUDIO_DATE || STATE.selectedDate || STATE.today;
+    var briefUrl = (AUDIO_MANIFEST && AUDIO_MANIFEST.brief) ? (AUDIO_BASE+date+'/'+AUDIO_MANIFEST.brief) : null;
+    if(briefUrl){
+      playAudioQueue('__brief__', null, '90秒速览 · '+fmt(date),
+        [{url:briefUrl, flag:'⚡', label:'90 秒速览 · 头条 + 各板块首条'}]);
+      return;
+    }
+    var rp=REPORT_CACHE[date] || REPORT_CACHE[STATE.selectedDate];
+    if(!rp || !rp.sections){ toast('速览音频未就绪，请先打开当天日报'); return; }
+    var parts=[{text:'欢迎收听今日 '+BRAND+' 90 秒速览。',lang:'zh-CN',label:'开场'}];
+    if(rp.lead && rp.lead.title) parts.push({text:'今日头条。'+rp.lead.title+'。'+(rp.lead.leadParagraph||''),lang:'zh-CN',label:'头条'});
+    (rp.sections||[]).forEach(function(s){ if(s.items&&s.items.length){ var it=s.items[0]; parts.push({text:(s.label||'')+'。'+it.title+'。'+(it.summary||''),lang:'zh-CN',label:s.label||'要点'}); } });
+    parts.push({text:'以上就是今天的速览，感谢收听。',lang:'zh-CN',label:'收尾'});
+    speakQueue('__brief__', null, '90秒速览 · '+fmt(date), parts);
+  }
+  function makePodcast(title, summary, enTitle){
+    var parts=[];
+    if(title) parts.push({text:title+(summary?'。'+summary:''),lang:'zh-CN',label:'朗读标题与摘要'});
+    if(enTitle) parts.push({text:enTitle,lang:'en-US',label:'Original headline'});
+    return parts;
+  }
+  function listenBtn(title, summary, enTitle, itemKey){
+    var b=document.createElement('button');
+    b.className='listen';
+    b.innerHTML='<span class="ico">▶</span> 听播客';
+    var tracks=audioTracksOf(itemKey);
+    b.title=tracks?('播客音频：'+(tracks.length>1?'中英双语':'中文')):(enTitle?('双语朗读：中文摘要 + 英文原题'):('中文朗读'));
+    b.onclick=function(e){
+      e.preventDefault(); e.stopPropagation();
+      var key=itemKey||(title+'|'+summary);
+      if(POD.speaking && POD.key===key){ stopPod(); return; }
+      var tr=audioTracksOf(itemKey);
+      if(tr){ playAudioQueue(key, b, title, tr); }
+      else { speakQueue(key, b, title, makePodcast(title,summary,enTitle)); }
+    };
+    return b;
+  }
+
+  // ===== 收藏星标 / 分享按钮 / 已读标记 =====
+  function favStar(k){
+    var s=document.createElement('button');
+    s.className='mini-btn fav'; s.dataset.starkey=k;
+    s.textContent = isFav(k)?'★':'☆';
+    s.title='收藏 / 稍后读';
+    s.onclick=function(e){
+      e.preventDefault(); e.stopPropagation();
+      var doc=SEARCH_DOCS.find(function(x){return x.key===k;})||
+        {date:STATE.selectedDate||'',title:s.getAttribute('data-title')||'',summary:s.getAttribute('data-sum')||'',url:s.getAttribute('data-url')||'',section:s.getAttribute('data-section')||'',key:k};
+      toggleFav(k,doc);
+    };
+    return s;
+  }
+  function shareBtn(k){
+    var s=document.createElement('button');
+    s.className='mini-btn'; s.textContent='↗ 分享'; s.title='分享这条';
+    s.onclick=function(e){
+      e.preventDefault(); e.stopPropagation();
+      var doc=SEARCH_DOCS.find(function(x){return x.key===k;})||
+        {date:STATE.selectedDate||'',title:s.getAttribute('data-title')||'',summary:s.getAttribute('data-sum')||'',url:s.getAttribute('data-url')||'',section:s.getAttribute('data-section')||'',key:k};
+      openShare(doc);
+    };
+    return s;
+  }
+  function setStarMeta(btn, k, title, sum, url, section){
+    btn.setAttribute('data-title',title||''); btn.setAttribute('data-sum',sum||'');
+    btn.setAttribute('data-url',url||''); btn.setAttribute('data-section',section||'');
+    return btn;
+  }
+  function applyReadStyle(node, k){
+    if(isRead(k)) node.classList.add('is-read');
+  }
+
+  var INDEX = {};          // date -> {date, leadTitle, leadParagraph, score, hot}
+  var STATE = {            // 当前 UI 状态
+    viewYear:0, viewMonth:0,
+    selectedDate:null,
+    today:todayYmd(),
+    favMode:false         // 是否处于"收藏列表"视图
+  };
+
+  // ===== 搜索 / 收藏 / 已读 =====
+  var SEARCH_DOCS = [];    // [{date,title,summary,section,url,key}]
+  var REPORT_CACHE = {};   // date -> report，避免重复拉取
+  function itemKey(date, title){ return date+'|'+String(title||'').slice(0,60); }
+
+  // 递归收集日报里所有条目的可搜索文档；需在拿到 report 后调用
+  function buildSearchDocs(report, date){
+    var out=[];
+    function push(title, summary, section, url){
+      title=title||''; summary=summary||'';
+      if(!title && !summary) return;
+      out.push({date:date,title:title,summary:summary,section:section||'',
+        url:url||'', key:itemKey(date,title)});
+    }
+    if(report.lead && report.lead.title){
+      var lu=(report.lead.links&&(report.lead.links.original||report.lead.links.aihot))||findLeadUrl(report,report.lead.title);
+      push(report.lead.title, report.lead.leadParagraph||'', '今日头条', lu);
+    }
+    (report.sections||[]).forEach(function(sec){
+      var label=matchKey(sec.label||'')||sec.label||'';
+      (sec.items||[]).forEach(function(it){
+        var links=it.links||{};
+        push(it.title||'', it.summary||'', label, links.original||links.aihot||'');
+      });
+    });
+    (report.flashes||[]).forEach(function(it){
+      var links=it.links||{};
+      push(it.title||'', it.summary||'', '快讯', links.original||links.aihot||'');
+    });
+    return out;
+  }
+
+  function collectIndexDocs(){
+    // 先用索引的头条信息建立基础文档（无需逐日拉取）
+    var seen={};
+    Object.keys(INDEX).forEach(function(d){
+      var m=INDEX[d];
+      var k=itemKey(d,m.leadTitle);
+      if(seen[k]) return; seen[k]=1;
+      SEARCH_DOCS.push({date:d,title:m.leadTitle,summary:m.leadParagraph||'',section:'今日头条',
+        url:'',key:k});
+    });
+  }
+
+  function isFav(k){ return !!(PREFS.favs && PREFS.favs[k]); }
+  function toggleFav(k, doc){
+    if(PREFS.favs[k]){ delete PREFS.favs[k]; toast('已取消收藏'); }
+    else{
+      var base=doc||SEARCH_DOCS.find(function(x){return x.key===k;})||{date:'',title:k};
+      var rec={}; for(var f in base){ if(base.hasOwnProperty(f)) rec[f]=base[f]; }
+      rec._t=Date.now(); rec.key=k;
+      PREFS.favs[k]=rec;
+      toast('已加入收藏');
+    }
+    savePrefs(); updateFavCount();
+    // 同步当前卡片上的星标状态（逐元素比对，避免特殊字符选择器问题）
+    var stars=document.querySelectorAll('[data-starkey]');
+    for(var i=0;i<stars.length;i++){
+      if(stars[i].getAttribute('data-starkey')===k) stars[i].textContent = isFav(k)?'★':'☆';
+    }
+    if(STATE.favMode) renderFavList();
+  }
+  function markRead(k){ if(!PREFS.reads[k]){ PREFS.reads[k]=1; savePrefs(); } }
+  function isRead(k){ return !!(PREFS.reads&&PREFS.reads[k]); }
+  function updateFavCount(){
+    var c=document.getElementById('favCount'); if(c) c.textContent=Object.keys(PREFS.favs||{}).length;
+    var b=document.getElementById('favBtn'); if(b) b.classList.toggle('on',STATE.favMode);
+  }
+
+  async function loadIndex(){
+    var idx = await fetchJson('/dailies?limit='+HISTORY_LIMIT);
+    if(!idx || !idx.items || !idx.items.length) throw new Error('无法获取日报索引');
+    idx.items.forEach(function(it){
+      if(!it.date) return;
+      var s = hotScore(it.leadTitle, it.leadParagraph);
+      INDEX[it.date] = {date:it.date, leadTitle:it.leadTitle||'', leadParagraph:it.leadParagraph||'', score:s, hot:(s>=HOT_THRESHOLD)};
+    });
+    return idx.items;
+  }
+
+  async function getReport(date){
+    var j = await fetchJson('/dailies/'+date);
+    if(j && j.report) return j.report;
+    throw new Error('该日期暂无日报');
+  }
+
+  function buildSections(report){
+    var buckets={};
+    SECTIONS_META.forEach(function(m){buckets[m.key]=[];});
+    (report.sections||[]).forEach(function(sec){
+      var key=matchKey(sec.label||""); if(!key) return;
+      (sec.items||[]).forEach(function(it){
+        var links=it.links||{};
+        var aihotUrl=links.aihot||'';
+        buckets[key].push({title:it.title||"",source:(it.source&&it.source.name)||"未知来源",summary:it.summary||"",url:links.original||aihotUrl,itemId:itemIdFromUrl(aihotUrl),en:enTitleOf(aihotUrl)});
+      });
+    });
+    var ordered=[];
+    SECTIONS_META.forEach(function(m){ if(buckets[m.key].length) ordered.push(Object.assign({},m,{items:buckets[m.key]})); });
+    return ordered;
+  }
+
+  // 头条本身不带 links，从 sections/flashes/highlights 里按标题匹配出真实链接
+  function findLeadUrl(report, title){
+    if(!title) return '';
+    var norm=function(s){return (s||'').replace(/[\s\u3000]/g,'').toLowerCase();};
+    var target=norm(title);
+    var pools=[];
+    (report.sections||[]).forEach(function(s){(s.items||[]).forEach(function(it){pools.push(it);});});
+    (report.flashes||[]).forEach(function(it){pools.push(it);});
+    (report.highlights||[]).forEach(function(it){pools.push(it);});
+    // 1) 标准化后完全相等
+    for(var i=0;i<pools.length;i++){
+      if(norm(pools[i].title)===target){
+        var l=pools[i].links||{}; if(l.original||l.aihot) return l.original||l.aihot;
+      }
+    }
+    // 2) 互相包含（标题可能被截断或带前缀）
+    for(var j=0;j<pools.length;j++){
+      var t=norm(pools[j].title);
+      if(t && (t.indexOf(target)>=0 || target.indexOf(t)>=0) && Math.min(t.length,target.length)/Math.max(t.length,target.length)>0.6){
+        var l2=pools[j].links||{}; if(l2.original||l2.aihot) return l2.original||l2.aihot;
+      }
+    }
+    return '';
+  }
+
+  function renderCalendar(){
+    var grid=document.getElementById('calGrid'); grid.innerHTML='';
+    ['一','二','三','四','五','六','日'].forEach(function(d){ grid.appendChild(el('div','cal-dow','周'+d)); });
+    var y=STATE.viewYear, m=STATE.viewMonth; // m: 0-11
+    document.getElementById('ymLabel').textContent = y+' 年 '+(m+1)+' 月';
+    var first=new Date(y,m,1), startDow=(first.getDay()+6)%7; // 周一=0
+    var days=new Date(y,m+1,0).getDate();
+    for(var i=0;i<startDow;i++) grid.appendChild(el('div','cal-cell empty'));
+    for(var d=1;d<=days;d++){
+      var ds=y+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
+      var meta=INDEX[ds];
+      var c=el('div','cal-cell');
+      c.dataset.date=ds;
+      c.appendChild(el('span','d',String(d)));
+      if(meta){
+        c.classList.add('has-data');
+        if(meta.hot){ c.classList.add('hot'); c.appendChild(el('span','hl-dot')); }
+        c.title=ds+' · '+(meta.leadTitle||'');
+        if(ds===STATE.selectedDate) c.classList.add('selected');
+        (function(date){ c.onclick=function(){ selectDate(date); }; })(ds);
+      }else{
+        c.classList.add('no-data');
+        c.title=ds+' · 无日报';
+      }
+      grid.appendChild(c);
+    }
+    // 范围标注
+    var dates=Object.keys(INDEX).sort();
+    if(dates.length) document.getElementById('calRange').textContent='（'+dates[0]+' 起 · 共 '+dates.length+' 天）';
+  }
+
+  function moveMonth(delta){
+    var d=new Date(STATE.viewYear, STATE.viewMonth+delta, 1);
+    STATE.viewYear=d.getFullYear(); STATE.viewMonth=d.getMonth();
+    renderCalendar();
+  }
+
+  function renderReport(report, date, isToday){
+    var sections=buildSections(report);
+    var total=sections.reduce(function(s,x){return s+x.items.length;},0);
+    var shownDate=report.date||date;
+
+    // 把当前报告的全部条目注册进搜索索引（按 key 去重），使搜索覆盖已访问日期的全文
+    var existKeys={}; SEARCH_DOCS.forEach(function(d){existKeys[d.key]=1;});
+    buildSearchDocs(report, shownDate).forEach(function(d){ if(!existKeys[d.key]){ SEARCH_DOCS.push(d); existKeys[d.key]=1; } });
+
+    document.getElementById('dayBadge').textContent = isToday?'今日实时':'历史回看';
+    document.getElementById('dayBadge').className = 'badge'+(isToday?'':' old');
+    document.getElementById('heroDate').textContent=fmt(shownDate);
+    document.getElementById('heroTotal').textContent=total;
+    var sub='统计区间：'+fW(report.windowStart)+' – '+fW(report.windowEnd)+'（北京时间）';
+    if(report.generatedAt) sub+=' · 日报生成于 '+fG(report.generatedAt);
+    if(!isToday) sub+=' · 正在回看历史日报';
+    document.getElementById('heroSub').textContent=sub;
+
+    var stats=document.getElementById('heroStats'); stats.innerHTML='';
+    sections.forEach(function(s){
+      var d=el('div','stat'); var dot=el('span','dot'); dot.style.background=s.color; d.appendChild(dot);
+      d.appendChild(el('b',null,String(s.items.length))); d.appendChild(el('span','lbl',s.label)); stats.appendChild(d);
+    });
+
+    var nav=document.getElementById('nav'); nav.innerHTML='';
+    sections.forEach(function(s){
+      var a=document.createElement('a'); a.href='#sec-'+s.key;
+      a.appendChild(el('span',null,s.label)); a.appendChild(el('span','cnt',String(s.items.length))); nav.appendChild(a);
+    });
+    var refresh=el('a','refresh','刷新'); refresh.href='#';
+    refresh.onclick=function(e){e.preventDefault();selectDate(STATE.selectedDate,true);}; nav.appendChild(refresh);
+
+    var main=document.getElementById('main'); main.innerHTML='';
+    if(report.lead && report.lead.title){
+      var lc=el('div','lead-card');
+      lc.appendChild(el('div','lk','今日头条'));
+      var h3=el('h3'); var la=document.createElement('a');
+      la.textContent=report.lead.title;
+      var lurl=(report.lead.links&&(report.lead.links.original||report.lead.links.aihot))||findLeadUrl(report, report.lead.title);
+      if(lurl){ la.href=lurl; la.target='_blank'; la.rel='noopener noreferrer'; }
+      else { la.href='#'; la.onclick=function(e){e.preventDefault();}; la.style.cursor='default'; la.title='暂无原文链接'; }
+      h3.appendChild(la); lc.appendChild(h3);
+      var leadPara=report.lead.leadParagraph||'';
+      if(leadPara) lc.appendChild(el('p',null,cut(leadPara,120)));
+      var leadEn=enTitleOf(lurl);
+      var leadKey=itemKey(shownDate, report.lead.title);
+      applyReadStyle(lc, leadKey);
+      // 点击原文链接标记为已读
+      if(lurl){ la.addEventListener('click', function(){ markRead(leadKey); }); }
+      var leadListen=listenBtn(report.lead.title, leadPara, leadEn, 'lead');
+      var leadActs=el('div','card-actions lead-actions');
+      leadActs.appendChild(leadListen);
+      var lsStar=setStarMeta(favStar(leadKey), leadKey, report.lead.title, leadPara, lurl, '今日头条');
+      leadActs.appendChild(lsStar);
+      leadActs.appendChild(setStarMeta(shareBtn(leadKey), leadKey, report.lead.title, leadPara, lurl, '今日头条'));
+      lc.appendChild(leadActs);
+      main.appendChild(lc);
+    }
+    var n=0;
+    sections.forEach(function(s){
+      var sec=el('section','section'); sec.id='sec-'+s.key;
+      var head=el('div','section-head'); var bar=el('span','bar'); bar.style.background=s.color; head.appendChild(bar);
+      head.appendChild(el('h2',null,s.label)); head.appendChild(el('span','sc',s.items.length+' 条')); sec.appendChild(head);
+      var grid=el('div','grid');
+      s.items.forEach(function(it){
+        n++;
+        var key=itemKey(shownDate, it.title);
+        var card=el('div','card'); card.style.borderTop='3px solid '+s.color;
+        applyReadStyle(card, key);
+        if(isRead(key)) card.appendChild(el('span','read-mark','✓ 已读'));
+        var ct=el('div','top'); ct.appendChild(el('span','num',String(n))); ct.appendChild(el('span','chip',it.source)); card.appendChild(ct);
+        var h=el('h3'); var lk=document.createElement('a'); lk.textContent=it.title; lk.href=it.url||'#';
+        lk.target='_blank'; lk.rel='noopener noreferrer';
+        lk.addEventListener('click',function(){ markRead(key); });
+        h.appendChild(lk); card.appendChild(h);
+        card.appendChild(el('p','sum',cut(it.summary,60)));
+        var actions=el('div','card-actions');
+        var mr=el('a','more','阅读全文 →'); mr.href=it.url||'#'; mr.target='_blank'; mr.rel='noopener noreferrer';
+        mr.addEventListener('click',function(){ markRead(key); });
+        actions.appendChild(mr);
+        actions.appendChild(listenBtn(it.title, it.summary, it.en, it.itemId));
+        actions.appendChild(setStarMeta(favStar(key), key, it.title, it.summary, it.url, s.label));
+        actions.appendChild(setStarMeta(shareBtn(key), key, it.title, it.summary, it.url, s.label));
+        card.appendChild(actions);
+        grid.appendChild(card);
+      });
+      sec.appendChild(grid); main.appendChild(sec);
+    });
+
+    var foot=document.getElementById('foot'); foot.innerHTML='';
+    foot.appendChild(el('span',null,'共 '+total+' 条'));
+    var src=(report.attribution&&report.attribution.name)||BRAND_EN;
+    var surl=(report.links&&report.links.aihot);
+    if(surl){ var a=document.createElement('a'); a.href=surl; a.target='_blank'; a.rel='noopener noreferrer';
+      a.textContent='数据来源：'+src+'（'+CREDIT+'）'; foot.appendChild(a); }
+    else foot.appendChild(el('span',null,'数据来源：'+src));
+  }
+
+  function showMainLoading(msg){
+    document.getElementById('main').innerHTML='<div class="state"><div class="spinner"></div>'+(msg||'加载中…')+'</div>';
+  }
+  function showError(msg){
+    var main=document.getElementById('main'); main.innerHTML='';
+    var box=el('div','err'); box.appendChild(el('div',null,msg));
+    var btn=document.createElement('button'); btn.textContent='重试'; btn.onclick=function(){ selectDate(STATE.selectedDate,true); };
+    box.appendChild(btn); main.appendChild(box);
+  }
+
+  // ===== 收藏列表视图 =====
+  function renderFavList(){
+    stopPod();
+    var main=document.getElementById('main'); main.innerHTML='';
+    var view=el('div','fav-view');
+    var head=el('div','fav-head');
+    var h2=el('h2',null,'☆ 我的收藏'); head.appendChild(h2);
+    var clear=document.createElement('button'); clear.className='mini-btn'; clear.textContent='清空收藏';
+    clear.onclick=function(){
+      if(Object.keys(PREFS.favs).length && confirm('确定清空全部收藏？')){
+        PREFS.favs={}; savePrefs(); updateFavCount(); renderFavList(); toast('已清空收藏');
+      }
+    };
+    head.appendChild(clear); view.appendChild(head);
+
+    var keys=Object.keys(PREFS.favs||{});
+    if(!keys.length){
+      view.appendChild(el('div','state','还没有收藏。点击任意卡片上的 ☆ 即可收藏，稍后在这里集中阅读。'));
+      main.appendChild(view); return;
+    }
+    keys.sort(function(a,b){ return (PREFS.favs[b]._t||0)-(PREFS.favs[a]._t||0); });
+    keys.forEach(function(k){
+      var doc=PREFS.favs[k];
+      var row=el('div','fav-row');
+      row.appendChild(el('div','fav-meta', (doc.date||'')+(doc.section?(' · '+doc.section):'')));
+      var ttl=document.createElement('a'); ttl.className='fav-link'; ttl.textContent=doc.title||'(无标题)';
+      ttl.href=doc.url||'#'; ttl.target='_blank'; ttl.rel='noopener noreferrer';
+      if(!doc.url){ ttl.style.cursor='default'; ttl.onclick=function(e){e.preventDefault();}; }
+      row.appendChild(ttl);
+      if(doc.summary) row.appendChild(el('div','fav-sum',cut(doc.summary,90)));
+      var acts=el('div','fav-acts');
+      var go=document.createElement('button'); go.className='mini-btn'; go.textContent='跳转到当天';
+      go.onclick=function(){ STATE.favMode=false; updateFavCount(); if(doc.date) selectDate(doc.date); else location.hash='#'; };
+      var rm=document.createElement('button'); rm.className='mini-btn'; rm.textContent='移除';
+      rm.onclick=function(){ toggleFav(k); };
+      var sh=document.createElement('button'); sh.className='mini-btn'; sh.textContent='↗ 分享';
+      sh.onclick=function(){ openShare(doc); };
+      acts.appendChild(go); acts.appendChild(sh); acts.appendChild(rm);
+      row.appendChild(acts); view.appendChild(row);
+    });
+    main.appendChild(view);
+    document.getElementById('dayBadge').textContent='收藏夹';
+    document.getElementById('dayBadge').className='badge';
+  }
+
+  // ===== 分享弹窗 =====
+  var SHARE_LAST_URL=null;
+  var SHARE_DOC=null;   // 当前分享的条目（供生成卡片图使用）
+  function shareTextOf(doc){
+    var lines=[];
+    lines.push('【'+BRAND+' · '+(doc.section||'精选')+'】');
+    lines.push(doc.title||'');
+    if(doc.summary) lines.push('', cut(doc.summary,120));
+    if(doc.date) lines.push('', '日期：'+doc.date);
+    if(doc.url) lines.push('原文：'+doc.url);
+    lines.push('', '— '+BRAND+'档案 · '+CREDIT);
+    return lines.join('\n');
+  }
+  function openShare(doc){
+    SHARE_DOC=doc;
+    document.getElementById('shareTitle').textContent='分享：'+cut(doc.title||'内容',26);
+    document.getElementById('shareText').value=shareTextOf(doc);
+    document.getElementById('shareDownload').style.display='none';
+    document.getElementById('sharePreview').classList.remove('show');
+    document.getElementById('sharePreview').innerHTML='';
+    SHARE_LAST_URL=null;
+    document.getElementById('shareMask').classList.add('show');
+  }
+  function closeShare(){ document.getElementById('shareMask').classList.remove('show'); }
+  function copyText(text, msg, targetId){
+    var done=msg||'文案已复制';
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){toast(done);},function(){fallbackCopy(text,done,targetId);});
+    } else fallbackCopy(text,done,targetId);
+  }
+  function fallbackCopy(text, msg, targetId){
+    var ta=document.getElementById(targetId||'shareText'); ta.value=text; ta.select();
+    try{ document.execCommand('copy'); toast(msg||'文案已复制'); }catch(e){ toast('复制失败，请手动选择'); }
+  }
+  function wrapLines(ctx,text,maxW,maxLines){
+    // 先按空白切成"词"，中文长串再按字符拆；避免拆断英文单词
+    var tokens=String(text||'').split(/\s+/).filter(Boolean), line='', lines=[];
+    function pushLine(l){ lines.push(l); if(lines.length>=maxLines) return true; return false; }
+    for(var i=0;i<tokens.length;i++){
+      var tok=tokens[i];
+      if(ctx.measureText(tok).width>maxW){
+        // 单个 token 过宽（多为中文长串），按字符硬拆
+        var chars=[...tok];
+        for(var c=0;c<chars.length;c++){
+          if(ctx.measureText(line+chars[c]).width>maxW && line){ if(pushLine(line)) return lines; line=chars[c]; }
+          else line+=chars[c];
+        }
+        continue;
+      }
+      var trial=line?(line+' '+tok):tok;
+      if(ctx.measureText(trial).width>maxW && line){ if(pushLine(line)) return lines; line=tok; }
+      else line=trial;
+    }
+    if(lines.length<maxLines && line) lines.push(line);
+    if(lines.length===maxLines && tokens.length){
+      var last=lines[maxLines-1];
+      if(last && ctx.measureText(last).width>maxW*0.8) lines[maxLines-1]=last.slice(0,-1)+'…';
+    }
+    return lines;
+  }
+  function makeCardImage(doc){
+    var W=750,H=420, pad=48;
+    var cv=document.createElement('canvas'); cv.width=W; cv.height=H;
+    var x=cv.getContext('2d');
+    var g=x.createLinearGradient(0,0,W,H); g.addColorStop(0,'#0b1224'); g.addColorStop(1,'#1b2b52');
+    x.fillStyle=g; x.fillRect(0,0,W,H);
+    x.fillStyle='rgba(110,168,254,.18)'; x.beginPath(); x.arc(W-60,-30,180,0,Math.PI*2); x.fill();
+    x.fillStyle='#6ea8fe'; x.font='700 24px "PingFang SC","Microsoft YaHei",sans-serif';
+    x.fillText(BRAND_EN+' · 每日简报', pad, pad+6);
+    x.fillStyle='#9aa6bf'; x.font='20px "PingFang SC","Microsoft YaHei",sans-serif';
+    x.fillText((doc.date||'')+(doc.section?('  ·  '+doc.section):''), pad, pad+40);
+    x.fillStyle='#ffffff'; x.font='700 38px "PingFang SC","Microsoft YaHei",sans-serif';
+    var tLines=wrapLines(x,doc.title||'',W-pad*2,3);
+    var ty=pad+96;
+    tLines.forEach(function(l){ x.fillText(l,pad,ty); ty+=52; });
+    if(doc.summary){
+      x.fillStyle='#c2cce0'; x.font='22px "PingFang SC","Microsoft YaHei",sans-serif';
+      var sLines=wrapLines(x,cut(doc.summary,90),W-pad*2,2);
+      var sy=Math.min(Math.max(ty+4, H-140), H-95);
+      sLines.forEach(function(l){ x.fillText(l,pad,sy); sy+=32; });
+    }
+    x.fillStyle='#6ea8fe'; x.font='18px "PingFang SC","Microsoft YaHei",sans-serif';
+    x.fillText('— 数据来源 '+CREDIT, pad, H-28);
+    try{ return cv.toDataURL('image/png'); }catch(e){ return null; }
+  }
+  function generateShareImage(){
+    var doc=SHARE_DOC||{title:'',date:STATE.selectedDate||''};
+    if(!doc.date) doc.date=STATE.selectedDate||'';
+    var url=makeCardImage(doc);
+    if(!url){ toast('生成失败，请换浏览器重试'); return; }
+    SHARE_LAST_URL=url;
+    var p=document.getElementById('sharePreview'); p.innerHTML='<img src="'+url+'" alt="卡片图">'; p.classList.add('show');
+    document.getElementById('shareDownload').style.display='inline-block';
+    toast('卡片图已生成');
+  }
+
+  async function selectDate(date, force){
+    stopPod();
+    STATE.selectedDate=date;
+    var d=parseYmd(date);
+    STATE.viewYear=d.getFullYear(); STATE.viewMonth=d.getMonth();
+    renderCalendar();
+    showMainLoading('正在加载 '+date+' 的日报…');
+    try{
+      var report=await getReport(date);
+      REPORT_CACHE[date]=report;
+      await loadAudioManifest(report.date||date);   // 音频清单就绪后再渲染按钮
+      renderReport(report, date, (date===STATE.today));
+    }catch(e){
+      showError('加载失败：'+(e&&e.message?e.message:e));
+    }
+  }
+
+  // ===== 搜索 =====
+  function hl(text, q){
+    var s=String(text||''); if(!q) return document.createTextNode(s);
+    var frag=document.createDocumentFragment(), low=s.toLowerCase(), i=0, pos;
+    while((pos=low.indexOf(q,i))>=0){
+      if(pos>i) frag.appendChild(document.createTextNode(s.slice(i,pos)));
+      var m=document.createElement('mark'); m.textContent=s.slice(pos,pos+q.length); frag.appendChild(m);
+      i=pos+q.length;
+    }
+    if(i<s.length) frag.appendChild(document.createTextNode(s.slice(i)));
+    return frag;
+  }
+  function doSearch(qraw){
+    var box=document.getElementById('searchResults');
+    var q=String(qraw||'').trim().toLowerCase();
+    box.innerHTML='';
+    document.getElementById('searchClear').classList.toggle('show',!!qraw);
+    if(!q){ box.classList.remove('show'); return; }
+    var hits=SEARCH_DOCS.filter(function(d){
+      return (d.title||'').toLowerCase().indexOf(q)>=0 || (d.summary||'').toLowerCase().indexOf(q)>=0 ||
+             (d.section||'').toLowerCase().indexOf(q)>=0 || (d.date||'').indexOf(q)>=0;
+    }).slice(0,50);
+    if(!hits.length){ box.appendChild(el('div','sr-empty','未找到匹配内容（搜索覆盖已加载的头条与卡片）')); box.classList.add('show'); return; }
+    hits.forEach(function(d){
+      var row=el('div','sr-item');
+      row.appendChild(el('div','sr-date',d.date));
+      var body=el('div','sr-body');
+      var t=el('div','sr-title'); t.appendChild(hl(d.title||'(无标题)',q)); body.appendChild(t);
+      var snip=(d.summary||'').slice(0,80);
+      var sm=el('div','sr-snippet'); sm.appendChild(hl(snip,q)); body.appendChild(sm);
+      if(d.section){ body.appendChild(el('div','sr-date',d.section)); }
+      row.appendChild(body);
+      row.onclick=function(){
+        box.classList.remove('show');
+        var inp=document.getElementById('searchInput'); inp.value='';
+        document.getElementById('searchClear').classList.remove('show');
+        STATE.favMode=false; updateFavCount();
+        if(d.date) selectDate(d.date); else toast('该条目无可跳转日期');
+      };
+      box.appendChild(row);
+    });
+    box.classList.add('show');
+  }
+
+  document.getElementById('prevM').onclick=function(){moveMonth(-1);};
+  document.getElementById('nextM').onclick=function(){moveMonth(1);};
+  document.getElementById('todayBtn').onclick=function(){ selectDate(STATE.today); };
+  document.getElementById('abStop').onclick=function(){ stopPod(); };
+  document.getElementById('abRate').onclick=cycleRate;
+  document.getElementById('abSleep').onclick=cycleSleep;
+  document.getElementById('abReplay').onclick=replayPod;
+  document.getElementById('briefBtn').onclick=function(){
+    if(POD.speaking && POD.key==='__brief__'){ stopPod(); return; }
+    playBrief();
+  };
+  document.getElementById('guideClose').onclick=function(){ hideGuide(); };
+  document.getElementById('guideMask').onclick=function(e){ if(e.target===this) hideGuide(); };
+  window.addEventListener('beforeunload', function(){ if('speechSynthesis' in window) window.speechSynthesis.cancel(); });
+
+  // 工具栏事件
+  var searchInput=document.getElementById('searchInput');
+  var searchTimer=null;
+  searchInput.addEventListener('input',function(){
+    var v=this.value; clearTimeout(searchTimer);
+    searchTimer=setTimeout(function(){ doSearch(v); },120);
+  });
+  searchInput.addEventListener('focus',function(){ if(this.value.trim()) doSearch(this.value); });
+  document.getElementById('searchClear').onclick=function(){
+    searchInput.value=''; doSearch(''); searchInput.focus();
+  };
+  document.addEventListener('click',function(e){
+    var box=document.getElementById('searchResults');
+    if(box.classList.contains('show') && !document.getElementById('toolbar').contains(e.target)) box.classList.remove('show');
+  });
+  document.getElementById('favBtn').onclick=function(){
+    STATE.favMode=!STATE.favMode; updateFavCount();
+    if(STATE.favMode) renderFavList();
+    else if(STATE.selectedDate) selectDate(STATE.selectedDate);
+  };
+  document.getElementById('themeBtn').onclick=function(){
+    PREFS.theme = PREFS.theme==='dark'?'light':'dark'; savePrefs(); applyTheme();
+  };
+  document.querySelectorAll('#fsGroup button').forEach(function(b){
+    b.onclick=function(){ PREFS.fs=b.getAttribute('data-fs'); savePrefs(); applyFs(); };
+  });
+  document.getElementById('shareDayBtn').onclick=function(){
+    var report=REPORT_CACHE[STATE.selectedDate];
+    if(!report){ toast('当天日报尚未加载'); return; }
+    var lead=report.lead&&report.lead.title?report.lead.title:'';
+    var secs=(report.sections||[]).map(function(s){
+      var items=(s.items||[]).slice(0,3).map(function(it){return '  · '+it.title;}).join('\n');
+      return '【'+(s.label||'')+'】\n'+items;
+    }).join('\n\n');
+    var txt='【'+BRAND+' · '+fmt(shownSafe(report,STATE.selectedDate))+'】\n\n'+
+      (lead?('今日头条：'+lead+'\n\n'):'')+secs+'\n\n— 数据来源 '+CREDIT;
+    SHARE_DOC={title:lead||(BRAND+' '+fmt(shownSafe(report,STATE.selectedDate))),date:STATE.selectedDate||'',
+      summary:secs.split('\n').filter(Boolean).slice(0,4).join(' / '),section:'每日晨报'};
+    document.getElementById('shareTitle').textContent='分享本日日报';
+    document.getElementById('shareText').value=txt;
+    document.getElementById('shareDownload').style.display='none';
+    document.getElementById('sharePreview').classList.remove('show');
+    document.getElementById('sharePreview').innerHTML='';
+    SHARE_LAST_URL=null;
+    document.getElementById('shareMask').classList.add('show');
+  };
+  function shownSafe(report,date){ return report.date||date||''; }
+  document.getElementById('shareClose').onclick=closeShare;
+  document.getElementById('shareMask').onclick=function(e){ if(e.target===this) closeShare(); };
+  document.getElementById('shareCopy').onclick=function(){ copyText(document.getElementById('shareText').value); };
+  document.getElementById('shareImage').onclick=generateShareImage;
+  document.getElementById('shareDownload').onclick=function(){
+    if(!SHARE_LAST_URL){ toast('请先生成卡片图'); return; }
+    var a=document.createElement('a'); a.href=SHARE_LAST_URL;
+    var d=(STATE.selectedDate||'ai-news'); a.download='AI晨报-'+d+'.png';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a); toast('图片已下载');
+  };
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ closeShare(); closeSub(); document.getElementById('searchResults').classList.remove('show'); } });
+
+  // ===== 播客订阅 RSS =====
+  var FEED_URL = location.origin + location.pathname.replace(/[^/]*$/, '') + 'feed.xml';
+  function openSub(){
+    document.getElementById('subUrl').value=FEED_URL;
+    document.getElementById('subMask').classList.add('show');
+  }
+  function closeSub(){ document.getElementById('subMask').classList.remove('show'); }
+  document.getElementById('subBtn').onclick=openSub;
+  document.getElementById('subClose').onclick=closeSub;
+  document.getElementById('subMask').onclick=function(e){ if(e.target===this) closeSub(); };
+  document.getElementById('subCopy').onclick=function(){ copyText(FEED_URL,'订阅地址已复制','subUrl'); };
+  document.getElementById('subOpen').onclick=function(){ window.open(FEED_URL,'_blank'); };
+
+  async function init(){
+    applyTheme(); applyFs(); applyRateUI(); updateFavCount();
+    document.getElementById('calStatus').textContent='正在载入历史索引…';
+    showMainLoading('正在加载'+BRAND+'档案…');
+    // 英文原题映射与索引并行加载，不阻塞主流程
+    var enPromise=loadEnTitles().catch(function(){});
+    try{
+      await loadIndex();
+      await enPromise;
+      collectIndexDocs();   // 用 180 天头条建立搜索基线
+      document.getElementById('calStatus').textContent='已载入 '+Object.keys(INDEX).length+' 天档案';
+      // 默认今日；今日无数据则回退到索引里最近的一天
+      var target=STATE.today;
+      if(!INDEX[target]){
+        var dates=Object.keys(INDEX).sort();
+        target=dates[dates.length-1]||STATE.today;
+      }
+      await selectDate(target);
+    }catch(e){
+      document.getElementById('calStatus').textContent='索引载入失败';
+      showError('初始化失败：'+(e&&e.message?e.message:e));
+    }
+  }
+
+  init();
+})();
+</script>
+</body>
+</html>

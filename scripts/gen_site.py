@@ -12,7 +12,12 @@ import os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
-TPL = "D:/Python Work/ai-brief-podcast-skill/assets/dashboard-template.html"
+
+# 模板优先读仓库内副本（保证 GitHub Actions / 任意机器自包含），
+# 找不到再回退到技能仓库原始路径（本地开发时可能更新模板）。
+TPL_LOCAL = os.path.join(ROOT, "assets", "dashboard-template.html")
+TPL_SKILL = "D:/Python Work/ai-brief-podcast-skill/assets/dashboard-template.html"
+TPL = TPL_LOCAL if os.path.exists(TPL_LOCAL) else TPL_SKILL
 
 html = open(TPL, encoding="utf-8").read()
 
