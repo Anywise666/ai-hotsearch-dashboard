@@ -1,0 +1,14 @@
+# 原始热搜快照（每日累积会膨胀，且可从 API 重新抓取）
+raw/
+
+# Python 缓存
+__pycache__/
+*.py[cod]
+
+# 临时校验文件
+_check.js
+*.tmp
+
+# 系统文件
+.DS_Store
+Thumbs.db

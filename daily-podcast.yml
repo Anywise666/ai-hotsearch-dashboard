@@ -1,0 +1,79 @@
+name: 简报播客每日更新
+
+on:
+  schedule:
+    # 【按配置替换】cron 只认 UTC，北京时间 = UTC+8。
+    # 把 pub_hour 对应的 UTC 时点 + cron_minutes 展开成多行；全部集中在目标上线时段，
+    # 避开整点/半点拥堵。默认 pub_hour=8, cron_minutes=[8,16,24] → 下面三行：
+    - cron: '08 0 * * *'   # 北京 08:08
+    - cron: '16 0 * * *'   # 北京 08:16
+    - cron: '24 0 * * *'   # 北京 08:24
+  push:                    # 兜底：有非音频提交时跑幂等检查
+    branches: [main]
+    paths-ignore:
+      - 'audio/**'
+      - 'feed.xml'
+  workflow_dispatch:
+    inputs:
+      target_date:
+        description: '指定生成日期 YYYY-MM-DD（留空=北京时间今天）'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: brief-podcast-daily
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: 安装依赖
+        run: pip install edge-tts
+
+      - name: 计算目标日期
+        id: dt
+        run: |
+          INPUT="${{ inputs.target_date }}"
+          if [ -n "$INPUT" ]; then echo "today=$INPUT" >> "$GITHUB_OUTPUT"; echo "指定日期: $INPUT"
+          else echo "today=$(TZ=Asia/Shanghai date +%F)" >> "$GITHUB_OUTPUT"; echo "北京时间当天"; fi
+
+      - name: 幂等检查 - 当天是否已完成
+        id: chk
+        run: |
+          D="${{ steps.dt.outputs.today }}"
+          if [ -f "audio/$D/manifest.json" ] && python -c "
+          import json,sys
+          d=json.load(open('audio/$D/manifest.json',encoding='utf-8'))
+          items=d.get('items') or {}
+          ok=sum(1 for v in items.values() if isinstance(v,dict) and (v.get('zh') or v.get('en')))
+          sys.exit(0 if ok>0 else 1)"; then
+            echo "done=true" >> "$GITHUB_OUTPUT"; echo "ALREADY_DONE"
+          else echo "done=false" >> "$GITHUB_OUTPUT"; fi
+
+      - name: 生成今日音频
+        if: steps.chk.outputs.done == 'false'
+        run: python scripts/gen_audio.py "${{ steps.dt.outputs.today }}"
+
+      - name: 重建播客 RSS
+        run: python scripts/gen_feed.py
+
+      - name: 提交并推送
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add audio/ feed.xml
+          if git diff --cached --quiet; then echo "NO_CHANGES_SKIP"
+          else
+            git commit -m "Daily podcast audio + feed: ${{ steps.dt.outputs.today }}"
+            git push origin HEAD:main
+            echo "PUSH_OK"
+          fi
