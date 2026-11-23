@@ -24,7 +24,9 @@
 
 ## 筛选逻辑（"有价值"的定义）
 
-所有权重、阈值、配额、关键词表都集中在根目录 **`config.json`**，可手动调节——改完推送后由 Actions 自动使用，或本地跑 `bash 更新数据.sh` 立即生效。
+所有权重、阈值、配额、关键词表都集中在根目录 **`config.json`**，可手动调节。
+
+**在线调参（推荐）**：直接在 GitHub 网页编辑 config.json（[点这里](https://github.com/Anywise666/ai-hotsearch-dashboard/edit/main/config.json)）→ 提交到 main。工作流监听 config.json 的推送，**改完即自动强制重跑**，几十秒后在线站就用上新权重，无需手动触发或等定时。本地改完推送同理；也可本地跑 `bash 更新数据.sh` 立即看效果。
 
 | 配置项 | 默认值 | 含义 |
 |---|---|---|
