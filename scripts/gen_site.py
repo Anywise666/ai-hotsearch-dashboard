@@ -64,6 +64,8 @@ new_fetch = '''  function fetchJson(path){
       var m = path.match(/\\/dailies\\/(\\d{4}-\\d{2}-\\d{2})/);
       if(m)
         return fetch('data/'+m[1]+'.json',{cache:"no-store"}).then(function(r){return r.ok?r.json().then(function(j){return {report:j};}):null;}).catch(function(){return null;});
+      if(path.indexOf('/search-index')===0)
+        return fetch('data/search-index.json',{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;});
       return Promise.resolve(null);
     }
     return fetch(BASE + path, {cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;});
@@ -129,6 +131,20 @@ TUNE_CSS = '''
   .tune-foot{font-size:11.5px;color:var(--mut);margin-top:14px;line-height:1.6}
 '''
 html = html.replace('</style>', TUNE_CSS + '\n</style>', 1)
+
+# ---- 7b) 全局搜索：命中高亮样式 ----
+SEARCH_CSS = '''
+  /* ===== 全局搜索命中高亮 ===== */
+  .search-hit{outline:2px solid #fbbf24;outline-offset:3px;box-shadow:0 0 0 6px rgba(251,191,36,.14);animation:shpulse 1.4s ease-in-out 2}
+  @keyframes shpulse{0%,100%{box-shadow:0 0 0 6px rgba(251,191,36,.10)}50%{box-shadow:0 0 0 12px rgba(251,191,36,.26)}}
+  .search-hit-card{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.45);border-radius:14px;padding:16px 18px;margin-bottom:18px}
+  .search-hit-tag{font-size:11px;color:#fbbf24;font-weight:700;margin-bottom:7px}
+  body.theme-light .search-hit-card{background:#fffbeb;border-color:#f59e0b}
+  body.theme-light .search-hit-tag{color:#b45309}
+  .sr-pool{font-size:10px;color:#a78bfa;margin-left:6px}
+  body.theme-light .sr-pool{color:#6d28d9}
+'''
+html = html.replace('</style>', SEARCH_CSS + '\n</style>', 1)
 
 # ---- 8) 个性化权重面板：工具栏按钮 ----
 tune_btn = '    <button class="tb-btn tune" id="tuneBtn" title="定制你的专属权重">🎛 我的权重</button>\n'
@@ -325,6 +341,59 @@ TUNE_JS = r'''
   };
   var _tuneEsc=document.addEventListener; // keep listener registration below aligned
   document.addEventListener("keydown",function(e){ if(e.key==="Escape"){ document.getElementById("tuneMask").classList.remove("show"); } });
+
+  // ===== 全局搜索索引 + 命中重排定位 =====
+  var GLOBAL_SEARCH_LOADED=false;
+  async function loadGlobalSearch(){
+    if(GLOBAL_SEARCH_LOADED) return;
+    GLOBAL_SEARCH_LOADED=true;
+    try{
+      var j=await fetchJson('/search-index');
+      if(!j || !j.items || !j.items.length) return;
+      var seen={}; SEARCH_DOCS.forEach(function(d){ if(d.key) seen[d.key]=1; });
+      j.items.forEach(function(x){
+        if(!x || !x.date || !x.title) return;
+        var k=x.key||itemKey(x.date,x.title);
+        if(seen[k]) return; seen[k]=1;
+        SEARCH_DOCS.push({date:x.date,title:x.title,summary:x.summary||'',
+          section:x.section||'',url:x.url||'',key:k});
+      });
+    }catch(e){}
+  }
+
+  // 记住被点击的搜索结果标题；跳转到历史日期并重排后，高亮/置顶该条
+  function applySearchFocus(){
+    var title=STATE.searchFocusTitle;
+    if(!title) return;
+    var shownDate=STATE.selectedDate;
+    var cards=document.querySelectorAll('#main .card h3 a');
+    var target=null;
+    for(var i=0;i<cards.length;i++){
+      if((cards[i].textContent||'').trim()===String(title).trim()){ target=cards[i].closest('.card'); break; }
+    }
+    if(!target){
+      // 头条位于 lead-card
+      var lead=document.querySelector('#main .lead-card h3 a');
+      if(lead && (lead.textContent||'').trim()===String(title).trim()) target=lead.closest('.lead-card');
+    }
+    if(target){
+      target.classList.add('search-hit');
+      try{ target.scrollIntoView({behavior:'smooth',block:'center'}); }catch(e){}
+      STATE.searchFocusTitle=null;
+    }else{
+      // 该条在当前权重下未入选：以提示卡形式置顶，保证"搜到就能定位到"
+      var main=document.getElementById('main');
+      if(main && !document.getElementById('searchFocusCard')){
+        var box=el('div','search-hit-card'); box.id='searchFocusCard';
+        box.appendChild(el('div','search-hit-tag','🔍 搜索命中 · 当前权重下未入选精选，已为你置顶'));
+        var h=el('h3'); var a=document.createElement('a'); a.textContent=title;
+        a.href='#'; a.onclick=function(e){e.preventDefault();}; h.appendChild(a); box.appendChild(h);
+        main.insertBefore(box, main.firstChild);
+        try{ box.scrollIntoView({behavior:'smooth',block:'center'}); }catch(e){}
+      }
+      STATE.searchFocusTitle=null;
+    }
+  }
 '''
 # 注入默认值 JSON
 import json as _json
@@ -365,6 +434,24 @@ old_rr = "      renderReport(report, date, (date===STATE.today));"
 new_rr = old_rr + "\n      if(typeof tuneUpdateState==='function') tuneUpdateState();"
 assert old_rr in html, "renderReport 调用锚点未匹配"
 html = html.replace(old_rr, new_rr, 1)
+
+# 搜索命中高亮：在 renderReport 末尾统一触发（覆盖 selectDate 与调权重重绘两条路径）
+old_foot = "    else foot.appendChild(el('span',null,'数据来源：'+src));\n  }\n\n  function showMainLoading"
+new_foot = "    else foot.appendChild(el('span',null,'数据来源：'+src));\n    if(typeof applySearchFocus==='function') applySearchFocus();\n  }\n\n  function showMainLoading"
+assert old_foot in html, "renderReport 末尾锚点未匹配"
+html = html.replace(old_foot, new_foot, 1)
+
+# 搜索结果点击：先记住标题，跳转/重排后再高亮定位
+old_click = "        STATE.favMode=false; updateFavCount();\n        if(d.date) selectDate(d.date); else toast('该条目无可跳转日期');"
+new_click = "        STATE.favMode=false; updateFavCount();\n        if(d.date){ STATE.searchFocusTitle=d.title; selectDate(d.date); } else toast('该条目无可跳转日期');"
+assert old_click in html, "搜索点击锚点未匹配"
+html = html.replace(old_click, new_click, 1)
+
+# init()：加载全局搜索索引（覆盖全部历史 + 候选池），与索引加载并行不阻塞
+old_init = "      await loadIndex();\n      await enPromise;\n      collectIndexDocs();   // 用 180 天头条建立搜索基线"
+new_init = "      await loadIndex();\n      await enPromise;\n      collectIndexDocs();   // 用 180 天头条建立搜索基线\n      if(typeof loadGlobalSearch==='function') await loadGlobalSearch();  // 并入全量历史候选池"
+assert old_init in html, "init 搜索加载锚点未匹配"
+html = html.replace(old_init, new_init, 1)
 
 # 把重算 JS 插到 init() 调用前（确保函数已定义）
 anchor_init = "\n  init();\n})();"

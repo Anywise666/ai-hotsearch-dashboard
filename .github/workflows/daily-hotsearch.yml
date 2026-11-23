@@ -104,7 +104,9 @@ jobs:
           n=sum(len(s['items']) for s in d['sections'])
           assert d.get('lead',{}).get('title') and n>=15, 'bad report: lead=%r items=%d'%(d.get('lead',{}).get('title'),n)
           idx=json.load(open('data/index.json',encoding='utf-8'))
-          print('QUALITY_OK items=%d sections=%d index_dates=%d'%(n,len(d['sections']),len(idx['items'])))
+          si=json.load(open('data/search-index.json',encoding='utf-8'))
+          assert si.get('total',0)>=50 and si.get('days',0)>=1, 'bad search index'
+          print('QUALITY_OK items=%d sections=%d index_dates=%d search_total=%d'%(n,len(d['sections']),len(idx['items']),si['total']))
           "
 
       - name: 写入时段完成标记

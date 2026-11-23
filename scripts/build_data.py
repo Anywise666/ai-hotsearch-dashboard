@@ -339,12 +339,84 @@ def main():
         json.dump([{k: m[k] for k in ("title", "score", "topic_label", "cross", "neg", "platform_names")}
                    for m in sorted(allsel, key=lambda x: -x["score"])], f, ensure_ascii=False, indent=2)
 
-    print("已写入 data/%s.json + data/index.json" % date)
+    # 全局搜索索引：汇总所有历史日期的完整候选池，前端一次加载即可全文搜索历史 + 未入选条目
+    build_search_index()
+    print("已写入 data/%s.json + data/index.json + data/search-index.json" % date)
     print("\n=== 今日头条:", report["lead"]["title"])
     for s in sections:
         print("\n[%s] %d条" % (s["label"], len(s["items"])))
         for it in s["items"]:
             print("  -", it["title"][:46])
+
+
+def build_search_index():
+    """扫描 data/<date>.json，把所有日期的完整候选池汇总成全局搜索索引。
+
+    输出 data/search-index.json：{generatedAt, items:[{date,title,summary,section,url,key}]}
+    - 覆盖历史 + 当日未入选精选的候选条目（这是"搜索覆盖全量候选池"的关键）
+    - 按 date|title 去重，日期倒序；单条摘要截断控制文件体积
+    - 前端点击结果 -> selectDate(date) -> retune(当前权重) -> 该条按当前权重重排显示
+    """
+    items = []
+    seen = set()
+    files = sorted(
+        (f for f in os.listdir(DATA)
+         if re.match(r"^\d{4}-\d{2}-\d{2}\.json$", f)),
+        reverse=True,
+    )
+    for fn in files:
+        date = fn[:-5]
+        try:
+            report = json.load(open(os.path.join(DATA, fn), encoding="utf-8"))
+        except Exception as e:
+            print("[warn] 跳过无法解析的", fn, e)
+            continue
+        # 优先用完整候选池；无 pool 的旧数据回退到 sections + lead
+        pool = report.get("pool") or []
+        docs = []
+        if pool:
+            for m in pool:
+                plat = " / ".join(m.get("platform_names") or [])
+                summary = (m.get("desc") or "").strip()[:120]
+                if summary:
+                    summary += " · "
+                summary += "来源：" + plat + "｜热度 " + fmt_hot(m.get("maxhot", 0))
+                docs.append({"title": m.get("title", ""), "summary": summary,
+                             "section": m.get("topic_label", ""),
+                             "url": m.get("link", "")})
+        else:
+            lead = report.get("lead") or {}
+            if lead.get("title"):
+                docs.append({"title": lead["title"],
+                             "summary": lead.get("leadParagraph", ""),
+                             "section": "今日头条",
+                             "url": (lead.get("links") or {}).get("original") or
+                                    (lead.get("links") or {}).get("aihot", "")})
+            for sec in report.get("sections", []):
+                for it in sec.get("items", []):
+                    docs.append({"title": it.get("title", ""),
+                                 "summary": it.get("summary", ""),
+                                 "section": sec.get("label", ""),
+                                 "url": (it.get("links") or {}).get("original") or
+                                        (it.get("links") or {}).get("aihot", "")})
+        for d in docs:
+            title = (d.get("title") or "").strip()
+            if not title:
+                continue
+            key = date + "|" + title[:60]
+            if key in seen:
+                continue
+            seen.add(key)
+            items.append({"date": date, "title": title,
+                          "summary": d.get("summary", ""),
+                          "section": d.get("section", ""),
+                          "url": d.get("url", ""), "key": key})
+    out = {"generatedAt": time.strftime("%Y-%m-%dT%H:%M:%S+08:00",
+                                        time.gmtime(time.time() + 8 * 3600)),
+           "total": len(items), "days": len(files), "items": items}
+    with open(os.path.join(DATA, "search-index.json"), "w", encoding="utf-8", newline="\n") as f:
+        json.dump(out, f, ensure_ascii=False, separators=(",", ":"))
+    print("全局搜索索引:", len(items), "条 /", len(files), "天")
 
 
 def fmt_hot(n):
