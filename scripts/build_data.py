@@ -22,7 +22,38 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 RAW = os.path.join(ROOT, "raw")
 DATA = os.path.join(ROOT, "data")
+CONFIG_PATH = os.path.join(ROOT, "config.json")
 os.makedirs(DATA, exist_ok=True)
+
+
+def load_config():
+    """读取根目录 config.json 的可调权重/阈值/配额/关键词；缺失字段用默认值兜底。"""
+    defaults = {
+        "weights": {"topic": 2, "cross": 3, "auth": 1.5, "neg": 3,
+                    "hot_cap": 3.0, "hot_scale": 1e6},
+        "thresholds": {"min_score": 4, "max_neg": 2, "jaccard": 0.42,
+                       "contain_len": 8, "contain_ratio": 0.6},
+        "quota": {"tech": 8, "finance": 8, "society": 9, "world": 8, "science": 7},
+        "lead_weights": {"auth": 2, "cross": 1.5},
+    }
+    cfg = json.load(open(CONFIG_PATH, encoding="utf-8")) if os.path.exists(CONFIG_PATH) else {}
+    for section, defs in defaults.items():
+        # 过滤掉 "_说明" 等注释字段，避免被当成真实配置（如 quota 里混入 _说明:0）
+        user_section = {k: v for k, v in (cfg.get(section) or {}).items() if not k.startswith("_")}
+        cfg[section] = {**defs, **user_section}
+    kw = cfg.get("keywords") or {}
+    if kw.get("topics"):  # 用户自定义了关键词表则覆盖
+        cfg["keywords"] = kw
+    else:
+        cfg["keywords"] = {
+            "topics": {k: w for k, _, w in TOPICS},
+            "topic_labels": {k: label for k, label, _ in TOPICS},
+            "entertain_neg": ENTERTAIN_NEG,
+            "authority_pos": AUTHORITY_POS,
+            "entity_keys": ENTITY_KEYS,
+        }
+    return cfg
+
 
 PLATFORM_NAMES = {
     "weibo": "微博", "zhihu": "知乎", "douyin": "抖音",
@@ -83,6 +114,10 @@ ENTITY_KEYS = [
     "treetree", "外卖骑手电摩", "割断高空作业", "国考",
 ]
 
+# 全局配置：加载根目录 config.json（在常量定义之后初始化）
+CFG = load_config()
+_printed_cfg = False
+
 
 def norm(s):
     s = re.sub(r"[?？!！,，。、:：;；\"'\s]", "", str(s or ""))
@@ -112,22 +147,23 @@ def load_rows():
 
 
 def classify(title):
-    """返回 (板块key, 板块label, 正向分)。"""
-    t = title
-    best_key, best_label, best_score = "society", "社会·民生", 0
-    for key, label, words in TOPICS:
-        s = sum(1 for w in words if w.lower() in t.lower())
+    """返回 (板块key, 板块label, 正向分)。关键词表来自 config.json。"""
+    t = title.lower()
+    kw = CFG["keywords"]
+    best_key, best_label, best_score = "society", kw["topic_labels"].get("society", "社会·民生"), 0
+    for key, words in kw["topics"].items():
+        s = sum(1 for w in words if w.lower() in t)
         if s > best_score:
-            best_score, best_key, best_label = s, key, label
+            best_score, best_key, best_label = s, key, kw["topic_labels"].get(key, key)
     return best_key, best_label, best_score
 
 
 def ent_penalty(title):
-    return sum(1 for w in ENTERTAIN_NEG if w in title)
+    return sum(1 for w in CFG["keywords"]["entertain_neg"] if w in title)
 
 
 def authority_bonus(title):
-    return sum(1 for w in AUTHORITY_POS if w in title)
+    return sum(1 for w in CFG["keywords"]["authority_pos"] if w in title)
 
 
 def bigrams(s):
@@ -154,14 +190,16 @@ def dedup_and_score(rows):
                 continue
             k2 = norm(rows[j]["title"])
             same = key == k2
-            contain = (len(key) >= 8 and len(k2) >= 8 and (key in k2 or k2 in key)
-                       and min(len(key), len(k2)) / max(len(key), len(k2)) > 0.6)
+            th = CFG["thresholds"]
+            contain = (len(key) >= th["contain_len"] and len(k2) >= th["contain_len"] and (key in k2 or k2 in key)
+                       and min(len(key), len(k2)) / max(len(key), len(k2)) > th["contain_ratio"])
             # Jaccard 相似度：捕捉不同措辞但同一事件（如"间谍死刑"两种表述）
             g1, g2 = grams[i], grams[j]
             jac = len(g1 & g2) / len(g1 | g2) if (g1 | g2) else 0
             # 关键实体短语强特征：命中相同短语视为同一事件
-            entity_hits = sum(1 for kw in ENTITY_KEYS if kw in r["title"] and kw in rows[j]["title"])
-            similar = jac >= 0.42 or entity_hits >= 1
+            entity_hits = sum(1 for kw in CFG["keywords"]["entity_keys"] if kw in r["title"] and kw in rows[j]["title"])
+            th = CFG["thresholds"]
+            similar = jac >= th["jaccard"] or entity_hits >= 1
             if same or contain or similar:
                 grp.append(rows[j])
                 used[j] = True
@@ -177,9 +215,10 @@ def dedup_and_score(rows):
         neg = max(ent_penalty(g["title"]) for g in grp)
         auth = authority_bonus(title)
         cross = len(plats)  # 跨平台数
-        # 综合分：主题 + 跨平台*3 + 权威*1.5 - 娱乐*3；热度取对数缩放
-        score = topic_score * 2 + cross * 3 + auth * 1.5 - neg * 3
-        score += min(3.0, (maxhot / 1e6) ** 0.5)  # 热度温和加成，最高+3
+        # 综合分：各项权重来自 config.json；热度取对数缩放
+        w = CFG["weights"]
+        score = topic_score * w["topic"] + cross * w["cross"] + auth * w["auth"] - neg * w["neg"]
+        score += min(w["hot_cap"], (maxhot / w["hot_scale"]) ** 0.5)  # 热度温和加成
         out.append({
             "title": title, "desc": desc, "link": link, "platforms": plats,
             "platform_names": [PLATFORM_NAMES.get(p, p) for p in plats],
@@ -197,10 +236,17 @@ def main():
     merged = dedup_and_score(rows)
     print("去重后:", len(merged), "条")
 
-    # 分层：保留非娱乐向的；score 阈值切分
-    kept = [m for m in merged if m["neg"] < 2 and m["score"] >= 4]
-    # 板块额度，避免单一板块过多
-    quota = {"tech": 8, "finance": 8, "society": 9, "world": 8, "science": 7}
+    global _printed_cfg
+    if not _printed_cfg:
+        print("配置生效: 权重", CFG["weights"], "| 阈值", CFG["thresholds"])
+        print("配置生效: 配额", CFG["quota"], "| 头条加权", CFG["lead_weights"])
+        _printed_cfg = True
+
+    # 分层：保留非娱乐向的；score 阈值切分（阈值来自 config.json）
+    th = CFG["thresholds"]
+    kept = [m for m in merged if m["neg"] < th["max_neg"] and m["score"] >= th["min_score"]]
+    # 板块额度，避免单一板块过多（配额来自 config.json）
+    quota = CFG["quota"]
     buckets = {k: [] for k in quota}
     for m in sorted(kept, key=lambda x: -x["score"]):
         k = m["topic"]
@@ -209,10 +255,11 @@ def main():
     total = sum(len(v) for v in buckets.values())
     print("精选条目:", total, "条 | 分板块:", {k: len(v) for k, v in buckets.items()})
 
-    # 构造 lead：优先跨平台共振多 + 权威硬新闻（score + 额外权威加权）
+    # 构造 lead：优先跨平台共振多 + 权威硬新闻（加权来自 config.json）
     allsel = [m for v in buckets.values() for m in v]
     allsel.sort(key=lambda x: -x["score"])
-    lead = max(allsel, key=lambda m: (m["score"] + m["auth"] * 2 + m["cross"] * 1.5)) if allsel else None
+    lw = CFG["lead_weights"]
+    lead = max(allsel, key=lambda m: (m["score"] + m["auth"] * lw["auth"] + m["cross"] * lw["cross"])) if allsel else None
 
     def item_of(m):
         plat = " / ".join(m["platform_names"])

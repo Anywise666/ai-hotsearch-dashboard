@@ -1,17 +1,30 @@
-name: 热搜聚合每日更新
+name: 热搜聚合每日更新（早晚各一次）
 
 on:
   schedule:
-    # cron 只认 UTC，北京时间 = UTC+8。
-    # 三个错峰时点集中在北京 08 点段，避开整点拥堵；
-    # 配合幂等检查：首个成功生成后，后续时点自动跳过，起到失败重试保险作用。
-    - cron: '08 0 * * *'   # 北京 08:08
-    - cron: '24 0 * * *'   # 北京 08:24
-    - cron: '42 0 * * *'   # 北京 08:42
-  workflow_dispatch:       # 手动触发（可强制刷新当天）
+    # cron 只认 UTC，北京时间 = UTC+8。早晚各一个时段，每段内 3 个错峰点：
+    # 早段 北京 08:08 / 08:20 / 08:32  (UTC 00:08 / 00:20 / 00:32)
+    # 晚段 北京 20:08 / 20:20 / 20:32  (UTC 12:08 / 12:20 / 12:32)
+    # 幂等按"时段"判断：同一时段成功一次即跳过同段后续错峰点；早晚两段互不干扰。
+    - cron: '08 0 * * *'   # 北京 08:08 早段
+    - cron: '20 0 * * *'   # 北京 08:20 早段
+    - cron: '32 0 * * *'   # 北京 08:32 早段
+    - cron: '08 12 * * *'  # 北京 20:08 晚段
+    - cron: '20 12 * * *'  # 北京 20:20 晚段
+    - cron: '32 12 * * *'  # 北京 20:32 晚段
+  workflow_dispatch:       # 手动触发
     inputs:
+      slot:
+        description: '时段（留空=按北京时间当前时段自动判断）'
+        required: false
+        type: choice
+        default: ''
+        options:
+          - ''
+          - am
+          - pm
       force:
-        description: '强制重新抓取并覆盖当天数据（默认否）'
+        description: '强制刷新（忽略时段标记，重新抓取并覆盖）'
         required: false
         type: boolean
         default: false
@@ -33,25 +46,37 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: 计算北京时间当天
+      - name: 计算北京时间当天与时段
         id: dt
-        run: echo "today=$(TZ=Asia/Shanghai date +%F)" >> "$GITHUB_OUTPUT"
+        run: |
+          TODAY=$(TZ=Asia/Shanghai date +%F)
+          HOUR=$(TZ=Asia/Shanghai date +%H)
+          INPUT_SLOT="${{ inputs.slot }}"
+          if [ -n "$INPUT_SLOT" ]; then
+            SLOT="$INPUT_SLOT"
+          elif [ "$HOUR" -lt 12 ]; then
+            SLOT="am"
+          else
+            SLOT="pm"
+          fi
+          echo "today=$TODAY" >> "$GITHUB_OUTPUT"
+          echo "slot=$SLOT" >> "$GITHUB_OUTPUT"
+          echo "北京时间 $TODAY $HOUR 点 → 时段 $SLOT"
 
-      - name: 幂等检查 - 当天数据是否已完成
+      - name: 幂等检查 - 本时段是否已完成
         id: chk
         run: |
           D="${{ steps.dt.outputs.today }}"
+          S="${{ steps.dt.outputs.slot }}"
           FORCE="${{ inputs.force }}"
+          STAMP="data/.stamp-$D-$S"
           if [ "$FORCE" = "true" ]; then
             echo "done=false" >> "$GITHUB_OUTPUT"; echo "强制刷新模式"; exit 0
           fi
-          if [ -f "data/$D.json" ] && python -c "
-          import json,sys
-          d=json.load(open('data/$D.json',encoding='utf-8'))
-          sys.exit(0 if d.get('sections') else 1)"; then
-            echo "done=true" >> "$GITHUB_OUTPUT"; echo "ALREADY_DONE $D"
+          if [ -f "$STAMP" ]; then
+            echo "done=true" >> "$GITHUB_OUTPUT"; echo "ALREADY_DONE $D $S"
           else
-            echo "done=false" >> "$GITHUB_OUTPUT"; echo "NEED_UPDATE $D"
+            echo "done=false" >> "$GITHUB_OUTPUT"; echo "NEED_UPDATE $D $S"
           fi
 
       - name: 抓取 + 筛选 + 建站
@@ -75,15 +100,23 @@ jobs:
           print('QUALITY_OK items=%d sections=%d index_dates=%d'%(n,len(d['sections']),len(idx['items'])))
           "
 
+      - name: 写入时段完成标记
+        if: steps.chk.outputs.done == 'false'
+        run: |
+          D="${{ steps.dt.outputs.today }}"
+          S="${{ steps.dt.outputs.slot }}"
+          printf '%s\n' "$(date -u +%FT%TZ)" > "data/.stamp-$D-$S"
+          echo "STAMP_WRITTEN data/.stamp-$D-$S"
+
       - name: 提交并推送
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f data/ index.html
+          git add -A data/ index.html config.json
           if git diff --cached --quiet; then
             echo "NO_CHANGES_SKIP"
           else
-            git commit -m "Daily hotsearch digest: ${{ steps.dt.outputs.today }}"
+            git commit -m "Daily hotsearch digest: ${{ steps.dt.outputs.today }} ${{ steps.dt.outputs.slot }}"
             git push origin HEAD:main
             echo "PUSH_OK"
           fi
