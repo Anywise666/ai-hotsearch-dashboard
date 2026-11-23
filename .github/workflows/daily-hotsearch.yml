@@ -1,6 +1,11 @@
 name: 热搜聚合每日更新（早晚各一次）
 
 on:
+  push:                    # 网页改 config.json 权重后自动重跑，即时生效
+    branches: [main]
+    paths:
+      - 'config.json'
+    # 注：GITHUB_TOKEN 的推送不会再次触发本工作流，无死循环风险
   schedule:
     # cron 只认 UTC，北京时间 = UTC+8。早晚各一个时段，每段内 3 个错峰点：
     # 早段 北京 08:08 / 08:20 / 08:32  (UTC 00:08 / 00:20 / 00:32)
@@ -69,9 +74,11 @@ jobs:
           D="${{ steps.dt.outputs.today }}"
           S="${{ steps.dt.outputs.slot }}"
           FORCE="${{ inputs.force }}"
+          EVENT="${{ github.event_name }}"
           STAMP="data/.stamp-$D-$S"
-          if [ "$FORCE" = "true" ]; then
-            echo "done=false" >> "$GITHUB_OUTPUT"; echo "强制刷新模式"; exit 0
+          # config.json 推送 = 权重变更，必须强制重跑（不能被时段标记挡住）
+          if [ "$FORCE" = "true" ] || [ "$EVENT" = "push" ]; then
+            echo "done=false" >> "$GITHUB_OUTPUT"; echo "强制刷新模式 (event=$EVENT)"; exit 0
           fi
           if [ -f "$STAMP" ]; then
             echo "done=true" >> "$GITHUB_OUTPUT"; echo "ALREADY_DONE $D $S"
@@ -110,13 +117,19 @@ jobs:
 
       - name: 提交并推送
         run: |
+          EVENT="${{ github.event_name }}"
+          case "$EVENT" in
+            push) EVENT_LABEL="weights-updated" ;;
+            workflow_dispatch) EVENT_LABEL="manual" ;;
+            *) EVENT_LABEL="scheduled" ;;
+          esac
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A data/ index.html config.json
+          git add -A data/ index.html
           if git diff --cached --quiet; then
             echo "NO_CHANGES_SKIP"
           else
-            git commit -m "Daily hotsearch digest: ${{ steps.dt.outputs.today }} ${{ steps.dt.outputs.slot }}"
+            git commit -m "Daily hotsearch digest: ${{ steps.dt.outputs.today }} ${{ steps.dt.outputs.slot }} (${EVENT_LABEL})"
             git push origin HEAD:main
             echo "PUSH_OK"
           fi
