@@ -64,11 +64,13 @@
 - **全局搜索（覆盖全部历史 + 完整候选池）**：`data/search-index.json` 汇总每天的完整候选池（含未入选精选的条目）。输入关键字即可搜到任意历史日期的条目；点击结果跳转到该日并按**当前权重重排**——若该条入选则高亮定位，若当前权重下未入选则置顶提示卡显示，做到"搜到即可定位"。与访客个性化权重完全兼容。
 - 收藏/稍后读、已读标记、分享卡片
 - 今日头条 + 5 板块全局编号，每条带来源平台、摘要与热度
-- 90 秒速览（播客按钮在 local 模式下自动降级为浏览器语音朗读）
+- 90 秒速览 + **双语播客/订阅**（2026-11-24 启用档位三）：每日自动生成 `audio/<日期>/` 中文串读 mp3（头条+各条+90 秒速览），并提供 `feed.xml` RSS 订阅。播客按钮优先播放预生成音频，缺失时降级为浏览器语音朗读
 
 ## 使用方法
 
-**自动更新（已配置）**：`.github/workflows/daily-hotsearch.yml` 每天**早晚各一次**——早段北京 08:08 / 08:20 / 08:32，晚段 20:08 / 20:20 / 20:32。每段内 3 个错峰点配合"时段标记"幂等：同一时段成功一次后同段后续点自动跳过（失败重试保险），早晚两段互不干扰。也可在 Actions 页面手动触发，可选时段（am/pm）和 `force` 强制刷新。
+**自动更新（已配置）**：`.github/workflows/daily-hotsearch.yml` 每天**早晚各一次**——早段北京 08:08 / 08:20 / 08:32，晚段 20:08 / 20:20 / 20:32。每段内 3 个错峰点配合"时段标记"幂等：同一时段成功一次后同段后续点自动跳过（失败重试保险），早晚两段互不干扰。工作流在抓数建站后按天幂等生成当日播客音频 + 重建 RSS（早晚段均可补，避免早段 cron 丢触发时错过）。也可在 Actions 页面手动触发，可选时段（am/pm）和 `force` 强制刷新。
+
+**播客本机兜底**：GitHub 云端 `schedule` 高峰期常被延迟/丢弃，故配 WorkBuddy 本机定时任务每天 **08:35** 执行 `scripts/ensure_today.sh`——检查线上当日音频，缺失则补跑（必要时自采数据）并推送。推送优先 `git push`，本机代理不通时自动降级走 GitHub REST API（`scripts/push_via_api.py`）。参数（站点 URL、音色、兜底时间等）在 `site.config.json`。
 
 **本地手动更新**：
 
@@ -85,7 +87,10 @@ bash 更新数据.sh
 ```
 index.html              成品页面（单文件，自包含）
 config.json             ★ 全站默认权重/阈值/配额/关键词（站主调参入口）
+site.config.json        ★ 播客/站点参数（站点 URL、音色、保留天数、兜底时间等）
 assets/dashboard-template.html  站点 HTML 模板（gen_site.py 据此生成 index.html）
+feed.xml               RSS 订阅源（含每日 90 秒速览音频）
+audio/<日期>/          每日播客音频 + manifest.json（按日累积，保留 30 天）
 更新数据.sh             一键更新入口
 .github/workflows/      早晚各一次的自动更新工作流
 data/                   站点数据契约（index.json + 每日 <日期>.json + search-index.json 全局搜索索引，逐日累积成历史档案）
@@ -93,15 +98,16 @@ data/                   站点数据契约（index.json + 每日 <日期>.json +
 assets/                 仪表盘模板副本（保证任意机器可独立重建）
 scripts/                抓取、筛选、建站脚本
   fetch_hot.py / build_data.py / gen_site.py   ← 核心链路
-  common.py / gen_audio.py / gen_feed.py / ensure_today.sh
-                                              ← 技能模板附带的播客/RSS 组件，为未来升级预留
+  common.py / gen_audio.py / gen_feed.py       ← 播客/RSS 生成（已启用，配置见 site.config.json）
+  ensure_today.sh / push_via_api.py            ← 本机 08:35 兜底：补跑播客 + git/API 双通道推送
 raw/                    各平台原始快照（已 .gitignore，不入库）
 ```
 
 ## 已知限制
 
 - 数据源为开源项目 [vikiboss/60s](https://github.com/vikiboss/60s) 的公共 API，存在短时限流；B 站端点在首次抓取时上游异常，当前用 5 个平台（B 站恢复后可在 `fetch_hot.py` 的 `PLATFORMS` 中启用）。
-- 本地站数据不会自动刷新，需手动运行更新脚本；如需每日自动更新，可按技能的"可订阅站"档位配置 GitHub Actions 定时抓取推送。
+- GitHub 云端 `schedule` 不保证准点（高峰可能延迟数小时甚至丢弃），播客准时上线主要靠本机 08:35 兜底任务（需本机此时在线）。
+- 热搜数据源为中文，无英文原题，故播客仅生成中文音轨（`manifest.json` 中 `en` 字段为空），与 AI 晨报站的中英双语不同。
 - 摘要中偶见 `[N 张图片]` 等平台原始文本，属于数据自带内容，不影响使用。
 
 ## 与技能的关系
