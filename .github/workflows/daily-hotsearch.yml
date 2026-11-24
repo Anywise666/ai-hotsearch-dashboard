@@ -117,6 +117,25 @@ jobs:
           printf '%s\n' "$(date -u +%FT%TZ)" > "data/.stamp-$D-$S"
           echo "STAMP_WRITTEN data/.stamp-$D-$S"
 
+      - name: 生成本期播客音频（按天幂等，早晚段均可补）
+        id: audio
+        run: |
+          D="${{ steps.dt.outputs.today }}"
+          pip install -q edge-tts
+          if [ -f "audio/$D/manifest.json" ] && python -c "
+          import json,sys
+          d=json.load(open('audio/$D/manifest.json',encoding='utf-8'))
+          items=d.get('items') or {}
+          ok=sum(1 for v in items.values() if isinstance(v,dict) and (v.get('zh') or v.get('en')))
+          sys.exit(0 if ok>0 else 1)"; then
+            echo "AUDIO_ALREADY_DONE $D"
+          else
+            python scripts/gen_audio.py "$D"
+          fi
+
+      - name: 重建播客 RSS
+        run: python scripts/gen_feed.py
+
       - name: 提交并推送
         run: |
           EVENT="${{ github.event_name }}"
@@ -127,11 +146,11 @@ jobs:
           esac
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A data/ index.html
+          git add -A data/ index.html audio/ feed.xml
           if git diff --cached --quiet; then
             echo "NO_CHANGES_SKIP"
           else
-            git commit -m "Daily hotsearch digest: ${{ steps.dt.outputs.today }} ${{ steps.dt.outputs.slot }} (${EVENT_LABEL})"
+            git commit -m "Daily hotsearch digest + audio: ${{ steps.dt.outputs.today }} ${{ steps.dt.outputs.slot }} (${EVENT_LABEL})"
             git push origin HEAD:main
             echo "PUSH_OK"
           fi

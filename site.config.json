@@ -1,0 +1,21 @@
+{
+  "site_name": "AI热搜速览",
+  "site_desc": "每天一期，90 秒听懂当天最有公共价值的热搜。",
+  "site_url": "https://anywise666.github.io/ai-hotsearch-dashboard",
+  "brand_line": "AI热搜速览",
+  "data_credit": "全网公开热搜平台",
+  "data_mode": "local",
+  "api_base": "https://aihot.news/api/v1",
+  "local_data_dir": "data",
+  "voice_zh": "zh-CN-XiaoxiaoNeural",
+  "voice_en": "en-US-JennyNeural",
+  "keep_days": 30,
+  "max_episodes": 60,
+  "podcast_category": "Technology",
+  "podcast_author": "AI热搜速览",
+  "pub_hour": 8,
+  "pub_minute": 30,
+  "cron_minutes": [8, 20, 32],
+  "fallback_hour": 8,
+  "fallback_minute": 35
+}
