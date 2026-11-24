@@ -119,6 +119,9 @@
   @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(251,113,133,.5)}50%{box-shadow:0 0 0 8px rgba(251,113,133,0)}}
   .lead-card .listen{margin-top:12px}
   .podcast-tip{font-size:12px;color:var(--mut);opacity:.85}
+  html.no-podcast .listen,html.no-podcast .tb-btn.brief,html.no-podcast #subBtn,
+  html.no-podcast .audio-bar,html.no-podcast .guide-mask,html.no-podcast #subMask,
+  html.no-podcast .podcast-tip{display:none !important}
   .audio-bar{position:sticky;bottom:14px;z-index:50;max-width:760px;margin:18px auto 0;
     background:rgba(20,26,44,.97);border:1px solid rgba(56,189,248,.35);border-radius:14px;
     padding:12px 16px;display:none;align-items:center;gap:12px;box-shadow:0 10px 34px rgba(0,0,0,.5)}

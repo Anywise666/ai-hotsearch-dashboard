@@ -31,6 +31,7 @@ new_cfg = '''var SITE_CFG = {
   brandEn: "HOT PULSE",
   dataCredit: "60s API · 多平台实时热搜",
   docTitle: "全网有价值热搜 · 聚合档案",
+  podcast: true,
   sections: [
     {key:"tech",     label:"科技·AI·数码",   color:"#38bdf8"},
     {key:"finance",  label:"财经·市场",       color:"#34d399"},
