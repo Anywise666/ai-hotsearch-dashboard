@@ -79,7 +79,8 @@ def main():
     base_tree = commit["tree"]["sha"]
 
     # 本地 HEAD 相对父提交的变更文件（兜底脚本先 commit 再调用本脚本）
-    out = run(["git", "diff-tree", "--no-commit-id", "--name-only", "-r", "HEAD"]).stdout
+    out = run(["git", "-c", "core.quotepath=false", "diff-tree",
+               "--no-commit-id", "--name-only", "-r", "HEAD"]).stdout
     files = [f for f in out.splitlines() if f.strip()]
     if not files:
         print("NO_CHANGES")
