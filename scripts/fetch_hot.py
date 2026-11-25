@@ -13,8 +13,10 @@
 """
 import json
 import os
+import socket
 import time
 import urllib.request
+import urllib.error
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -62,7 +64,8 @@ def normalize(data):
 
 
 def fetch_one(url, retries=3):
-    """单端点带重试抓取，成功返回 data 数组，失败返回 None。"""
+    """单端点带重试抓取，成功返回 data 数组，失败返回 None。
+    DNS 解析失败（域名不可达）不重试，立即返回以尽快切换到下一个源。"""
     for i in range(retries):
         try:
             req = urllib.request.Request(url, headers=UA)
@@ -71,6 +74,11 @@ def fetch_one(url, retries=3):
                 return data["data"]
             print("    [retry %d] %s -> code=%s %s" % (
                 i + 1, url, data.get("code"), str(data.get("message", ""))[:40]))
+        except urllib.error.URLError as e:
+            if isinstance(e.reason, socket.gaierror):
+                print("    [skip] DNS 不可达，切换下一个源: %s" % url)
+                return None
+            print("    [retry %d] %s -> %s" % (i + 1, url, repr(e)[:80]))
         except Exception as e:
             print("    [retry %d] %s -> %s" % (i + 1, url, repr(e)[:80]))
         time.sleep(2 * (i + 1))
