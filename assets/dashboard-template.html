@@ -831,7 +831,7 @@ var SITE_CFG = {
       (sec.items||[]).forEach(function(it){
         var links=it.links||{};
         var aihotUrl=links.aihot||'';
-        buckets[key].push({title:it.title||"",source:(it.source&&it.source.name)||"未知来源",summary:it.summary||"",url:links.original||aihotUrl,itemId:itemIdFromUrl(aihotUrl),en:enTitleOf(aihotUrl)});
+        buckets[key].push({title:it.title||"",source:(it.source&&it.source.name)||"未知来源",summary:it.summary||"",url:links.original||aihotUrl,itemId:itemIdFromUrl(aihotUrl)||it.id,en:enTitleOf(aihotUrl)});
       });
     });
     var ordered=[];
