@@ -1,6 +1,6 @@
 # 全网有价值热搜聚合仪表盘
 
-聚合微博、知乎、抖音、今日头条、百度五个公共平台的实时热搜，按"公共价值"筛选去重后，呈现为与 AI 晨报同风格的单文件仪表盘。
+聚合微博、知乎、抖音、B 站、今日头条、百度六个公共平台的实时热搜，按"公共价值"筛选去重后，呈现为与 AI 晨报同风格的单文件仪表盘。
 
 > 本项目由 [ai-brief-podcast 技能](https://github.com/Anywise666/ai-brief-podcast-skill) 构建，视觉风格对齐 [ai-news-dashboard](https://github.com/Anywise666/ai-news-dashboard)。技能的定位是"把每日简报变成可看、可听、可订阅的站点"，本项目是这套方法论在**热搜聚合**场景的第一次落地验证。
 
@@ -11,14 +11,15 @@
 ## 数据链路
 
 ```
-60s API (5 平台)  →  fetch_hot.py  →  build_data.py  →  gen_site.py  →  index.html
-   实时热搜            raw/*.json        data/*.json        单文件站点
+60s API ──┐
+          ├─ 多源回退 → fetch_hot.py → build_data.py → gen_site.py → index.html
+DailyHot ─┘    (raw/*.json)   (降级兜底)    (data/*.json)    单文件站点
 ```
 
 | 环节 | 脚本 | 作用 |
 |---|---|---|
-| 抓取 | `scripts/fetch_hot.py` | 调用 60s API 拉取各平台热搜，带重试与延时规避限流（错误码 1015） |
-| 筛选聚合 | `scripts/build_data.py` | 价值打分 → 语义去重 → 板块配额 → 生成符合技能数据契约的 `data/<日期>.json` |
+| 抓取 | `scripts/fetch_hot.py` | 6 平台热搜，**双源回退**（60s API → DailyHotApi）+ 重试延时，字段归一化；DNS 不可达立即跳过；全失败保留上轮 raw、绝不写空覆盖 |
+| 筛选聚合 | `scripts/build_data.py` | 价值打分 → 语义去重 → 板块配额 → `data/<日期>.json`；抓取不足时**降级复用最近有效报告**，并清空当日音频强制重合成，避免旧音频配新报告 |
 | 建站 | `scripts/gen_site.py` | 基于技能模板，以 local 模式替换 `SITE_CFG` 生成 `index.html` |
 | 一键更新 | `更新数据.sh` | 串联以上三步，每天跑一次即可刷新站点 |
 
@@ -65,6 +66,7 @@
 - 收藏/稍后读、已读标记、分享卡片
 - 今日头条 + 5 板块全局编号，每条带来源平台、摘要与热度
 - 90 秒速览 + **双语播客/订阅**（2026-11-24 启用档位三）：每日自动生成 `audio/<日期>/` 中文串读 mp3（头条+各条+90 秒速览），并提供 `feed.xml` RSS 订阅。播客按钮优先播放预生成音频，缺失时降级为浏览器语音朗读
+- 音频与报告**同源生成**：每条 id（`h+hash(title)`）既是报告条目 id，也是音频文件名/清单 key；前端提取不到站内链接 id 时回退用 `it.id` 兜底匹配，确保第三方原链的热搜也能对上音频、正常出声
 
 ## 使用方法
 
@@ -97,16 +99,17 @@ data/                   站点数据契约（index.json + 每日 <日期>.json +
                         另有 .stamp-<日期>-<am|pm> 时段标记文件（幂等用）
 assets/                 仪表盘模板副本（保证任意机器可独立重建）
 scripts/                抓取、筛选、建站脚本
-  fetch_hot.py / build_data.py / gen_site.py   ← 核心链路
+  fetch_hot.py / build_data.py / gen_site.py   ← 核心链路（双源回退 / 降级兜底 / 建站）
   common.py / gen_audio.py / gen_feed.py       ← 播客/RSS 生成（已启用，配置见 site.config.json）
   ensure_today.sh / push_via_api.py            ← 本机 08:35 兜底：补跑播客 + git/API 双通道推送
+cron外部触发配置指南.md   外部精准定时（cron-job.org）配置参考，不依赖本机在线
 raw/                    各平台原始快照（已 .gitignore，不入库）
 ```
 
 ## 已知限制
 
-- 数据源为开源项目 [vikiboss/60s](https://github.com/vikiboss/60s) 的公共 API，存在短时限流；B 站端点在首次抓取时上游异常，当前用 5 个平台（B 站恢复后可在 `fetch_hot.py` 的 `PLATFORMS` 中启用）。
-- GitHub 云端 `schedule` 不保证准点（高峰可能延迟数小时甚至丢弃），播客准时上线主要靠本机 08:35 兜底任务（需本机此时在线）。
+- 数据源为开源项目 [vikiboss/60s](https://github.com/vikiboss/60s) 的公共 API，对 GitHub Actions 共享出口 IP 做 **IP 级限流**（返回 429 / 错误码 1027）；已内置 **60s → DailyHotApi 双源回退** 与抓取失败降级。备用源域名在部分网络下 DNS 不可达，此时会快速跳过；若当日两源都失败，则**降级沿用最近一期有效报告**（内容非当天最新），但流程不再失败、音频照常重合成。
+- GitHub 云端 `schedule` 不保证准点（高峰可能延迟数小时甚至丢弃）。本机 08:35 兜底任务仍是备份；也可按 `cron外部触发配置指南.md` 用外部精准定时器（cron-job.org）触发，不依赖本机在线。
 - 热搜数据源为中文，无英文原题，故播客仅生成中文音轨（`manifest.json` 中 `en` 字段为空），与 AI 晨报站的中英双语不同。
 - 摘要中偶见 `[N 张图片]` 等平台原始文本，属于数据自带内容，不影响使用。
 
